@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AA24EE531BF4E9EE00112A63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EE521BF4E9EE00112A63 /* AppDelegate.swift */; };
-		AA24EE551BF4E9EE00112A63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EE541BF4E9EE00112A63 /* ViewController.swift */; };
 		AA24EE581BF4E9EE00112A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA24EE561BF4E9EE00112A63 /* Main.storyboard */; };
 		AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA24EE591BF4E9EE00112A63 /* Shokugy.xcdatamodeld */; };
 		AA24EE5D1BF4E9EE00112A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA24EE5C1BF4E9EE00112A63 /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		AA24EE4F1BF4E9EE00112A63 /* Shokugy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shokugy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA24EE521BF4E9EE00112A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AA24EE541BF4E9EE00112A63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA24EE571BF4E9EE00112A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA24EE5A1BF4E9EE00112A63 /* Shokugy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shokugy.xcdatamodel; sourceTree = "<group>"; };
 		AA24EE5C1BF4E9EE00112A63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,8 +98,10 @@
 			isa = PBXGroup;
 			children = (
 				AA24EE521BF4E9EE00112A63 /* AppDelegate.swift */,
-				AA24EE541BF4E9EE00112A63 /* ViewController.swift */,
 				AA24EE561BF4E9EE00112A63 /* Main.storyboard */,
+				AA24EE851BF4EC5300112A63 /* Model */,
+				AA24EE841BF4EC4C00112A63 /* Controller */,
+				AA24EE831BF4EC4700112A63 /* View */,
 				AA24EE5C1BF4E9EE00112A63 /* Assets.xcassets */,
 				AA24EE5E1BF4E9EE00112A63 /* LaunchScreen.storyboard */,
 				AA24EE611BF4E9EE00112A63 /* Info.plist */,
@@ -126,6 +126,27 @@
 				AA24EE771BF4E9EE00112A63 /* Info.plist */,
 			);
 			path = ShokugyUITests;
+			sourceTree = "<group>";
+		};
+		AA24EE831BF4EC4700112A63 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AA24EE841BF4EC4C00112A63 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AA24EE851BF4EC5300112A63 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,7 +283,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA24EE551BF4E9EE00112A63 /* ViewController.swift in Sources */,
 				AA24EE531BF4E9EE00112A63 /* AppDelegate.swift in Sources */,
 				AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */,
 			);
