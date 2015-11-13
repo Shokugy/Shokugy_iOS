@@ -10,9 +10,17 @@ import UIKit
 
 class HomeTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var profImageView: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var storeName: UILabel!
+    @IBOutlet weak var storeAccess: UILabel!
+    @IBOutlet weak var userComment: UILabel!
+    @IBOutlet weak var postTime: UILabel!
+    @IBOutlet weak var numOfLike: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        profImageView.layer.cornerRadius = profImageView.frame.width/2
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
