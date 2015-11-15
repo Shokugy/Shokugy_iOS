@@ -57,14 +57,6 @@ class RAMAnimatedTabBarController: UITabBarController {
 
         createCustomIcons(containers)
         
-        //-------------------------------
-//        
-//        let homeViewController = self.viewControllers![0]
-//        let searchViewController = self.viewControllers![1]
-//        
-//        homeViewController.tabBarItem = UITabBarItem(title: "", image: makeUIImage("home_high.png"), selectedImage: makeUIImage("home.png"))
-        
-        //--------------------------------
     }
     
     
@@ -108,14 +100,14 @@ class RAMAnimatedTabBarController: UITabBarController {
                 container.addSubview(icon)
                 
                 if let itemImage = item.image {
-                    createConstraints(icon, container: container, size: itemImage.size, yOffset: -5)
+                    createConstraints(icon, container: container, size: itemImage.size, yOffset: -3)
                 }
 
                 container.addSubview(textLabel)
                 
                 if let tabBarItem = tabBar.items {
                     let textLabelWidth = tabBar.frame.size.width / CGFloat(tabBarItem.count) - 5.0
-                    createConstraints(textLabel, container: container, size: CGSize(width: textLabelWidth , height: 10), yOffset: 16)
+                    createConstraints(textLabel, container: container, size: CGSize(width: textLabelWidth , height: 10), yOffset: 19)
                 }
 
                 let iconsAndLabels = (icon:icon, textLabel:textLabel)
