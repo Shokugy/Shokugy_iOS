@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate {
     
     let sampleData = ["soya", "yuya", "kotasawadaIndy"]
 
@@ -44,6 +44,7 @@ class HomeTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell") as! HomeTableViewCell
+        cell.customDelegate = self
         
         cell.userName.text = sampleData[indexPath.row]
         cell.layer.borderWidth = 0.1
@@ -59,6 +60,26 @@ class HomeTableViewController: UITableViewController {
     func tapRightBarBtn() {
         
     }
-     
+    
+    func tapFavBtn() {
+        print("tapfav")
+    }
+    
+    func tapNumOfFavBtn() {
+        self.performSegueWithIdentifier("toGoingMenberViewController", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "toGoingMenberViewController" {
+            let goingMenberViewController = segue.destinationViewController as! GoingMenberViewController
+            goingMenberViewController.storeName = "すき家　茶屋町店"
+        }
+    }
+    
+    func tapStoreNameBtn() {
+        self.performSegueWithIdentifier("toStoreDetailViewController", sender: self)
+    }
+
+    
 
 }

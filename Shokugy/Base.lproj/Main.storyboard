@@ -22,10 +22,65 @@
                     <tabBarItem key="tabBarItem" title="Item" id="zgl-oT-npZ"/>
                     <navigationItem key="navigationItem" title="Shokugy" id="vso-33-gHs"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="GJC-Op-Dp4" kind="show" identifier="toGoingMenberViewController" id="Cgt-KY-yDV"/>
+                        <segue destination="VaW-T3-LzX" kind="show" identifier="toStoreDetailViewController" id="CzP-nP-eWx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGS-Eb-btC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5082.5" y="983.5"/>
+        </scene>
+        <!--Going Menber View Controller-->
+        <scene sceneID="6qC-WP-MtQ">
+            <objects>
+                <viewController id="GJC-Op-Dp4" customClass="GoingMenberViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KX6-Mz-WW3"/>
+                        <viewControllerLayoutGuide type="bottom" id="bmO-qf-Hke"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hfl-lx-tTq">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="すき家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-io-FuE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="DGz-cN-vza"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Qq-4M-veh">
+                                <rect key="frame" x="0.0" y="70" width="375" height="484"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3Qq-4M-veh" firstAttribute="leading" secondItem="hfl-lx-tTq" secondAttribute="leading" id="8oD-mv-rcM"/>
+                            <constraint firstAttribute="trailing" secondItem="AVr-io-FuE" secondAttribute="trailing" id="GbR-Kx-i7z"/>
+                            <constraint firstItem="3Qq-4M-veh" firstAttribute="top" secondItem="AVr-io-FuE" secondAttribute="bottom" id="J2s-tA-awz"/>
+                            <constraint firstItem="AVr-io-FuE" firstAttribute="top" secondItem="KX6-Mz-WW3" secondAttribute="bottom" id="LN0-0I-lYy"/>
+                            <constraint firstItem="bmO-qf-Hke" firstAttribute="top" secondItem="3Qq-4M-veh" secondAttribute="bottom" id="eaz-sU-PHC"/>
+                            <constraint firstItem="AVr-io-FuE" firstAttribute="leading" secondItem="hfl-lx-tTq" secondAttribute="leading" id="n5y-Cu-EfW"/>
+                            <constraint firstAttribute="trailing" secondItem="3Qq-4M-veh" secondAttribute="trailing" id="toi-pL-cgs"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="goingMenberTableView" destination="3Qq-4M-veh" id="pOi-0S-gKG"/>
+                        <outlet property="storeNameLabel" destination="AVr-io-FuE" id="oKn-F5-uLZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y7y-ac-I8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5544.5" y="983.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="yjz-I1-yj0">
@@ -98,11 +153,72 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="searchTextView" destination="NWx-A4-xXY" id="Dhq-vK-Za4"/>
+                        <segue destination="VaW-T3-LzX" kind="show" identifier="toStoreDetailViewController" id="xvl-9y-bMJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hh-6e-xeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4270.5" y="1701.5"/>
+            <point key="canvasLocation" x="5082.5" y="1790.5"/>
+        </scene>
+        <!--Store Detail View Controller-->
+        <scene sceneID="flw-GR-Ut5">
+            <objects>
+                <viewController id="VaW-T3-LzX" customClass="StoreDetailViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uSd-f5-8Xs"/>
+                        <viewControllerLayoutGuide type="bottom" id="YLH-kC-BlL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7wf-Y5-64p">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LA2-5U-4LK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="すき家　茶屋町店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7W-eW-2zC">
+                                        <rect key="frame" x="8" y="8" width="359" height="50"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QT-bC-TBD">
+                                        <rect key="frame" x="8" y="112" width="91" height="30"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="食べログへ"/>
+                                        <connections>
+                                            <action selector="tapTaberoguBtn:" destination="VaW-T3-LzX" eventType="touchUpInside" id="hMG-jp-b97"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="口コミ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lo-cC-ExD">
+                                <rect key="frame" x="0.0" y="158" width="375" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4jv-OG-cOO">
+                                <rect key="frame" x="0.0" y="196" width="375" height="358"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="commentTableView" destination="4jv-OG-cOO" id="R98-su-HGZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uc9-cQ-6F9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5544.5" y="1746.5"/>
         </scene>
         <!--Shokugy-->
         <scene sceneID="x5L-M6-C9W">
@@ -123,7 +239,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anI-2X-heB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3864.5" y="2463.5"/>
+            <point key="canvasLocation" x="4676.5" y="2453.5"/>
         </scene>
         <!--Search-->
         <scene sceneID="ic4-Bc-gr1">
@@ -150,7 +266,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13k-iz-WxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="6qq-4j-UtF" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3864.5" y="1701.5"/>
+            <point key="canvasLocation" x="4676.5" y="1701.5"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="AQz-w6-RSC">
@@ -190,11 +306,33 @@
                         <segue destination="hfZ-xj-XpP" kind="relationship" relationship="viewControllers" id="uaH-w3-nwM"/>
                         <segue destination="OgN-IW-Jyz" kind="relationship" relationship="viewControllers" id="hRg-P4-yO3"/>
                         <segue destination="j0I-zi-XHV" kind="relationship" relationship="viewControllers" id="ian-qs-KkJ"/>
+                        <segue destination="epk-ow-dvC" kind="relationship" relationship="viewControllers" id="EnB-a5-KmV"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JEj-gg-jBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3423.5" y="1299.5"/>
+            <point key="canvasLocation" x="3423.5" y="1309.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="miL-AA-jBv">
+            <objects>
+                <viewController id="VjT-iB-dsp" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="00r-YF-fFV"/>
+                        <viewControllerLayoutGuide type="bottom" id="0aj-I7-vXc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v2y-ou-rOo">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eeF-Br-wDA"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3417.5" y="2067.5"/>
         </scene>
         <!--Alert-->
         <scene sceneID="WTh-cA-Yiw">
@@ -221,7 +359,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0o-VN-Btd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="ouy-61-Cpq" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3423.5" y="2053.5"/>
+            <point key="canvasLocation" x="4209.5" y="2453.5"/>
         </scene>
         <!--Ranking-->
         <scene sceneID="g1G-IW-1ct">
@@ -250,6 +388,33 @@
             </objects>
             <point key="canvasLocation" x="3423.5" y="556.5"/>
         </scene>
+        <!--User-->
+        <scene sceneID="Jer-8I-hV5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="epk-ow-dvC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="User" image="user.png" id="j3c-QR-PpK" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="934-7I-rwg" id="BLy-Gm-SrG"/>
+                        </connections>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="P3g-Bw-JXt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VjT-iB-dsp" kind="relationship" relationship="rootViewController" id="sLm-rZ-cQG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wEd-Uk-cKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="934-7I-rwg" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="2975" y="2041"/>
+        </scene>
     </scenes>
     <resources>
         <image name="alert.png" width="48" height="48"/>
@@ -259,5 +424,9 @@
         <image name="ranking.png" width="48" height="48"/>
         <image name="ranking_high.png" width="48" height="48"/>
         <image name="search.png" width="48" height="48"/>
+        <image name="user.png" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xvl-9y-bMJ"/>
+    </inferredMetricsTieBreakers>
 </document>

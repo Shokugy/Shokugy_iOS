@@ -60,5 +60,9 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         searchTextView.resignFirstResponder()
         return true
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("toStoreDetailViewController", sender: self)
+    }
 
 }

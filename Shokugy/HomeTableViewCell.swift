@@ -1,14 +1,14 @@
-//
-//  HomeTableViewCell.swift
-//  Shokugy
-//
-//  Created by 堀江健太朗 on 2015/11/13.
-//  Copyright © 2015年 Shokugy. All rights reserved.
-//
+protocol HomeTableViewCellDelegate {
+    func tapFavBtn()
+    func tapNumOfFavBtn()
+    func tapStoreNameBtn()
+}
 
 import UIKit
 
 class HomeTableViewCell: UITableViewCell {
+    
+    var customDelegate: HomeTableViewCellDelegate?
 
     @IBOutlet weak var profImageView: UIImageView!
     @IBOutlet weak var userName: UILabel!
@@ -29,4 +29,15 @@ class HomeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func tapFavBtn(sender: UIButton) {
+        customDelegate?.tapFavBtn()
+    }
+    
+    @IBAction func tapNomOfFavBtn(sender: UIButton) {
+        customDelegate?.tapNumOfFavBtn()
+    }
+    
+    @IBAction func tapStoreNameBtn(sender: UIButton) {
+        customDelegate?.tapStoreNameBtn()
+    }
 }

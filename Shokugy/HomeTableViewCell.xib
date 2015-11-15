@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="390" height="95"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="et-line_e03b(0)_48.png" translatesAutoresizingMaskIntoConstraints="NO" id="txq-jb-cZk">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pug.png" translatesAutoresizingMaskIntoConstraints="NO" id="txq-jb-cZk">
                         <rect key="frame" x="8" y="8" width="50" height="50"/>
                         <animations/>
                         <constraints>
@@ -78,6 +78,9 @@
                             <constraint firstAttribute="width" constant="44" id="krD-Q9-3hg"/>
                         </constraints>
                         <state key="normal" title="B"/>
+                        <connections>
+                            <action selector="tapFavBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2yf-Wf-zFQ"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLM-Ow-f0M">
                         <rect key="frame" x="340" y="67" width="42" height="21"/>
@@ -100,19 +103,45 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtN-kd-qbS">
+                        <rect key="frame" x="340" y="67" width="42" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="42" id="7ld-2f-Q1f"/>
+                            <constraint firstAttribute="height" constant="21" id="bz6-2R-s3b"/>
+                        </constraints>
+                        <connections>
+                            <action selector="tapNomOfFavBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ULL-GI-bAo"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbE-N5-85r">
+                        <rect key="frame" x="66" y="23" width="272" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="UxE-1g-Z8J"/>
+                        </constraints>
+                        <connections>
+                            <action selector="tapStoreNameBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KiU-HN-0nw"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
                 <constraints>
                     <constraint firstItem="BN3-fx-2Vh" firstAttribute="leading" secondItem="txq-jb-cZk" secondAttribute="trailing" constant="8" id="0gQ-jN-XOM"/>
+                    <constraint firstItem="NtN-kd-qbS" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="47K-wn-8TF"/>
+                    <constraint firstItem="Yfg-eO-Z0O" firstAttribute="leading" secondItem="gbE-N5-85r" secondAttribute="trailing" id="52F-eG-Po7"/>
                     <constraint firstItem="Yfg-eO-Z0O" firstAttribute="leading" secondItem="y43-ok-APe" secondAttribute="trailing" id="A3c-tQ-loI"/>
+                    <constraint firstItem="gbE-N5-85r" firstAttribute="leading" secondItem="txq-jb-cZk" secondAttribute="trailing" constant="8" id="ArC-zk-WDy"/>
                     <constraint firstItem="txq-jb-cZk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Ccn-xJ-ufw"/>
                     <constraint firstItem="pWz-SE-fGz" firstAttribute="leading" secondItem="txq-jb-cZk" secondAttribute="trailing" constant="8" id="EDL-rv-8w4"/>
                     <constraint firstItem="wLM-Ow-f0M" firstAttribute="top" secondItem="Yfg-eO-Z0O" secondAttribute="bottom" id="FDv-Hf-URl"/>
                     <constraint firstItem="y43-ok-APe" firstAttribute="top" secondItem="BN3-fx-2Vh" secondAttribute="bottom" id="IKJ-Vx-R10"/>
                     <constraint firstItem="pWz-SE-fGz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="LGQ-yS-s6B"/>
+                    <constraint firstItem="NtN-kd-qbS" firstAttribute="top" secondItem="Yfg-eO-Z0O" secondAttribute="bottom" id="QN5-ck-DkP"/>
                     <constraint firstItem="Yfg-eO-Z0O" firstAttribute="leading" secondItem="BN3-fx-2Vh" secondAttribute="trailing" id="Ru7-5c-4jy"/>
                     <constraint firstItem="d9t-TD-jtO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="58" id="TIE-rT-5y0"/>
                     <constraint firstItem="YNa-pd-Ptt" firstAttribute="leading" secondItem="pWz-SE-fGz" secondAttribute="trailing" id="WlN-6P-the"/>
+                    <constraint firstItem="gbE-N5-85r" firstAttribute="top" secondItem="pWz-SE-fGz" secondAttribute="bottom" id="ZbI-UW-FgE"/>
                     <constraint firstItem="wLM-Ow-f0M" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="aD0-cK-hsU"/>
                     <constraint firstItem="wLM-Ow-f0M" firstAttribute="leading" secondItem="d9t-TD-jtO" secondAttribute="trailing" id="hfP-jm-7AV"/>
                     <constraint firstItem="Yfg-eO-Z0O" firstAttribute="top" secondItem="YNa-pd-Ptt" secondAttribute="bottom" id="iV6-5O-dKt"/>
@@ -139,6 +168,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="et-line_e03b(0)_48.png" width="48" height="48"/>
+        <image name="pug.png" width="120" height="120"/>
     </resources>
 </document>
