@@ -45,6 +45,10 @@
 		AA24EEEC1BF5CC5900112A63 /* AlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EEEB1BF5CC5900112A63 /* AlertTableViewController.swift */; };
 		AA24EEF31BF5D0A700112A63 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */; };
 		AA24EEF41BF5D0A700112A63 /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */; };
+		AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */; };
+		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
+		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
+		AA9B36951BF8FCB300E83C3A /* batu.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36941BF8FCB300E83C3A /* batu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +113,10 @@
 		AA24EEEB1BF5CC5900112A63 /* AlertTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewController.swift; sourceTree = "<group>"; };
 		AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
+		AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
+		AA9B36941BF8FCB300E83C3A /* batu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batu.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +209,8 @@
 				AA24EEDE1BF5AE8300112A63 /* SearchTableViewCell.xib */,
 				AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */,
 				AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */,
+				AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */,
+				AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -240,6 +250,8 @@
 				AA24EEC51BF5A91800112A63 /* et-line_e021(0)_48.png */,
 				AA24EEC11BF5A89100112A63 /* et-line_e03b(0)_48.png */,
 				AA09CF511BF854AE005CBD7C /* pug.png */,
+				AA9B36901BF8E84A00E83C3A /* postIcon.png */,
+				AA9B36941BF8FCB300E83C3A /* batu.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -416,8 +428,10 @@
 				AA24EE601BF4E9EE00112A63 /* LaunchScreen.storyboard in Resources */,
 				AA24EEC61BF5A91800112A63 /* et-line_e021(0)_48.png in Resources */,
 				AA24EEE71BF5BA6E00112A63 /* home.png in Resources */,
+				AA9B36951BF8FCB300E83C3A /* batu.png in Resources */,
 				AA24EEE91BF5BA6E00112A63 /* search.png in Resources */,
 				AA24EEF41BF5D0A700112A63 /* AlertTableViewCell.xib in Resources */,
+				AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */,
 				AA09CF521BF854AE005CBD7C /* pug.png in Resources */,
 				AA24EE5D1BF4E9EE00112A63 /* Assets.xcassets in Resources */,
 				AA24EED11BF5ABB700112A63 /* alert_high.png in Resources */,
@@ -432,6 +446,7 @@
 				AA24EEEA1BF5BA6E00112A63 /* user.png in Resources */,
 				AA24EED71BF5ABB700112A63 /* search_high.png in Resources */,
 				AA24EEC31BF5A89100112A63 /* et-line_e03b(0)_48.png in Resources */,
+				AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +484,7 @@
 				AA24EEDF1BF5AE8300112A63 /* SearchTableViewCell.swift in Sources */,
 				AA24EEF31BF5D0A700112A63 /* AlertTableViewCell.swift in Sources */,
 				AA24EE8D1BF58FCD00112A63 /* HomeTableViewCell.swift in Sources */,
+				AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */,
 				AA24EEEC1BF5CC5900112A63 /* AlertTableViewController.swift in Sources */,
 				AA24EEBD1BF5A7E800112A63 /* RAMRotationAnimation.swift in Sources */,
 				AA24EEBB1BF5A7E800112A63 /* RAMFrameItemAnimation.swift in Sources */,
