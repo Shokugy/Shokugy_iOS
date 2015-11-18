@@ -45,6 +45,7 @@
 		AA24EEEC1BF5CC5900112A63 /* AlertTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EEEB1BF5CC5900112A63 /* AlertTableViewController.swift */; };
 		AA24EEF31BF5D0A700112A63 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */; };
 		AA24EEF41BF5D0A700112A63 /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */; };
+		AA2783F81BFC6054003FA3A0 /* AddMemberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */; };
 		AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */; };
 		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
 		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
@@ -113,6 +114,7 @@
 		AA24EEEB1BF5CC5900112A63 /* AlertTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewController.swift; sourceTree = "<group>"; };
 		AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
+		AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberTableViewController.swift; sourceTree = "<group>"; };
 		AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				AA24EEEB1BF5CC5900112A63 /* AlertTableViewController.swift */,
 				AA09CF4F1BF84BFF005CBD7C /* GoingMenberViewController.swift */,
 				AA09CF531BF857BB005CBD7C /* StoreDetailViewController.swift */,
+				AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				AA24EEBD1BF5A7E800112A63 /* RAMRotationAnimation.swift in Sources */,
 				AA24EEBB1BF5A7E800112A63 /* RAMFrameItemAnimation.swift in Sources */,
 				AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */,
+				AA2783F81BFC6054003FA3A0 /* AddMemberTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
