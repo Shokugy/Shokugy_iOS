@@ -50,6 +50,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
     
@@ -58,7 +60,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
     }
     
     func tapRightBarBtn() {
-        
+        self.performSegueWithIdentifier("ToSearchViewController", sender: nil)
     }
     
     func tapFavBtn() {

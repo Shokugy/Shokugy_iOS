@@ -43,6 +43,8 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.Blue
+        
         return cell
     }
     
