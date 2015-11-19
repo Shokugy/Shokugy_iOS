@@ -21,6 +21,7 @@ class HomeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         profImageView.layer.cornerRadius = profImageView.frame.width/2
+        profImageView.clipsToBounds = true
         
         
     }

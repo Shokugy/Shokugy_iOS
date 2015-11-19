@@ -18,7 +18,8 @@ class CommentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        userImageView.layer.cornerRadius = userImageView.frame.width/2
+        userImageView.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
