@@ -144,6 +144,7 @@
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <state key="normal" title="Search"/>
                                 <connections>
                                     <action selector="tapSearchBtn:" destination="jE9-rl-TQQ" eventType="touchUpInside" id="6Iq-dk-BHU"/>
@@ -361,10 +362,10 @@
             </objects>
             <point key="canvasLocation" x="3423.5" y="1309.5"/>
         </scene>
-        <!--View Controller-->
+        <!--User View Controller-->
         <scene sceneID="miL-AA-jBv">
             <objects>
-                <viewController id="VjT-iB-dsp" sceneMemberID="viewController">
+                <viewController id="VjT-iB-dsp" customClass="UserViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="00r-YF-fFV"/>
                         <viewControllerLayoutGuide type="bottom" id="0aj-I7-vXc"/>
@@ -372,11 +373,78 @@
                     <view key="view" contentMode="scaleToFill" id="v2y-ou-rOo">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xB-rs-Zh4">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pug.png" translatesAutoresizingMaskIntoConstraints="NO" id="rfL-6m-WC4">
+                                        <rect key="frame" x="137" y="8" width="100" height="100"/>
+                                        <animations/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Soya Takahashi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuq-9r-3xL">
+                                        <rect key="frame" x="94" y="116" width="186" height="21"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12口コミ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXe-ra-P2P">
+                                        <rect key="frame" x="152" y="145" width="71" height="21"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMJ-3O-yc1">
+                                        <rect key="frame" x="94" y="42" width="32" height="32"/>
+                                        <animations/>
+                                        <state key="normal" image="member.png"/>
+                                        <connections>
+                                            <action selector="tapMemberBtn:" destination="VjT-iB-dsp" eventType="touchUpInside" id="dTR-1q-mh8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcu-pB-enG">
+                                        <rect key="frame" x="245" y="37" width="53" height="41"/>
+                                        <animations/>
+                                        <state key="normal" image="change.png"/>
+                                        <connections>
+                                            <action selector="tapChangeBtn:" destination="VjT-iB-dsp" eventType="touchUpInside" id="ocN-AK-EwT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JLv-b0-f9J">
+                                <rect key="frame" x="0.0" y="182" width="375" height="372"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="eeF-Br-wDA"/>
+                    <navigationItem key="navigationItem" id="eeF-Br-wDA">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="yP6-Ob-LE2">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="U72-fV-6QC">
+                                <rect key="frame" x="16" y="6" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" image="setting.png"/>
+                                <connections>
+                                    <action selector="tapSettingBtn:" destination="VjT-iB-dsp" eventType="touchUpInside" id="yNn-Ac-5P6"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="numOfCommentLabel" destination="rXe-ra-P2P" id="6y4-jE-Bmi"/>
+                        <outlet property="selfCommentTableView" destination="JLv-b0-f9J" id="Q7g-35-zhj"/>
+                        <outlet property="userImageView" destination="rfL-6m-WC4" id="Pj4-Gr-Cha"/>
+                        <outlet property="userNameLabel" destination="Zuq-9r-3xL" id="O7O-pd-ugt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -467,11 +535,15 @@
     <resources>
         <image name="alert.png" width="48" height="48"/>
         <image name="alert_high.png" width="48" height="48"/>
+        <image name="change.png" width="32" height="32"/>
         <image name="home.png" width="48" height="48"/>
         <image name="home_high.png" width="48" height="48"/>
+        <image name="member.png" width="32" height="32"/>
+        <image name="pug.png" width="120" height="120"/>
         <image name="ranking.png" width="48" height="48"/>
         <image name="ranking_high.png" width="48" height="48"/>
         <image name="search.png" width="48" height="48"/>
+        <image name="setting.png" width="32" height="32"/>
         <image name="user.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
