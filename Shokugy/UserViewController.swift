@@ -18,7 +18,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         userImageView.layer.cornerRadius = userImageView.frame.width/2
-        userImageView.clipsToBounds = true
+        userImageView.clipsToBounds = true  
         selfCommentTableView.delegate = self
         selfCommentTableView.dataSource = self
         self.selfCommentTableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")

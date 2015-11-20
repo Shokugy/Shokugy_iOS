@@ -57,10 +57,14 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tapPostBtn() {
         self.presentViewController(setPostViewController(), animated: true, completion: nil)
+        
     }
     
     @IBAction func tapInviteBtn(sender: UIButton) {
-        setInviteView()
+        let coverView = setInviteView()
+        UIView.animateWithDuration(0.3) { () -> Void in
+            coverView.frame.origin = CGPointMake(0, 0)
+        }
     }
     
     
@@ -162,16 +166,17 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     let coverView = UIView()
     let textField = UITextField()
 
-    func setInviteView() {
+    func setInviteView() -> UIView {
         coverView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
         coverView.frame.size = self.view.frame.size
-        coverView.frame.origin = CGPointMake(0, 0)
+        coverView.frame.origin = CGPointMake(0, self.view.frame.height)
         self.view.addSubview(coverView)
         
         let inviteView = UIView()
         inviteView.frame.size = CGSizeMake(300, 250)
         inviteView.center = CGPointMake(self.view.center.x, self.view.center.y-61)
         inviteView.backgroundColor = UIColor.orangeColor()
+        inviteView.layer.cornerRadius = 10
         coverView.addSubview(inviteView)
         
         inviteView.addSubview(setInviteViewTextField(inviteView))
@@ -180,6 +185,8 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         inviteView.addSubview(setInviteViewBtn("cancel", x: inviteView.frame.width/4, superView: inviteView, tag: 1))
         inviteView.addSubview(setInviteViewBtn("募集", x: inviteView.frame.width/4*3, superView: inviteView, tag: 2))
         inviteView.addSubview(setInviteViewAddMember(inviteView))
+        
+        return coverView
     }
     
     func setInviteViewStoreNameLabel(superView: UIView, text: String) -> UILabel {
@@ -226,7 +233,11 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     func tapInviteViewBtn(sender: UIButton) {
         switch sender.tag {
         case 1:
-            coverView.removeFromSuperview()
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.coverView.frame.origin = CGPointMake(0, self.view.frame.height)
+            }, completion: { (finished) -> Void in
+                self.coverView.removeFromSuperview()
+            })
         case 2:
             print("post")
         default:
