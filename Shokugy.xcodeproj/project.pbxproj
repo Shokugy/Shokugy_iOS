@@ -46,10 +46,13 @@
 		AA24EEF31BF5D0A700112A63 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */; };
 		AA24EEF41BF5D0A700112A63 /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */; };
 		AA2783F81BFC6054003FA3A0 /* AddMemberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */; };
+		AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */; };
+		AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */; };
 		AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5382B31BFDA431009CEB6C /* UserViewController.swift */; };
 		AA5382B81BFDA7B4009CEB6C /* change.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5382B51BFDA7B4009CEB6C /* change.png */; };
 		AA5382B91BFDA7B4009CEB6C /* member.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5382B61BFDA7B4009CEB6C /* member.png */; };
 		AA5382BA1BFDA7B4009CEB6C /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5382B71BFDA7B4009CEB6C /* setting.png */; };
+		AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */; };
 		AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */; };
 		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
 		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
@@ -119,10 +122,13 @@
 		AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
 		AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberTableViewController.swift; sourceTree = "<group>"; };
+		AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
+		AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		AA5382B31BFDA431009CEB6C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		AA5382B51BFDA7B4009CEB6C /* change.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = change.png; sourceTree = "<group>"; };
 		AA5382B61BFDA7B4009CEB6C /* member.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = member.png; sourceTree = "<group>"; };
 		AA5382B71BFDA7B4009CEB6C /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
+		AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
 		AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
@@ -221,6 +227,8 @@
 				AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */,
 				AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */,
 				AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */,
+				AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */,
+				AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				AA09CF531BF857BB005CBD7C /* StoreDetailViewController.swift */,
 				AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */,
 				AA5382B31BFDA431009CEB6C /* UserViewController.swift */,
+				AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -444,6 +453,7 @@
 				AA5382B81BFDA7B4009CEB6C /* change.png in Resources */,
 				AA24EEC61BF5A91800112A63 /* et-line_e021(0)_48.png in Resources */,
 				AA24EEE71BF5BA6E00112A63 /* home.png in Resources */,
+				AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */,
 				AA9B36951BF8FCB300E83C3A /* batu.png in Resources */,
 				AA5382B91BFDA7B4009CEB6C /* member.png in Resources */,
 				AA24EEE91BF5BA6E00112A63 /* search.png in Resources */,
@@ -505,9 +515,11 @@
 				AA24EE8D1BF58FCD00112A63 /* HomeTableViewCell.swift in Sources */,
 				AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */,
 				AA24EEEC1BF5CC5900112A63 /* AlertTableViewController.swift in Sources */,
+				AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */,
 				AA24EEBD1BF5A7E800112A63 /* RAMRotationAnimation.swift in Sources */,
 				AA24EEBB1BF5A7E800112A63 /* RAMFrameItemAnimation.swift in Sources */,
 				AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */,
+				AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */,
 				AA2783F81BFC6054003FA3A0 /* AddMemberTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
