@@ -11,6 +11,7 @@ import UIKit
 class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate {
     
     let sampleData = ["soya", "yuya", "kotasawadaIndy"]
+    var sampleFav = [1,2,0]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
         cell.customDelegate = self
         
         cell.userName.text = sampleData[indexPath.row]
+        cell.numOfLike.text = "\(sampleFav[indexPath.row])"
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
@@ -63,8 +65,12 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
         self.performSegueWithIdentifier("ToSearchViewController", sender: nil)
     }
     
-    func tapFavBtn() {
-        print("tapfav")
+    func tapFavBtn(sender: UIButton) {
+        let contentView = sender.superview
+        let cell = contentView?.superview as! HomeTableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        sampleFav[(indexPath?.row)!] += 1
+        cell.numOfLike.text = "\(sampleFav[(indexPath?.row)!])"
     }
     
     func tapNumOfFavBtn() {

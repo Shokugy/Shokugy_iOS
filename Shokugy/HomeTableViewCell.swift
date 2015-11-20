@@ -1,5 +1,5 @@
 protocol HomeTableViewCellDelegate {
-    func tapFavBtn()
+    func tapFavBtn(sender: UIButton)
     func tapNumOfFavBtn()
     func tapStoreNameBtn()
 }
@@ -33,7 +33,7 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @IBAction func tapFavBtn(sender: UIButton) {
-        customDelegate?.tapFavBtn()
+        customDelegate?.tapFavBtn(sender)
     }
     
     @IBAction func tapNomOfFavBtn(sender: UIButton) {
