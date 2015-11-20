@@ -47,6 +47,7 @@ class AddMemberTableViewController: UITableViewController {
         cell.textLabel?.text = "soYa takahashi"
         cell.imageView?.layer.cornerRadius = 22
         cell.imageView?.layer.masksToBounds = true
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
         return cell
     }
