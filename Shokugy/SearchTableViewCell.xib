@@ -50,6 +50,13 @@
                 <animations/>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="averageRateLabel" destination="gpO-JF-ofl" id="9gl-Wc-1Wm"/>
+                <outlet property="rateImageView" destination="bS5-5O-E1o" id="TG8-c7-TjA"/>
+                <outlet property="storeAccessLabel" destination="N41-v2-RxH" id="jjd-dz-f0A"/>
+                <outlet property="storeDistanceLabel" destination="GWp-7v-JPf" id="IXe-1W-cNS"/>
+                <outlet property="storeNameLabel" destination="gVs-iE-2Cn" id="f8C-PY-tsU"/>
+            </connections>
             <point key="canvasLocation" x="429.5" y="420"/>
         </tableViewCell>
     </objects>

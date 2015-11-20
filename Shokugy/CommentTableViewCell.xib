@@ -64,6 +64,7 @@
             <animations/>
             <connections>
                 <outlet property="numOfGoodLabel" destination="Qd2-sy-Q0N" id="QpS-JB-7ov"/>
+                <outlet property="postDateLabel" destination="MiP-Jw-NtI" id="vo4-iH-wUZ"/>
                 <outlet property="rateImageView" destination="sw7-is-39l" id="uRc-K3-wbS"/>
                 <outlet property="userImageView" destination="sou-Oq-zjZ" id="5Og-op-jYm"/>
                 <outlet property="userName" destination="HJE-1O-mP3" id="KDa-1j-TbO"/>

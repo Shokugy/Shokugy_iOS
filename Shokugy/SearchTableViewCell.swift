@@ -10,6 +10,12 @@ import UIKit
 
 class SearchTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var storeNameLabel: UILabel!
+    @IBOutlet weak var storeAccessLabel: UILabel!
+    @IBOutlet weak var storeDistanceLabel: UILabel!
+    @IBOutlet weak var rateImageView: UIImageView!
+    @IBOutlet weak var averageRateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
