@@ -28,7 +28,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGS-Eb-btC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4864.5" y="777.5"/>
+            <point key="canvasLocation" x="4476.5" y="729.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="yjz-I1-yj0">
@@ -61,7 +61,7 @@
                     </userDefinedRuntimeAttributes>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="4392.5" y="777.5"/>
+            <point key="canvasLocation" x="4020.5" y="729.5"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="tlo-Rc-fH1">
@@ -84,7 +84,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hh-6e-xeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5081.5" y="1808.5"/>
+            <point key="canvasLocation" x="5401.5" y="612.5"/>
         </scene>
         <!--Shokugy-->
         <scene sceneID="x5L-M6-C9W">
@@ -105,7 +105,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anI-2X-heB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4273.5" y="2693.5"/>
+            <point key="canvasLocation" x="4445.5" y="2569.5"/>
         </scene>
         <!--Search-->
         <scene sceneID="ic4-Bc-gr1">
@@ -132,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13k-iz-WxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="6qq-4j-UtF" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="4660.5" y="1523.5"/>
+            <point key="canvasLocation" x="4928.5" y="1319.5"/>
         </scene>
         <!--Ranking Table View Controller-->
         <scene sceneID="AQz-w6-RSC">
@@ -153,7 +153,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRF-NK-aBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4513.5" y="-17.5"/>
+            <point key="canvasLocation" x="4245.5" y="-9.5"/>
         </scene>
         <!--Animated Tab Bar Controller-->
         <scene sceneID="Pjo-oY-Oku">
@@ -197,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3860.5" y="2686.5"/>
+            <point key="canvasLocation" x="3856.5" y="2758.5"/>
         </scene>
         <!--Alert-->
         <scene sceneID="WTh-cA-Yiw">
@@ -224,7 +224,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0o-VN-Btd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="ouy-61-Cpq" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="4273.5" y="1928.5"/>
+            <point key="canvasLocation" x="4445.5" y="1720.5"/>
         </scene>
         <!--Ranking-->
         <scene sceneID="g1G-IW-1ct">
@@ -251,7 +251,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIA-mT-Klf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="znk-XP-FDW" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3855.5" y="550.5"/>
+            <point key="canvasLocation" x="3787.5" y="-9.5"/>
         </scene>
         <!--User-->
         <scene sceneID="Jer-8I-hV5">
@@ -278,7 +278,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEd-Uk-cKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="934-7I-rwg" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3860.5" y="1928.5"/>
+            <point key="canvasLocation" x="3856.5" y="1976.5"/>
         </scene>
     </scenes>
     <resources>
@@ -292,6 +292,6 @@
         <image name="user.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y5s-YF-5oR"/>
+        <segue reference="lA5-sR-9pJ"/>
     </inferredMetricsTieBreakers>
 </document>

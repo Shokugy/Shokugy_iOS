@@ -131,6 +131,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = selfCommentTableView.dequeueReusableCellWithIdentifier("customCell", forIndexPath: indexPath) as! HomeTableViewCell
         
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
     

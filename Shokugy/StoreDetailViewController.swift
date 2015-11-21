@@ -62,6 +62,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         
         let inviteBtn = UIButton()
         inviteBtn.setTitle("募集", forState: .Normal)
+        inviteBtn.setTitleColor(UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1), forState: .Highlighted)
         inviteBtn.sizeToFit()
         inviteBtn.frame.origin.x = storeNameLabel.frame.origin.x
         inviteBtn.frame.origin.y = rateImageView.frame.origin.y + rateImageView.frame.height + 16
@@ -70,6 +71,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         
         let taberoguBtn = UIButton()
         taberoguBtn.setTitle("食べログへ", forState: .Normal)
+        taberoguBtn.setTitleColor(UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1), forState: .Highlighted)
         taberoguBtn.sizeToFit()
         taberoguBtn.frame.origin.y = storeNameLabel.frame.origin.y
         taberoguBtn.frame.origin.x = self.view.frame.width - taberoguBtn.frame.width - 20
@@ -281,6 +283,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     func setInviteViewBtn(text: String, x: CGFloat, superView: UIView, tag: Int) -> UIButton{
         let button = UIButton()
         button.setTitle(text, forState: .Normal)
+        button.setTitleColor(UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1), forState: .Highlighted)
         button.frame.size = CGSizeMake(60, 30)
         button.center = CGPointMake(x, 200)
         button.tag = tag
