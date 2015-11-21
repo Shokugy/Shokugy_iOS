@@ -68,6 +68,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let numOfCommentLabel = UILabel()
         numOfCommentLabel.text = "１２口コミ"
+        numOfCommentLabel.font = UIFont(name: (numOfCommentLabel.font?.fontName)!, size: 15)
         numOfCommentLabel.textAlignment = NSTextAlignment.Center
         numOfCommentLabel.sizeToFit()
         numOfCommentLabel.center = CGPointMake(self.view.center.x, 160)

@@ -79,7 +79,8 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("toStoreDetailViewController", sender: self)
+        let storeDetailViewController = StoreDetailViewController()
+        self.navigationController?.pushViewController(storeDetailViewController, animated: true)
     }
 
 }

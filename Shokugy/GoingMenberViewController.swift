@@ -10,18 +10,12 @@ import UIKit
 
 class GoingMenberViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var storeNameLabel: UILabel!
-    @IBOutlet weak var goingMenberTableView: UITableView!
-    
+    var goingMenberTableView = UITableView()
     var storeName: String?
-//    var goingMenber: []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        storeNameLabel.text = storeName!
-        goingMenberTableView.dataSource = self
-        goingMenberTableView.delegate = self
-        self.navigationItem.title = "Member"
+        setUp()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,10 +25,35 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        setNavigationController()
+    }
+    
+    func setNavigationController() {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationItem.title = "Member"
     }
+    
+    func setUp() {
+        let storeNameLabel = UILabel()
+        storeNameLabel.backgroundColor = UIColor(red: 252/255, green: 230/255, blue: 102/255, alpha: 1)
+        storeNameLabel.text = "すき家　茶屋町店"
+        storeNameLabel.textColor = UIColor.whiteColor()
+        storeNameLabel.font = UIFont(name: (storeNameLabel.font?.fontName)!, size: 23)
+        storeNameLabel.textAlignment = NSTextAlignment.Center
+        storeNameLabel.frame.size = CGSizeMake(self.view.frame.width, 70)
+        storeNameLabel.frame.origin = CGPointMake(0, 0)
+        self.view.addSubview(storeNameLabel)
+        
+        goingMenberTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - storeNameLabel.frame.height)
+        goingMenberTableView.frame.origin = CGPointMake(0, storeNameLabel.frame.height)
+        goingMenberTableView.dataSource = self
+        goingMenberTableView.delegate = self
+        self.view.addSubview(goingMenberTableView)
+    }
+    
+    //----------TableViewControllerSetting------------
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()

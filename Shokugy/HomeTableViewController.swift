@@ -64,7 +64,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
     }
     
     func tapRightBarBtn() {
-        self.performSegueWithIdentifier("ToSearchViewController", sender: nil)
+        self.performSegueWithIdentifier("ToSearchViewController", sender: self)
     }
     
     func tapFavBtn(sender: UIButton) {
@@ -76,7 +76,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
     }
     
     func tapNumOfFavBtn() {
-        self.performSegueWithIdentifier("toGoingMenberViewController", sender: self)
+        let goingMemberViewController = GoingMenberViewController()
+        self.navigationController?.pushViewController(goingMemberViewController, animated: true)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -87,7 +88,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
     }
     
     func tapStoreNameBtn() {
-        self.performSegueWithIdentifier("toStoreDetailViewController", sender: self)
+        let storeDetailViewController = StoreDetailViewController()
+        self.navigationController?.pushViewController(storeDetailViewController, animated: true)
     }
 
     

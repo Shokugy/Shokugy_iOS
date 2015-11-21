@@ -23,65 +23,12 @@
                     <navigationItem key="navigationItem" title="Shokugy" id="vso-33-gHs"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <segue destination="GJC-Op-Dp4" kind="show" identifier="toGoingMenberViewController" id="Cgt-KY-yDV"/>
-                        <segue destination="VaW-T3-LzX" kind="show" identifier="toStoreDetailViewController" id="CzP-nP-eWx"/>
                         <segue destination="jE9-rl-TQQ" kind="show" identifier="ToSearchViewController" id="Y5s-YF-5oR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGS-Eb-btC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5082.5" y="983.5"/>
-        </scene>
-        <!--Going Menber View Controller-->
-        <scene sceneID="6qC-WP-MtQ">
-            <objects>
-                <viewController id="GJC-Op-Dp4" customClass="GoingMenberViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KX6-Mz-WW3"/>
-                        <viewControllerLayoutGuide type="bottom" id="bmO-qf-Hke"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hfl-lx-tTq">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="すき家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-io-FuE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.98823529409999999" green="0.90212303869999999" blue="0.40015988759999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="DGz-cN-vza"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Qq-4M-veh">
-                                <rect key="frame" x="0.0" y="70" width="375" height="484"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3Qq-4M-veh" firstAttribute="leading" secondItem="hfl-lx-tTq" secondAttribute="leading" id="8oD-mv-rcM"/>
-                            <constraint firstAttribute="trailing" secondItem="AVr-io-FuE" secondAttribute="trailing" id="GbR-Kx-i7z"/>
-                            <constraint firstItem="3Qq-4M-veh" firstAttribute="top" secondItem="AVr-io-FuE" secondAttribute="bottom" id="J2s-tA-awz"/>
-                            <constraint firstItem="AVr-io-FuE" firstAttribute="top" secondItem="KX6-Mz-WW3" secondAttribute="bottom" id="LN0-0I-lYy"/>
-                            <constraint firstItem="bmO-qf-Hke" firstAttribute="top" secondItem="3Qq-4M-veh" secondAttribute="bottom" id="eaz-sU-PHC"/>
-                            <constraint firstItem="AVr-io-FuE" firstAttribute="leading" secondItem="hfl-lx-tTq" secondAttribute="leading" id="n5y-Cu-EfW"/>
-                            <constraint firstAttribute="trailing" secondItem="3Qq-4M-veh" secondAttribute="trailing" id="toi-pL-cgs"/>
-                        </constraints>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="goingMenberTableView" destination="3Qq-4M-veh" id="pOi-0S-gKG"/>
-                        <outlet property="storeNameLabel" destination="AVr-io-FuE" id="oKn-F5-uLZ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y7y-ac-I8d" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5544.5" y="983.5"/>
+            <point key="canvasLocation" x="4864.5" y="777.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="yjz-I1-yj0">
@@ -114,7 +61,7 @@
                     </userDefinedRuntimeAttributes>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="4676.5" y="983.5"/>
+            <point key="canvasLocation" x="4392.5" y="777.5"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="tlo-Rc-fH1">
@@ -134,33 +81,10 @@
                         <nil key="title"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <segue destination="VaW-T3-LzX" kind="show" identifier="toStoreDetailViewController" id="xvl-9y-bMJ"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hh-6e-xeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5077.5" y="1838.5"/>
-        </scene>
-        <!--Store Detail View Controller-->
-        <scene sceneID="flw-GR-Ut5">
-            <objects>
-                <viewController id="VaW-T3-LzX" customClass="StoreDetailViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uSd-f5-8Xs"/>
-                        <viewControllerLayoutGuide type="bottom" id="YLH-kC-BlL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="7wf-Y5-64p">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uc9-cQ-6F9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5544.5" y="1746.5"/>
+            <point key="canvasLocation" x="5081.5" y="1808.5"/>
         </scene>
         <!--Shokugy-->
         <scene sceneID="x5L-M6-C9W">
@@ -181,7 +105,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anI-2X-heB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4646.5" y="2533.5"/>
+            <point key="canvasLocation" x="4273.5" y="2693.5"/>
         </scene>
         <!--Search-->
         <scene sceneID="ic4-Bc-gr1">
@@ -208,7 +132,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="13k-iz-WxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="6qq-4j-UtF" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="4646.5" y="1789.5"/>
+            <point key="canvasLocation" x="4660.5" y="1523.5"/>
         </scene>
         <!--Ranking Table View Controller-->
         <scene sceneID="AQz-w6-RSC">
@@ -229,7 +153,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRF-NK-aBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3852.5" y="556.5"/>
+            <point key="canvasLocation" x="4513.5" y="-17.5"/>
         </scene>
         <!--Animated Tab Bar Controller-->
         <scene sceneID="Pjo-oY-Oku">
@@ -273,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3452.5" y="2148.5"/>
+            <point key="canvasLocation" x="3860.5" y="2686.5"/>
         </scene>
         <!--Alert-->
         <scene sceneID="WTh-cA-Yiw">
@@ -300,7 +224,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0o-VN-Btd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="ouy-61-Cpq" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="4209.5" y="2453.5"/>
+            <point key="canvasLocation" x="4273.5" y="1928.5"/>
         </scene>
         <!--Ranking-->
         <scene sceneID="g1G-IW-1ct">
@@ -327,7 +251,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIA-mT-Klf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="znk-XP-FDW" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="3423.5" y="556.5"/>
+            <point key="canvasLocation" x="3855.5" y="550.5"/>
         </scene>
         <!--User-->
         <scene sceneID="Jer-8I-hV5">
@@ -354,7 +278,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEd-Uk-cKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="934-7I-rwg" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="2975" y="2041"/>
+            <point key="canvasLocation" x="3860.5" y="1928.5"/>
         </scene>
     </scenes>
     <resources>
@@ -368,7 +292,6 @@
         <image name="user.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xvl-9y-bMJ"/>
         <segue reference="Y5s-YF-5oR"/>
     </inferredMetricsTieBreakers>
 </document>
