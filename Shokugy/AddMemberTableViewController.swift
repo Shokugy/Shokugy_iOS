@@ -10,7 +10,7 @@ import UIKit
 
 class AddMemberTableViewController: UITableViewController {
     
-    let sectionTitleAry: [String] = ["hoe", "piyo", "hogehoge"]
+    let sectionTitleAry: [String] = ["hoe", "piyo", "hogehoge", "a", "b", "c", "d", "e", "f", "g", "h", "i"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ class AddMemberTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return sectionTitleAry.count
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -72,7 +72,9 @@ class AddMemberTableViewController: UITableViewController {
         //タップされたインデックスを配列で管理してメンバーを（ry
     }
     
-    
-
+    //--------------sectionindex-----------
+//    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+//        return sectionTitleAry
+//    }
     
 }
