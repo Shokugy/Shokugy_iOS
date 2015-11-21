@@ -9,23 +9,50 @@
 import UIKit
 
 class SearchTableViewController: UITableViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var searchTextView: UITextField!
+    
+    let searchTextField = UITextField()
+    let searchBtn = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        searchTextView.delegate = self
+        setSeachTextField()
         tableView.registerNib(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
-       
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationItem.titleView = searchTextField
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .Done, target: self, action: "tapSearchBtn")
+    }
+    
+    func tapSearchBtn() {
+        print("tapSearchBtn")
+        searchTextField.resignFirstResponder()
+    }
+    
+    func setSeachTextField() {
+        searchTextField.frame.size = CGSizeMake(250, 25)
+        searchTextField.backgroundColor = UIColor.whiteColor()
+        searchTextField.layer.cornerRadius = 3
+        searchTextField.placeholder = "search"
+        searchTextField.delegate = self
+    }
 
-    // MARK: - Table view data source
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        searchTextField.resignFirstResponder()
+        return true
+    }
+    
+    //-------------TableViewSetting---------
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 //        何メートル圏内ごとにセクションをわけてもおもしろいかな?
@@ -33,7 +60,6 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 10
     }
     
@@ -50,17 +76,6 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
-    }
- 
-   
-    @IBAction func tapSearchBtn(sender: UIButton) {
-        print("tap")
-        searchTextView.resignFirstResponder()
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        searchTextView.resignFirstResponder()
-        return true
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

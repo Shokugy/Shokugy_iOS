@@ -47,7 +47,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="すき家" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AVr-io-FuE">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <animations/>
-                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.90212303869999999" blue="0.40015988759999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="DGz-cN-vza"/>
                                 </constraints>
@@ -98,7 +98,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.9882352941176471" green="0.8666666666666667" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -132,29 +132,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="r7N-1z-Lyl">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search" minimumFontSize="17" id="NWx-A4-xXY">
-                            <rect key="frame" x="18" y="7" width="252" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="LfQ-iw-06o">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="U4n-ig-dE5">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Search"/>
-                                <connections>
-                                    <action selector="tapSearchBtn:" destination="jE9-rl-TQQ" eventType="touchUpInside" id="6Iq-dk-BHU"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="searchTextView" destination="NWx-A4-xXY" id="Dhq-vK-Za4"/>
                         <segue destination="VaW-T3-LzX" kind="show" identifier="toStoreDetailViewController" id="xvl-9y-bMJ"/>
                     </connections>
                 </tableViewController>
@@ -173,101 +153,14 @@
                     <view key="view" contentMode="scaleToFill" id="7wf-Y5-64p">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="口コミ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lo-cC-ExD">
-                                <rect key="frame" x="0.0" y="193" width="375" height="36"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4jv-OG-cOO">
-                                <rect key="frame" x="0.0" y="231" width="375" height="323"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LA2-5U-4LK">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="すき家　茶屋町店" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7W-eW-2zC">
-                                        <rect key="frame" x="8" y="8" width="359" height="50"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QT-bC-TBD">
-                                        <rect key="frame" x="284" y="13" width="91" height="30"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="食べログへ"/>
-                                        <connections>
-                                            <action selector="tapTaberoguBtn:" destination="VaW-T3-LzX" eventType="touchUpInside" id="hMG-jp-b97"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rs-d9-ION">
-                                        <rect key="frame" x="8" y="132" width="46" height="30"/>
-                                        <animations/>
-                                        <state key="normal" title="募集"/>
-                                        <connections>
-                                            <action selector="tapInviteBtn:" destination="VaW-T3-LzX" eventType="touchUpInside" id="6dC-UM-AeW"/>
-                                        </connections>
-                                    </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jB1-ZP-ZWh">
-                                        <rect key="frame" x="8" y="66" width="359" height="54"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPV-cL-j3H">
-                                                <rect key="frame" x="8" y="7" width="195" height="40"/>
-                                                <animations/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xee-7Z-6x9">
-                                                <rect key="frame" x="211" y="16" width="42" height="21"/>
-                                                <animations/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <animations/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="commentTableView" destination="4jv-OG-cOO" id="R98-su-HGZ"/>
-                        <segue destination="RbR-IL-NId" kind="show" identifier="AddMemberTableViewController" id="NIO-25-0Ch"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uc9-cQ-6F9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5544.5" y="1746.5"/>
-        </scene>
-        <!--Add Member Table View Controller-->
-        <scene sceneID="22h-bD-c5S">
-            <objects>
-                <tableViewController id="RbR-IL-NId" customClass="AddMemberTableViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vFd-4S-0qf">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="RbR-IL-NId" id="SAs-HY-QBM"/>
-                            <outlet property="delegate" destination="RbR-IL-NId" id="4aF-r3-yHL"/>
-                        </connections>
-                    </tableView>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4tf-O4-NRE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6011.5" y="1746.5"/>
         </scene>
         <!--Shokugy-->
         <scene sceneID="x5L-M6-C9W">
@@ -348,7 +241,6 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="1hp-Ix-tTl" kind="relationship" relationship="viewControllers" id="v9o-0P-MIi"/>
@@ -373,78 +265,11 @@
                     <view key="view" contentMode="scaleToFill" id="v2y-ou-rOo">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6xB-rs-Zh4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="180"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pug.png" translatesAutoresizingMaskIntoConstraints="NO" id="rfL-6m-WC4">
-                                        <rect key="frame" x="137" y="8" width="100" height="100"/>
-                                        <animations/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Soya Takahashi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zuq-9r-3xL">
-                                        <rect key="frame" x="94" y="116" width="186" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="12口コミ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXe-ra-P2P">
-                                        <rect key="frame" x="152" y="145" width="71" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CMJ-3O-yc1">
-                                        <rect key="frame" x="94" y="42" width="32" height="32"/>
-                                        <animations/>
-                                        <state key="normal" image="member.png"/>
-                                        <connections>
-                                            <action selector="tapMemberBtn:" destination="VjT-iB-dsp" eventType="touchUpInside" id="dTR-1q-mh8"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcu-pB-enG">
-                                        <rect key="frame" x="245" y="37" width="53" height="41"/>
-                                        <animations/>
-                                        <state key="normal" image="change.png"/>
-                                        <connections>
-                                            <action selector="tapChangeBtn:" destination="VjT-iB-dsp" eventType="touchUpInside" id="ocN-AK-EwT"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JLv-b0-f9J">
-                                <rect key="frame" x="0.0" y="182" width="375" height="372"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="eeF-Br-wDA">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="yP6-Ob-LE2">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="U72-fV-6QC">
-                                <rect key="frame" x="16" y="6" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" image="setting.png"/>
-                                <connections>
-                                    <action selector="tapSettingBtn:" destination="VjT-iB-dsp" eventType="touchUpInside" id="yNn-Ac-5P6"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="eeF-Br-wDA"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                    <connections>
-                        <outlet property="numOfCommentLabel" destination="rXe-ra-P2P" id="6y4-jE-Bmi"/>
-                        <outlet property="selfCommentTableView" destination="JLv-b0-f9J" id="Q7g-35-zhj"/>
-                        <outlet property="userImageView" destination="rfL-6m-WC4" id="Pj4-Gr-Cha"/>
-                        <outlet property="userNameLabel" destination="Zuq-9r-3xL" id="O7O-pd-ugt"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -535,19 +360,15 @@
     <resources>
         <image name="alert.png" width="48" height="48"/>
         <image name="alert_high.png" width="48" height="48"/>
-        <image name="change.png" width="32" height="32"/>
         <image name="home.png" width="48" height="48"/>
         <image name="home_high.png" width="48" height="48"/>
-        <image name="member.png" width="32" height="32"/>
-        <image name="pug.png" width="120" height="120"/>
         <image name="ranking.png" width="48" height="48"/>
         <image name="ranking_high.png" width="48" height="48"/>
         <image name="search.png" width="48" height="48"/>
-        <image name="setting.png" width="32" height="32"/>
         <image name="user.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y5s-YF-5oR"/>
         <segue reference="xvl-9y-bMJ"/>
+        <segue reference="Y5s-YF-5oR"/>
     </inferredMetricsTieBreakers>
 </document>

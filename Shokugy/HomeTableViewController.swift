@@ -17,7 +17,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
         super.viewDidLoad()
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,6 +28,9 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
         super.viewWillAppear(animated)
         let rightBarBtn = UIBarButtonItem(image:UIImage(named: "et-line_e021(0)_48"), style: .Plain, target: self, action: "tapRightBarBtn")
         self.navigationItem.rightBarButtonItem = rightBarBtn
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
 
     // MARK: - Table view data source
