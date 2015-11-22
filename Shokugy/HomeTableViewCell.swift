@@ -32,8 +32,15 @@ class HomeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    var counter = 1
     @IBAction func tapFavBtn(sender: UIButton) {
-        customDelegate?.tapFavBtn(sender)
+        if counter % 2 != 0 {
+            sender.selected = true
+            customDelegate?.tapFavBtn(sender)
+        } else {
+            sender.selected = false
+        }
+        counter += 1
     }
     
     @IBAction func tapNomOfFavBtn(sender: UIButton) {

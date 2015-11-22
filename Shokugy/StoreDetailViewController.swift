@@ -78,7 +78,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         taberoguBtn.addTarget(self, action: "tapTaberoguBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(taberoguBtn)
         
-        commentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - coverView.frame.height)
+        commentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - coverView.frame.height - 64 - 49)
         commentTableView.frame.origin = CGPointMake(0, coverView.frame.height)
         commentTableView.registerNib(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         commentTableView.dataSource = self

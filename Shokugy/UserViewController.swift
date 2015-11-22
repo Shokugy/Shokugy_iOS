@@ -67,7 +67,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userCoverView.addSubview(userNameLabel)
         
         let numOfCommentLabel = UILabel()
-        numOfCommentLabel.text = "１２口コミ"
+        numOfCommentLabel.text = "12口コミ"
         numOfCommentLabel.font = UIFont(name: (numOfCommentLabel.font?.fontName)!, size: 15)
         numOfCommentLabel.textAlignment = NSTextAlignment.Center
         numOfCommentLabel.sizeToFit()
@@ -77,7 +77,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userCoverView.addSubview(makeBtn(self.view.center.x-90, tag: 1, image: UIImage(named: "member.png")!))
         userCoverView.addSubview(makeBtn(self.view.center.x+85, tag: 2, image: UIImage(named: "change.png")!))
         
-        selfCommentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height-180)
+        selfCommentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - userCoverView.frame.height - 64 - 49)
         selfCommentTableView.frame.origin = CGPointMake(0, 180)
         selfCommentTableView.delegate = self
         selfCommentTableView.dataSource = self

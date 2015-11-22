@@ -44,6 +44,10 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         searchTextField.backgroundColor = UIColor.whiteColor()
         searchTextField.layer.cornerRadius = 3
         searchTextField.placeholder = "search"
+        let paddingView = UIView(frame: CGRectMake(0, 0, 15, searchTextField.frame.height))
+        searchTextField.leftView = paddingView
+        searchTextField.leftViewMode = .Always
+
         searchTextField.delegate = self
     }
 
