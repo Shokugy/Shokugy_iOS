@@ -4,7 +4,7 @@
 use_frameworks!
 
 target 'Shokugy' do
-	pod 'Alamofire', '~> 1.2'
+	pod 'Alamofire', '~> 3.0’
 end
 
 target 'ShokugyTests' do

@@ -773,6 +773,7 @@
 		};
 		AA24EE7E1BF4E9EE00112A63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB6DA622457D2244CF3C450 /* Pods-Shokugy.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ShokugyTests/Info.plist;
@@ -785,6 +786,7 @@
 		};
 		AA24EE7F1BF4E9EE00112A63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ShokugyTests/Info.plist;
@@ -797,6 +799,7 @@
 		};
 		AA24EE811BF4E9EE00112A63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB6DA622457D2244CF3C450 /* Pods-Shokugy.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ShokugyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -809,6 +812,7 @@
 		};
 		AA24EE821BF4E9EE00112A63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ShokugyUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
