@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54F11B06A97E41AF4F92BD74 /* Pods_Shokugy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08051B4FD27FE40E2802F353 /* Pods_Shokugy.framework */; };
 		AA09CF501BF84BFF005CBD7C /* GoingMenberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA09CF4F1BF84BFF005CBD7C /* GoingMenberViewController.swift */; };
 		AA09CF521BF854AE005CBD7C /* pug.png in Resources */ = {isa = PBXBuildFile; fileRef = AA09CF511BF854AE005CBD7C /* pug.png */; };
 		AA09CF541BF857BB005CBD7C /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA09CF531BF857BB005CBD7C /* StoreDetailViewController.swift */; };
@@ -81,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08051B4FD27FE40E2802F353 /* Pods_Shokugy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shokugy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EB6DA622457D2244CF3C450 /* Pods-Shokugy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shokugy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy.debug.xcconfig"; sourceTree = "<group>"; };
 		AA09CF4F1BF84BFF005CBD7C /* GoingMenberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoingMenberViewController.swift; sourceTree = "<group>"; };
 		AA09CF511BF854AE005CBD7C /* pug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pug.png; sourceTree = "<group>"; };
 		AA09CF531BF857BB005CBD7C /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +144,7 @@
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
 		AA9B36941BF8FCB300E83C3A /* batu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batu.png; sourceTree = "<group>"; };
+		E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shokugy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F11B06A97E41AF4F92BD74 /* Pods_Shokugy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +173,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23118A4B379B5B402736EECA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1EB6DA622457D2244CF3C450 /* Pods-Shokugy.debug.xcconfig */,
+				E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9502505171DB3483CB93CD32 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08051B4FD27FE40E2802F353 /* Pods_Shokugy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AA24EE461BF4E9EE00112A63 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +198,8 @@
 				AA24EE741BF4E9EE00112A63 /* ShokugyUITests */,
 				AA24EE501BF4E9EE00112A63 /* Products */,
 				AA24EEAC1BF5A7E800112A63 /* RAMAnimatedTabBarController */,
+				23118A4B379B5B402736EECA /* Pods */,
+				9502505171DB3483CB93CD32 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -361,9 +385,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA24EE7A1BF4E9EE00112A63 /* Build configuration list for PBXNativeTarget "Shokugy" */;
 			buildPhases = (
+				FA66A83CD12984D04CA08B72 /* Check Pods Manifest.lock */,
 				AA24EE4B1BF4E9EE00112A63 /* Sources */,
 				AA24EE4C1BF4E9EE00112A63 /* Frameworks */,
 				AA24EE4D1BF4E9EE00112A63 /* Resources */,
+				ADA0165664E34B41B2AC399F /* Embed Pods Frameworks */,
+				99065DDF874490372F9268F1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -509,6 +536,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		99065DDF874490372F9268F1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADA0165664E34B41B2AC399F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA66A83CD12984D04CA08B72 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AA24EE4B1BF4E9EE00112A63 /* Sources */ = {
@@ -674,6 +749,7 @@
 		};
 		AA24EE7B1BF4E9EE00112A63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB6DA622457D2244CF3C450 /* Pods-Shokugy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Shokugy/Info.plist;
@@ -685,6 +761,7 @@
 		};
 		AA24EE7C1BF4E9EE00112A63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Shokugy/Info.plist;
