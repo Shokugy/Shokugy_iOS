@@ -1,25 +1,297 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tky-Gp-tzS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Shokugy-->
+        <scene sceneID="kXS-RO-OSo">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <tableViewController id="po0-vy-7ei" customClass="HomeTableViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="WUj-rp-rxb">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="po0-vy-7ei" id="d46-fN-4Cf"/>
+                            <outlet property="delegate" destination="po0-vy-7ei" id="CS6-Jl-baM"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="zgl-oT-npZ"/>
+                    <navigationItem key="navigationItem" title="Shokugy" id="vso-33-gHs"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="jE9-rl-TQQ" kind="show" identifier="ToSearchViewController" id="Y5s-YF-5oR"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iGS-Eb-btC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="4476.5" y="729.5"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="yjz-I1-yj0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1hp-Ix-tTl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="home_high.png" selectedImage="home.png" id="UMh-Hs-RfE" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="Aa1-Pv-d35" id="sWQ-hO-I2e"/>
+                        </connections>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="MNa-al-khZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="po0-vy-7ei" kind="relationship" relationship="rootViewController" id="0Vb-Me-Kr1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BML-Fu-kuu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Aa1-Pv-d35" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="4020.5" y="729.5"/>
+        </scene>
+        <!--Search Table View Controller-->
+        <scene sceneID="tlo-Rc-fH1">
+            <objects>
+                <tableViewController id="jE9-rl-TQQ" customClass="SearchTableViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="FcR-Zn-2qs">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="jE9-rl-TQQ" id="JGB-mh-VFw"/>
+                            <outlet property="delegate" destination="jE9-rl-TQQ" id="j47-1w-yzA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="r7N-1z-Lyl">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1hh-6e-xeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5401.5" y="612.5"/>
+        </scene>
+        <!--Shokugy-->
+        <scene sceneID="x5L-M6-C9W">
+            <objects>
+                <tableViewController id="h6E-UU-ain" customClass="AlertTableViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q8a-zP-SCj">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="h6E-UU-ain" id="h4Z-gw-lGS"/>
+                            <outlet property="delegate" destination="h6E-UU-ain" id="D7F-av-hGw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Shokugy" id="uWG-sn-hEj"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="anI-2X-heB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4445.5" y="2569.5"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="ic4-Bc-gr1">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OgN-IW-Jyz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" image="search.png" selectedImage="search.png" id="P4X-gB-xQ4" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="6qq-4j-UtF" id="2MK-uU-q1P"/>
+                        </connections>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="C5M-gN-tuY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jE9-rl-TQQ" kind="relationship" relationship="rootViewController" id="lA5-sR-9pJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="13k-iz-WxT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="6qq-4j-UtF" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="4928.5" y="1319.5"/>
+        </scene>
+        <!--Ranking Table View Controller-->
+        <scene sceneID="AQz-w6-RSC">
+            <objects>
+                <tableViewController id="GtN-st-cIq" customClass="RankingTableViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZKc-hY-mfT">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="GtN-st-cIq" id="ApY-6l-sDS"/>
+                            <outlet property="delegate" destination="GtN-st-cIq" id="fnp-aP-IpA"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="HD3-lL-7uj"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rRF-NK-aBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4245.5" y="-9.5"/>
+        </scene>
+        <!--Animated Tab Bar Controller-->
+        <scene sceneID="Pjo-oY-Oku">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Tky-Gp-tzS" customClass="RAMAnimatedTabBarController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" itemPositioning="fill" id="Bpn-eB-2vB">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="1hp-Ix-tTl" kind="relationship" relationship="viewControllers" id="v9o-0P-MIi"/>
+                        <segue destination="hfZ-xj-XpP" kind="relationship" relationship="viewControllers" id="uaH-w3-nwM"/>
+                        <segue destination="OgN-IW-Jyz" kind="relationship" relationship="viewControllers" id="hRg-P4-yO3"/>
+                        <segue destination="j0I-zi-XHV" kind="relationship" relationship="viewControllers" id="ian-qs-KkJ"/>
+                        <segue destination="epk-ow-dvC" kind="relationship" relationship="viewControllers" id="EnB-a5-KmV"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JEj-gg-jBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3423.5" y="1309.5"/>
+        </scene>
+        <!--User View Controller-->
+        <scene sceneID="miL-AA-jBv">
+            <objects>
+                <viewController id="VjT-iB-dsp" customClass="UserViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="00r-YF-fFV"/>
+                        <viewControllerLayoutGuide type="bottom" id="0aj-I7-vXc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="v2y-ou-rOo">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eeF-Br-wDA"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3856.5" y="2758.5"/>
+        </scene>
+        <!--Alert-->
+        <scene sceneID="WTh-cA-Yiw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hfZ-xj-XpP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Alert" image="alert.png" selectedImage="alert_high.png" id="U55-VN-oRL" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="ouy-61-Cpq" id="2Bh-IF-Grs"/>
+                        </connections>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="yyM-yI-yye">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="h6E-UU-ain" kind="relationship" relationship="rootViewController" id="Ev2-cu-w4m"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V0o-VN-Btd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="ouy-61-Cpq" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="4445.5" y="1720.5"/>
+        </scene>
+        <!--Ranking-->
+        <scene sceneID="g1G-IW-1ct">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j0I-zi-XHV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ranking" image="ranking.png" selectedImage="ranking_high.png" id="wrU-wU-ugl" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="znk-XP-FDW" id="Rkh-H4-4Ec"/>
+                        </connections>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="FNK-tm-cJP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GtN-st-cIq" kind="relationship" relationship="rootViewController" id="zxi-j3-dm6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jIA-mT-Klf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="znk-XP-FDW" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="3787.5" y="-9.5"/>
+        </scene>
+        <!--User-->
+        <scene sceneID="Jer-8I-hV5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="epk-ow-dvC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="User" image="user.png" id="j3c-QR-PpK" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                        <connections>
+                            <outlet property="animation" destination="934-7I-rwg" id="BLy-Gm-SrG"/>
+                        </connections>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="P3g-Bw-JXt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <color key="barTintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VjT-iB-dsp" kind="relationship" relationship="rootViewController" id="sLm-rZ-cQG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wEd-Uk-cKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="934-7I-rwg" customClass="RAMFumeAnimation" customModule="Shokugy" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="3856.5" y="1976.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="alert.png" width="48" height="48"/>
+        <image name="alert_high.png" width="48" height="48"/>
+        <image name="home.png" width="48" height="48"/>
+        <image name="home_high.png" width="48" height="48"/>
+        <image name="ranking.png" width="48" height="48"/>
+        <image name="ranking_high.png" width="48" height="48"/>
+        <image name="search.png" width="48" height="48"/>
+        <image name="user.png" width="48" height="48"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lA5-sR-9pJ"/>
+    </inferredMetricsTieBreakers>
 </document>
