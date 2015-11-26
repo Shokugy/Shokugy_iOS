@@ -50,4 +50,6 @@ class HomeTableViewCell: UITableViewCell {
     @IBAction func tapStoreNameBtn(sender: UIButton) {
         customDelegate?.tapStoreNameBtn()
     }
+    @IBAction func tapMemberDetailBtn(sender: UIButton) {
+    }
 }
