@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate {
     
@@ -15,6 +17,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
     }

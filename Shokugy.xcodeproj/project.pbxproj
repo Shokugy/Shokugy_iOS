@@ -58,6 +58,10 @@
 		AA5382BA1BFDA7B4009CEB6C /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5382B71BFDA7B4009CEB6C /* setting.png */; };
 		AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */; };
 		AA7685A71C002DFA00FADCA7 /* 3.5-star-rating..png in Resources */ = {isa = PBXBuildFile; fileRef = AA7685A61C002DFA00FADCA7 /* 3.5-star-rating..png */; };
+		AA92627C1C080E6E00C0A19E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9262791C080E6E00C0A19E /* FBSDKCoreKit.framework */; };
+		AA92627D1C080E6E00C0A19E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA92627A1C080E6E00C0A19E /* FBSDKLoginKit.framework */; };
+		AA92627E1C080E6E00C0A19E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA92627B1C080E6E00C0A19E /* FBSDKShareKit.framework */; };
+		AA9262801C080FE800C0A19E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA92627F1C080FE800C0A19E /* TestViewController.swift */; };
 		AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */; };
 		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
 		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
@@ -140,6 +144,10 @@
 		AA5382B71BFDA7B4009CEB6C /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
 		AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
 		AA7685A61C002DFA00FADCA7 /* 3.5-star-rating..png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3.5-star-rating..png"; sourceTree = "<group>"; };
+		AA9262791C080E6E00C0A19E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		AA92627A1C080E6E00C0A19E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		AA92627B1C080E6E00C0A19E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		AA92627F1C080FE800C0A19E /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
@@ -152,7 +160,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA92627E1C080E6E00C0A19E /* FBSDKShareKit.framework in Frameworks */,
 				54F11B06A97E41AF4F92BD74 /* Pods_Shokugy.framework in Frameworks */,
+				AA92627C1C080E6E00C0A19E /* FBSDKCoreKit.framework in Frameworks */,
+				AA92627D1C080E6E00C0A19E /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +197,9 @@
 			isa = PBXGroup;
 			children = (
 				08051B4FD27FE40E2802F353 /* Pods_Shokugy.framework */,
+				AA9262791C080E6E00C0A19E /* FBSDKCoreKit.framework */,
+				AA92627A1C080E6E00C0A19E /* FBSDKLoginKit.framework */,
+				AA92627B1C080E6E00C0A19E /* FBSDKShareKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -276,6 +290,7 @@
 				AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */,
 				AA5382B31BFDA431009CEB6C /* UserViewController.swift */,
 				AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */,
+				AA92627F1C080FE800C0A19E /* TestViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -592,6 +607,7 @@
 			files = (
 				AA24EEC01BF5A7E800112A63 /* RAMItemAnimationProtocol.swift in Sources */,
 				AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */,
+				AA9262801C080FE800C0A19E /* TestViewController.swift in Sources */,
 				AA24EE871BF58D3200112A63 /* HomeTableViewController.swift in Sources */,
 				AA09CF541BF857BB005CBD7C /* StoreDetailViewController.swift in Sources */,
 				AA24EEBF1BF5A7E800112A63 /* RAMAnimatedTabBarController.swift in Sources */,
@@ -752,6 +768,10 @@
 			baseConfigurationReference = 1EB6DA622457D2244CF3C450 /* Pods-Shokugy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Shokugy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ygukohs.Shokugy;
@@ -764,6 +784,10 @@
 			baseConfigurationReference = E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Shokugy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ygukohs.Shokugy;
