@@ -10,18 +10,41 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate {
+class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate, FBSDKLoginButtonDelegate {
     
     let sampleData = ["soya", "yuya", "kotasawadaIndy"]
     var sampleFav = [1,2,0]
+    
+    let viewController = UIViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //-------FBLoginView----------
+        viewController.view.backgroundColor = UIColor.yellowColor()
+        let loginBtn = FBSDKLoginButton()
+        loginBtn.center = self.view.center
+        loginBtn.delegate = self
+        viewController.view.addSubview(loginBtn)
+        
+        self.presentViewController(viewController, animated: true, completion: nil)
+        
+        
+        
+        //-----------------------------
+
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
     }
-
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
