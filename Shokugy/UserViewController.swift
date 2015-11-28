@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FBSDKLoginButtonDelegate {
     
     let selfCommentTableView = UITableView()
+    let settingView = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,29 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tapSettingBtn() {
-        print("tapSetting")
+        setSettingView()
+    }
+    
+    func setSettingView() {
+        settingView.frame.size = self.view.frame.size
+        settingView.frame.origin = CGPointMake(0, 0)
+        settingView.backgroundColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        let logoutBtn = FBSDKLoginButton()
+        logoutBtn.center.x = self.view.center.x
+        logoutBtn.center.y = self.view.frame.height/CGFloat(2)
+        logoutBtn.delegate = self
+        settingView.addSubview(logoutBtn)
+        self.view.addSubview(settingView)
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("logout")
+        settingView.removeFromSuperview()
+        self.tabBarController?.selectedIndex = 0
+        
     }
     
     func setUp() {
@@ -84,6 +109,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         selfCommentTableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         selfCommentTableView.scrollEnabled = true
         self.view.addSubview(selfCommentTableView)
+        
+        
     }
     
     func makeBtn(x: CGFloat, tag: Int, image: UIImage) -> UIButton {

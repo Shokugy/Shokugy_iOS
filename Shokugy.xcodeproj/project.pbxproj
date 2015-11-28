@@ -50,6 +50,7 @@
 		AA24EEF31BF5D0A700112A63 /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */; };
 		AA24EEF41BF5D0A700112A63 /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */; };
 		AA2783F81BFC6054003FA3A0 /* AddMemberTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */; };
+		AA29235C1C099F2900F2478E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA29235B1C099F2900F2478E /* User.swift */; };
 		AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */; };
 		AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */; };
 		AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5382B31BFDA431009CEB6C /* UserViewController.swift */; };
@@ -61,7 +62,6 @@
 		AA92627C1C080E6E00C0A19E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9262791C080E6E00C0A19E /* FBSDKCoreKit.framework */; };
 		AA92627D1C080E6E00C0A19E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA92627A1C080E6E00C0A19E /* FBSDKLoginKit.framework */; };
 		AA92627E1C080E6E00C0A19E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA92627B1C080E6E00C0A19E /* FBSDKShareKit.framework */; };
-		AA9262801C080FE800C0A19E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA92627F1C080FE800C0A19E /* TestViewController.swift */; };
 		AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */; };
 		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
 		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
@@ -136,6 +136,7 @@
 		AA24EEF11BF5D0A700112A63 /* AlertTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		AA24EEF21BF5D0A700112A63 /* AlertTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
 		AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMemberTableViewController.swift; sourceTree = "<group>"; };
+		AA29235B1C099F2900F2478E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 		AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		AA5382B31BFDA431009CEB6C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -147,7 +148,6 @@
 		AA9262791C080E6E00C0A19E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		AA92627A1C080E6E00C0A19E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		AA92627B1C080E6E00C0A19E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		AA92627F1C080FE800C0A19E /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
@@ -290,7 +290,6 @@
 				AA2783F71BFC6054003FA3A0 /* AddMemberTableViewController.swift */,
 				AA5382B31BFDA431009CEB6C /* UserViewController.swift */,
 				AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */,
-				AA92627F1C080FE800C0A19E /* TestViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -298,6 +297,7 @@
 		AA24EE851BF4EC5300112A63 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA29235B1C099F2900F2478E /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -607,7 +607,6 @@
 			files = (
 				AA24EEC01BF5A7E800112A63 /* RAMItemAnimationProtocol.swift in Sources */,
 				AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */,
-				AA9262801C080FE800C0A19E /* TestViewController.swift in Sources */,
 				AA24EE871BF58D3200112A63 /* HomeTableViewController.swift in Sources */,
 				AA09CF541BF857BB005CBD7C /* StoreDetailViewController.swift in Sources */,
 				AA24EEBF1BF5A7E800112A63 /* RAMAnimatedTabBarController.swift in Sources */,
@@ -628,6 +627,7 @@
 				AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */,
 				AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */,
 				AA2783F81BFC6054003FA3A0 /* AddMemberTableViewController.swift in Sources */,
+				AA29235C1C099F2900F2478E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

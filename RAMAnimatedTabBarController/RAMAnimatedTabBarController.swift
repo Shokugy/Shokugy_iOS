@@ -47,7 +47,11 @@ class RAMAnimatedTabBarItem: UITabBarItem {
 class RAMAnimatedTabBarController: UITabBarController {
 
     var iconsView: [(icon: UIImageView, textLabel: UILabel)] = []
-
+    
+    //---------fbLogoutProparty
+    var counterNumForFBLogout: Int = 0
+    //----------
+    
 // MARK: life circle
 
     override func viewDidLoad() {
@@ -58,6 +62,27 @@ class RAMAnimatedTabBarController: UITabBarController {
         UITabBar.appearance().barTintColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         createCustomIcons(containers)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //-------fbLogout作業--------
+        print(counterNumForFBLogout)
+        counterNumForFBLogout += 1
+        if counterNumForFBLogout != 1 && selectedIndex == 0 {
+            let items = tabBar.items as! [RAMAnimatedTabBarItem]
+            var animationItem : RAMAnimatedTabBarItem = items[0]
+            var icon = iconsView[0].icon
+            var textLabel = iconsView[0].textLabel
+            animationItem.playAnimation(icon, textLabel: textLabel)
+            
+            animationItem = items[4]
+            icon = iconsView[4].icon
+            textLabel = iconsView[4].textLabel
+            animationItem.deselectAnimation(icon, textLabel: textLabel)
+        }
+        //---------------
     }
     
     
@@ -252,8 +277,10 @@ class RAMAnimatedTabBarController: UITabBarController {
 
             selectedIndex = gesture.view!.tag
         }
+        
     }
-    
+
+    //-----消してもうまくいく
     func setSelectIndex(from from: Int,to: Int) {
         selectedIndex = to
         let items = tabBar.items as! [RAMAnimatedTabBarItem]

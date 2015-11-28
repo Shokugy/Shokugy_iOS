@@ -20,25 +20,62 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //-------FBLoginView----------
-        viewController.view.backgroundColor = UIColor.yellowColor()
-        let loginBtn = FBSDKLoginButton()
-        loginBtn.center = self.view.center
-        loginBtn.delegate = self
-        viewController.view.addSubview(loginBtn)
-        
-        self.presentViewController(viewController, animated: true, completion: nil)
-        
-        
-        
-        //-----------------------------
-
-        
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
     }
     
+    func setFBLogin() {
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            print("loginned")
+        } else {
+            //-------FBLoginView----------
+            viewController.view.backgroundColor = UIColor.yellowColor()
+            let loginBtn = FBSDKLoginButton()
+            loginBtn.center = self.view.center
+            loginBtn.delegate = self
+            viewController.view.addSubview(loginBtn)
+            
+            self.presentViewController(viewController, animated: true, completion: nil)
+            //-----------------------------
+            
+        }
+    }
+    
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if ((error) != nil)
+        {
+            //エラー処理
+        } else if result.isCancelled {
+            //キャンセルされた時
+        } else {
+            //必要な情報が取れていることを確認(今回はemail必須)
+            if result.grantedPermissions.contains("email")
+            {
+                // 次の画面に遷移（後で）
+                returnUserData()
+
+            }
+        }
+        
         viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func returnUserData() {
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me",parameters: ["fields": "id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"])
+        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+            if ((error) != nil)
+            {
+                // Process error
+                print("Error: \(error)")
+            }
+            else
+            {
+                print("fetched user: \(result)")
+                
+                // 個々の情報を取得したいときはこんな感じ
+                let userName : String = result.valueForKey("name") as! String
+                print("User Name is: \(userName)")
+            }
+        })
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
@@ -52,6 +89,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        setFBLogin()
         let rightBarBtn = UIBarButtonItem(image:UIImage(named: "et-line_e021(0)_48"), style: .Plain, target: self, action: "tapRightBarBtn")
         self.navigationItem.rightBarButtonItem = rightBarBtn
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
