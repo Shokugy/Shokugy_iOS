@@ -14,6 +14,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     let selfCommentTableView = UITableView()
     let settingView = UIView()
+    let userImageView = UIImageView()
+    let userNameLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png"), style: UIBarButtonItemStyle.Done, target: self, action: "tapSettingBtn")
+        
+        //------fb test-------------
+        
+        fbFetchDataSample()
+        //--------------------
     }
     
     func tapSettingBtn() {
@@ -60,6 +67,28 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
+    //------------fb test------------------------------------------
+    
+    func fbFetchDataSample() {
+        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
+        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+            if(error == nil)
+            {
+                print("result \(result)")
+                let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(result["id"] as! String)/picture?type=large")!)!)
+                self.userImageView.image = profileImage
+                self.userNameLabel.text = result["name"] as? String
+            }
+            else
+            {
+                print("error \(error)")
+            }
+        })
+
+    }
+    
+    //----------------------------------------------------------------
+    
     func setUp() {
         let userCoverView = UIView()
         userCoverView.frame.size = CGSizeMake(self.view.frame.width, 180)
@@ -67,7 +96,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userCoverView.backgroundColor = UIColor(red: 252/255, green: 230/255, blue: 102/255, alpha: 1)
         self.view.addSubview(userCoverView)
         
-        let userImageView = UIImageView()
         userImageView.image = UIImage(named: "pug.png")
         userImageView.frame.size = CGSizeMake(100, 100)
         userImageView.center.x = self.view.center.x
@@ -83,8 +111,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userImageViewWhiteCover.layer.cornerRadius = userImageViewWhiteCover.frame.width/2
         userCoverView.addSubview(userImageViewWhiteCover)
         userCoverView.bringSubviewToFront(userImageView)
-        
-        let userNameLabel = UILabel()
+    
         userNameLabel.text = "Soya Takahahshi"
         userNameLabel.textAlignment = NSTextAlignment.Center
         userNameLabel.sizeToFit()
