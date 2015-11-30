@@ -49,7 +49,7 @@ class RAMAnimatedTabBarController: UITabBarController {
     var iconsView: [(icon: UIImageView, textLabel: UILabel)] = []
     
     //---------fbLogoutProparty
-    var counterNumForFBLogout: Int = 0
+    var isFirstAppear: Bool = true
     //----------
     
 // MARK: life circle
@@ -68,9 +68,7 @@ class RAMAnimatedTabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         //-------fbLogout作業--------
-        print(counterNumForFBLogout)
-        counterNumForFBLogout += 1
-        if counterNumForFBLogout != 1 && selectedIndex == 0 {
+        if isFirstAppear == false && selectedIndex == 0 {
             let items = tabBar.items as! [RAMAnimatedTabBarItem]
             var animationItem : RAMAnimatedTabBarItem = items[0]
             var icon = iconsView[0].icon
@@ -82,6 +80,7 @@ class RAMAnimatedTabBarController: UITabBarController {
             textLabel = iconsView[4].textLabel
             animationItem.deselectAnimation(icon, textLabel: textLabel)
         }
+        isFirstAppear = false
         //---------------
     }
     
