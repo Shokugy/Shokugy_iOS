@@ -31,11 +31,11 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         } else {
             //-------FBLoginView----------
             viewController.view.backgroundColor = UIColor.yellowColor()
-            let loginBtn = FBSDKLoginButton()
-            loginBtn.center = self.view.center
-            loginBtn.readPermissions = ["public_profile","email"] //これかかないとemailとれない
-            loginBtn.delegate = self
-            viewController.view.addSubview(loginBtn)
+            let loginButton = FBSDKLoginButton()
+            loginButton.center = self.view.center
+            loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
+            loginButton.delegate = self
+            viewController.view.addSubview(loginButton)
             
             self.presentViewController(viewController, animated: true, completion: nil)
             //-----------------------------

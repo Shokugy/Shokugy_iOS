@@ -72,6 +72,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func fbFetchDataSample() {
         let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
         req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+            
             if(error == nil)
             {
                 print("result \(result)")

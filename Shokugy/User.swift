@@ -9,6 +9,6 @@
 import UIKit
 
 class User: NSObject {
-    var name: String?
+    var name: String!
     var avatar: UIImage?
 }
