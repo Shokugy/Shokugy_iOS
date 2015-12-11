@@ -38,8 +38,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
             viewController.view.addSubview(loginButton)
             
             self.presentViewController(viewController, animated: true, completion: nil)
-            //-----------------------------
-            
+            //---------------------------
         }
     }
     
