@@ -47,17 +47,41 @@ class RAMAnimatedTabBarItem: UITabBarItem {
 class RAMAnimatedTabBarController: UITabBarController {
 
     var iconsView: [(icon: UIImageView, textLabel: UILabel)] = []
-
+    
+    //---------fbLogoutProparty
+    var isFirstAppear: Bool = true
+    //----------
+    
 // MARK: life circle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let containers = createViewContainers()
 
         UITabBar.appearance().barTintColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         createCustomIcons(containers)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //-------fbLogout作業--------
+        if !isFirstAppear && selectedIndex == 0 {
+            let items = tabBar.items as! [RAMAnimatedTabBarItem]
+            var animationItem: RAMAnimatedTabBarItem = items[0]
+            var icon = iconsView[0].icon
+            var textLabel = iconsView[0].textLabel
+            animationItem.playAnimation(icon, textLabel: textLabel)
+            
+            animationItem = items[4]
+            icon = iconsView[4].icon
+            textLabel = iconsView[4].textLabel
+            animationItem.deselectAnimation(icon, textLabel: textLabel)
+        }
+        isFirstAppear = false
+        //---------------
     }
     
     
@@ -252,9 +276,11 @@ class RAMAnimatedTabBarController: UITabBarController {
 
             selectedIndex = gesture.view!.tag
         }
+        
     }
-    
-    func setSelectIndex(from from: Int,to: Int) {
+
+    //-----消してもうまくいく
+    func setSelectIndex(from from: Int, to: Int) {
         selectedIndex = to
         let items = tabBar.items as! [RAMAnimatedTabBarItem]
         items[from].deselectAnimation(iconsView[from].icon, textLabel: iconsView[from].textLabel)

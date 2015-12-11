@@ -7,18 +7,82 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
-class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate {
+class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate, FBSDKLoginButtonDelegate {
     
     let sampleData = ["soya", "yuya", "kotasawadaIndy"]
     var sampleFav = [1,2,0]
+    
+    let viewController = UIViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
     }
+    
+    //----------------------fbsdk---------------------------------------------------------
+    
+    func setFBLogin() {
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            print("loginned")
+        } else {
+            //-------FBLoginView----------
+            viewController.view.backgroundColor = UIColor.yellowColor()
+            let loginButton = FBSDKLoginButton()
+            loginButton.center = self.view.center
+            loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
+            loginButton.delegate = self
+            viewController.view.addSubview(loginButton)
+            
+            self.presentViewController(viewController, animated: true, completion: nil)
+            //-----------------------------
+            
+        }
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        if (error != nil)
+        {
+            //エラー処理
+//        } else if result.isCancelled {
+            //キャンセルされた時
 
+        } else {
+            //必要な情報が取れていることを確認(今回はemail必須)
+//            if result.grantedPermissions.contains("email")
+//            {
+                // 次の画面に遷移（後で）
+//                returnUserData()
+
+            }
+//        }
+        viewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+//    func returnUserData() {
+//        
+//        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
+//        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+//            if(error == nil)
+//            {
+//                print("result \(result)")
+//            }
+//            else
+//            {
+//                print("error \(error)")
+//            }
+//        })
+//        
+//    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    }
+    
+    //------------------------------fbsdk end----------------------------------------------------
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -26,6 +90,11 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        setFBLogin()
+        setNavBar()
+    }
+    
+    func setNavBar() {
         let rightBarBtn = UIBarButtonItem(image:UIImage(named: "et-line_e021(0)_48"), style: .Plain, target: self, action: "tapRightBarBtn")
         self.navigationItem.rightBarButtonItem = rightBarBtn
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
