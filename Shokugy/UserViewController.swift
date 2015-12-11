@@ -47,11 +47,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func setSettingView() {
         settingView.frame.size = self.view.frame.size
-        settingView.frame.origin = CGPointMake(0, 0)
-        settingView.backgroundColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        settingView.frame.origin = CGPointZero
+        settingView.backgroundColor = UIColor(red: 252 / 255, green: 221 / 255, blue: 0 / 255, alpha: 1)
         let logoutBtn = FBSDKLoginButton()
         logoutBtn.center.x = self.view.center.x
-        logoutBtn.center.y = self.view.frame.height/CGFloat(2)
+        logoutBtn.center.y = self.view.frame.height / CGFloat(2)
         logoutBtn.delegate = self
         settingView.addSubview(logoutBtn)
         self.view.addSubview(settingView)

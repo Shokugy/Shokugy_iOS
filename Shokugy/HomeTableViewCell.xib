@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -17,7 +17,6 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pug.png" translatesAutoresizingMaskIntoConstraints="NO" id="txq-jb-cZk">
                         <rect key="frame" x="8" y="8" width="50" height="50"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="50" id="aA9-ob-IH9"/>
                             <constraint firstAttribute="width" constant="50" id="y9V-pl-6U0"/>
@@ -25,7 +24,6 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kentaro horie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWz-SE-fGz">
                         <rect key="frame" x="66" y="8" width="236" height="15"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="1u5-Ye-jHr"/>
                             <constraint firstAttribute="width" constant="100" id="BoD-IB-zqe"/>
@@ -41,7 +39,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="すき家" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BN3-fx-2Vh">
                         <rect key="frame" x="66" y="23" width="272" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="o5y-d2-I9b"/>
                         </constraints>
@@ -51,7 +48,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大阪市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y43-ok-APe">
                         <rect key="frame" x="66" y="44" width="272" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="z4z-7J-CEL"/>
                         </constraints>
@@ -61,7 +57,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="１分前" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNa-pd-Ptt">
                         <rect key="frame" x="302" y="8" width="80" height="15"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="RgB-Nm-Tt7"/>
                             <constraint firstAttribute="height" constant="15" id="cnf-E7-mou"/>
@@ -72,7 +67,6 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yfg-eO-Z0O">
                         <rect key="frame" x="340" y="27" width="44" height="32"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="XQb-4a-4w3"/>
                             <constraint firstAttribute="width" constant="44" id="krD-Q9-3hg"/>
@@ -85,7 +79,6 @@
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLM-Ow-f0M">
                         <rect key="frame" x="340" y="67" width="42" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="i5e-k2-k5E"/>
                             <constraint firstAttribute="height" constant="21" id="mtq-o4-K6n"/>
@@ -96,7 +89,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ゆるぼ〜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d9t-TD-jtO">
                         <rect key="frame" x="66" y="65" width="274" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="gIh-fO-CtC"/>
                         </constraints>
@@ -106,7 +98,6 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtN-kd-qbS">
                         <rect key="frame" x="340" y="67" width="42" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="42" id="7ld-2f-Q1f"/>
                             <constraint firstAttribute="height" constant="21" id="bz6-2R-s3b"/>
@@ -118,7 +109,6 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbE-N5-85r">
                         <rect key="frame" x="66" y="23" width="272" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="UxE-1g-Z8J"/>
                         </constraints>
@@ -132,14 +122,12 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFY-xz-WeN">
                         <rect key="frame" x="306" y="62" width="32" height="32"/>
-                        <animations/>
                         <state key="normal" image="showMember.png"/>
                         <connections>
                             <action selector="tapMemberDetailBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kvl-k3-bbs"/>
                         </connections>
                     </button>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="BN3-fx-2Vh" firstAttribute="leading" secondItem="txq-jb-cZk" secondAttribute="trailing" constant="8" id="0gQ-jN-XOM"/>
                     <constraint firstItem="NtN-kd-qbS" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="47K-wn-8TF"/>
@@ -168,7 +156,6 @@
                     <constraint firstItem="d9t-TD-jtO" firstAttribute="top" secondItem="y43-ok-APe" secondAttribute="bottom" id="zgd-8r-zhC"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="numOfLike" destination="wLM-Ow-f0M" id="CQQ-fl-YLF"/>
                 <outlet property="postTime" destination="YNa-pd-Ptt" id="ofb-cs-ESX"/>

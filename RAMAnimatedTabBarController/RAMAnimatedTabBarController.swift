@@ -68,9 +68,9 @@ class RAMAnimatedTabBarController: UITabBarController {
         super.viewWillAppear(animated)
         
         //-------fbLogout作業--------
-        if isFirstAppear == false && selectedIndex == 0 {
+        if !isFirstAppear && selectedIndex == 0 {
             let items = tabBar.items as! [RAMAnimatedTabBarItem]
-            var animationItem : RAMAnimatedTabBarItem = items[0]
+            var animationItem: RAMAnimatedTabBarItem = items[0]
             var icon = iconsView[0].icon
             var textLabel = iconsView[0].textLabel
             animationItem.playAnimation(icon, textLabel: textLabel)
@@ -280,7 +280,7 @@ class RAMAnimatedTabBarController: UITabBarController {
     }
 
     //-----消してもうまくいく
-    func setSelectIndex(from from: Int,to: Int) {
+    func setSelectIndex(from from: Int, to: Int) {
         selectedIndex = to
         let items = tabBar.items as! [RAMAnimatedTabBarItem]
         items[from].deselectAnimation(iconsView[from].icon, textLabel: iconsView[from].textLabel)

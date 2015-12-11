@@ -44,7 +44,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        if ((error) != nil)
+        if (error != nil)
         {
             //エラー処理
 //        } else if result.isCancelled {
@@ -55,32 +55,30 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
 //            if result.grantedPermissions.contains("email")
 //            {
                 // 次の画面に遷移（後で）
-                returnUserData()
+//                returnUserData()
 
             }
 //        }
         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func returnUserData() {
-        
-        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
-        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-            if(error == nil)
-            {
+//    func returnUserData() {
+//        
+//        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
+//        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
+//            if(error == nil)
+//            {
 //                print("result \(result)")
-//                print(result["email"])
-            }
-            else
-            {
+//            }
+//            else
+//            {
 //                print("error \(error)")
-            }
-        })
-        
-    }
+//            }
+//        })
+//        
+//    }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        
     }
     
     //------------------------------fbsdk end----------------------------------------------------
