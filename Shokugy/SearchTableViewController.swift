@@ -37,7 +37,9 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func tapSearchBtn() {
-        print("tapSearchBtn")
+        print("-----------------------------------testtest-------------------------")
+        RestrauntManager.searchRestraunt(searchTextField.text!)
+        print("--------------------------------------testtest---------------------")
         searchTextField.resignFirstResponder()
     }
     
