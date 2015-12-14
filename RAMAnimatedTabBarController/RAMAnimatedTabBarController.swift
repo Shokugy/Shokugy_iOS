@@ -25,7 +25,7 @@ import UIKit
 class RAMAnimatedTabBarItem: UITabBarItem {
 
     @IBOutlet weak var animation: RAMItemAnimation?
-    @IBInspectable var textColor = UIColor(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)  //セレクトされてないときの色
+    @IBInspectable var textColor = UIColor.whiteColor()//(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)  //セレクトされてないときの色
 
     func playAnimation(icon: UIImageView, textLabel: UILabel){
         guard let animation = animation else {
@@ -58,8 +58,9 @@ class RAMAnimatedTabBarController: UITabBarController {
         super.viewDidLoad()
         
         let containers = createViewContainers()
-
-        UITabBar.appearance().barTintColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        //バーの色
+        UITabBar.appearance().barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
+        UITabBar.appearance().translucent = false
         createCustomIcons(containers)
         
     }
@@ -100,7 +101,7 @@ class RAMAnimatedTabBarController: UITabBarController {
             for (index, item) in items.enumerate() {
                 
                 //----------defaultの文字の色
-                item.textColor = UIColor(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
+                item.textColor = UIColor.whiteColor() //(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
                 //-------------
 
                 assert(item.image != nil, "add image icon in UITabBarItem")
@@ -115,7 +116,7 @@ class RAMAnimatedTabBarController: UITabBarController {
 
                 let icon = UIImageView(image: item.image?.imageWithRenderingMode(.AlwaysTemplate))
                 icon.translatesAutoresizingMaskIntoConstraints = false
-                icon.tintColor = UIColor(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
+                icon.tintColor = UIColor.whiteColor() //(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
                 //defaultでのアイコンの色　imagewithrenderingmode追加
 
                 // text

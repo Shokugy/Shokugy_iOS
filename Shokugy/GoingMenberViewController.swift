@@ -29,7 +29,7 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func setNavigationController() {
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.title = "Member"
@@ -37,7 +37,7 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
     
     func setUp() {
         let storeNameLabel = UILabel()
-        storeNameLabel.backgroundColor = UIColor(red: 252/255, green: 230/255, blue: 102/255, alpha: 1)
+        storeNameLabel.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         storeNameLabel.text = "すき家　茶屋町店"
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.font = UIFont(name: (storeNameLabel.font?.fontName)!, size: 23)

@@ -30,7 +30,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png"), style: UIBarButtonItemStyle.Done, target: self, action: "tapSettingBtn")
@@ -48,7 +48,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func setSettingView() {
         settingView.frame.size = self.view.frame.size
         settingView.frame.origin = CGPointZero
-        settingView.backgroundColor = UIColor(red: 252 / 255, green: 221 / 255, blue: 0 / 255, alpha: 1)
+        settingView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         let logoutBtn = FBSDKLoginButton()
         logoutBtn.center.x = self.view.center.x
         logoutBtn.center.y = self.view.frame.height / CGFloat(2)
@@ -94,7 +94,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let userCoverView = UIView()
         userCoverView.frame.size = CGSizeMake(self.view.frame.width, 180)
         userCoverView.frame.origin = CGPointMake(0, 0)
-        userCoverView.backgroundColor = UIColor(red: 252/255, green: 230/255, blue: 102/255, alpha: 1)
+        userCoverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         self.view.addSubview(userCoverView)
         
         userImageView.image = UIImage(named: "pug.png")
@@ -114,6 +114,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userCoverView.bringSubviewToFront(userImageView)
     
         userNameLabel.text = "Soya Takahahshi"
+        userNameLabel.textColor = UIColor.whiteColor()
         userNameLabel.textAlignment = NSTextAlignment.Center
         userNameLabel.sizeToFit()
         userNameLabel.center = CGPointMake(self.view.center.x, 135)
@@ -121,14 +122,17 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let numOfCommentLabel = UILabel()
         numOfCommentLabel.text = "12口コミ"
+        numOfCommentLabel.textColor = UIColor.whiteColor()
         numOfCommentLabel.font = UIFont(name: (numOfCommentLabel.font?.fontName)!, size: 15)
         numOfCommentLabel.textAlignment = NSTextAlignment.Center
         numOfCommentLabel.sizeToFit()
         numOfCommentLabel.center = CGPointMake(self.view.center.x, 160)
         userCoverView.addSubview(numOfCommentLabel)
         
-        userCoverView.addSubview(makeBtn(self.view.center.x-90, tag: 1, image: UIImage(named: "member.png")!))
-        userCoverView.addSubview(makeBtn(self.view.center.x+85, tag: 2, image: UIImage(named: "change.png")!))
+        var image = UIImage(named: "member.png")?.imageWithRenderingMode(.AlwaysTemplate)
+        userCoverView.addSubview(makeBtn(self.view.center.x-90, tag: 1, image: image!))
+        image = UIImage(named: "change.png")?.imageWithRenderingMode(.AlwaysTemplate)
+        userCoverView.addSubview(makeBtn(self.view.center.x+85, tag: 2, image: image!))
         
         selfCommentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - userCoverView.frame.height - 64 - 49)
         selfCommentTableView.frame.origin = CGPointMake(0, 180)
@@ -148,6 +152,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         button.center.x = x
         button.tag = tag
         button.setImage(image, forState: .Normal)
+        button.tintColor = UIColor.whiteColor()
         button.addTarget(self, action: "tapBtn:", forControlEvents: .TouchUpInside)
         return button
     }

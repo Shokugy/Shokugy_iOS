@@ -5,6 +5,7 @@ use_frameworks!
 
 target 'Shokugy' do
 	pod 'Alamofire', '~> 3.0’
+    pod 'SwiftyJSON'
 end
 
 target 'ShokugyTests' do
