@@ -1,7 +1,6 @@
 protocol HomeTableViewCellDelegate {
     func tapFavBtn(sender: UIButton)
-    func tapNumOfFavBtn()
-    func tapStoreNameBtn()
+    func tapShowMemberBtn()
 }
 
 import UIKit
@@ -18,18 +17,34 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var postTime: UILabel!
     @IBOutlet weak var numOfLike: UILabel!
     
+    @IBOutlet weak var plusBtn: UIButton!
+    @IBOutlet weak var showMemberBtn: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         profImageView.layer.cornerRadius = profImageView.frame.width/2
         profImageView.clipsToBounds = true
         
-        
+        setImageColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setImageColor() {
+        var memberImage = UIImage(named: "+member.png")?.imageWithRenderingMode(.AlwaysTemplate)
+        plusBtn.setImage(memberImage, forState: .Normal)
+        plusBtn.imageView?.tintColor = UIColor(red: 240/255, green: 168/255, blue: 43/255, alpha: 1)
+        memberImage = UIImage(named: "-member.png")?.imageWithRenderingMode(.AlwaysTemplate)
+        plusBtn.setImage(memberImage, forState: .Selected)
+        
+        let showMemberImage = UIImage(named: "showMember.png")?.imageWithRenderingMode(.AlwaysTemplate)
+        showMemberBtn.setImage(showMemberImage, forState: .Normal)
+        showMemberBtn.tintColor = UIColor(red: 240/255, green: 168/255, blue: 43/255, alpha: 1) 
+        
     }
     
     var counter = 1
@@ -43,13 +58,7 @@ class HomeTableViewCell: UITableViewCell {
         counter += 1
     }
     
-    @IBAction func tapNomOfFavBtn(sender: UIButton) {
-        customDelegate?.tapNumOfFavBtn()
-    }
-    
-    @IBAction func tapStoreNameBtn(sender: UIButton) {
-        customDelegate?.tapStoreNameBtn()
-    }
     @IBAction func tapMemberDetailBtn(sender: UIButton) {
+        customDelegate?.tapShowMemberBtn()
     }
 }

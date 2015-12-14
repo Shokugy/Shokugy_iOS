@@ -66,8 +66,9 @@
 		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
 		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
 		AA9B36951BF8FCB300E83C3A /* batu.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36941BF8FCB300E83C3A /* batu.png */; };
-		AAF2D4681C1C0F3C003B9D93 /* Restraunt.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D4671C1C0F3C003B9D93 /* Restraunt.swift */; };
-		AAF2D46A1C1C0F78003B9D93 /* RestrauntManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D4691C1C0F78003B9D93 /* RestrauntManager.swift */; };
+		AAC204561C1E5C05009C2015 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC204551C1E5C05009C2015 /* Default-568h@2x.png */; };
+		AACBF8CF1C1F013D00041184 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8CE1C1F013D00041184 /* Restaurant.swift */; };
+		AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8D01C1F014D00041184 /* RestaurantManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,8 +155,9 @@
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
 		AA9B36941BF8FCB300E83C3A /* batu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batu.png; sourceTree = "<group>"; };
-		AAF2D4671C1C0F3C003B9D93 /* Restraunt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restraunt.swift; sourceTree = "<group>"; };
-		AAF2D4691C1C0F78003B9D93 /* RestrauntManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrauntManager.swift; sourceTree = "<group>"; };
+		AAC204551C1E5C05009C2015 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AACBF8CE1C1F013D00041184 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		AACBF8D01C1F014D00041184 /* RestaurantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
 		E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shokugy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 		AA24EE461BF4E9EE00112A63 = {
 			isa = PBXGroup;
 			children = (
+				AAC204551C1E5C05009C2015 /* Default-568h@2x.png */,
 				AA24EE511BF4E9EE00112A63 /* Shokugy */,
 				AA24EE691BF4E9EE00112A63 /* ShokugyTests */,
 				AA24EE741BF4E9EE00112A63 /* ShokugyUITests */,
@@ -302,8 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				AA29235B1C099F2900F2478E /* User.swift */,
-				AAF2D4671C1C0F3C003B9D93 /* Restraunt.swift */,
-				AAF2D4691C1C0F78003B9D93 /* RestrauntManager.swift */,
+				AACBF8CE1C1F013D00041184 /* Restaurant.swift */,
+				AACBF8D01C1F014D00041184 /* RestaurantManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				AA1236681C00D70A004792E0 /* showMember.png in Resources */,
 				AA24EE5D1BF4E9EE00112A63 /* Assets.xcassets in Resources */,
 				AA24EED11BF5ABB700112A63 /* alert_high.png in Resources */,
+				AAC204561C1E5C05009C2015 /* Default-568h@2x.png in Resources */,
 				AA24EED91BF5ABB700112A63 /* user_high.png in Resources */,
 				AA5382BA1BFDA7B4009CEB6C /* setting.png in Resources */,
 				AA24EEE01BF5AE8300112A63 /* SearchTableViewCell.xib in Resources */,
@@ -611,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACBF8CF1C1F013D00041184 /* Restaurant.swift in Sources */,
 				AA24EEC01BF5A7E800112A63 /* RAMItemAnimationProtocol.swift in Sources */,
 				AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */,
 				AA24EE871BF58D3200112A63 /* HomeTableViewController.swift in Sources */,
@@ -619,18 +624,17 @@
 				AA24EEBE1BF5A7E800112A63 /* RAMTransitionItemAnimation.swift in Sources */,
 				AA24EEBC1BF5A7E800112A63 /* RAMFumeAnimation.swift in Sources */,
 				AA24EE531BF4E9EE00112A63 /* AppDelegate.swift in Sources */,
-				AAF2D46A1C1C0F78003B9D93 /* RestrauntManager.swift in Sources */,
 				AA09CF501BF84BFF005CBD7C /* GoingMenberViewController.swift in Sources */,
 				AA24EEBA1BF5A7E800112A63 /* RAMBounceAnimation.swift in Sources */,
 				AA24EEDC1BF5AE2800112A63 /* SearchTableViewController.swift in Sources */,
 				AA24EEDF1BF5AE8300112A63 /* SearchTableViewCell.swift in Sources */,
 				AA24EEF31BF5D0A700112A63 /* AlertTableViewCell.swift in Sources */,
 				AA24EE8D1BF58FCD00112A63 /* HomeTableViewCell.swift in Sources */,
+				AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */,
 				AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */,
 				AA24EEEC1BF5CC5900112A63 /* AlertTableViewController.swift in Sources */,
 				AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */,
 				AA24EEBD1BF5A7E800112A63 /* RAMRotationAnimation.swift in Sources */,
-				AAF2D4681C1C0F3C003B9D93 /* Restraunt.swift in Sources */,
 				AA24EEBB1BF5A7E800112A63 /* RAMFrameItemAnimation.swift in Sources */,
 				AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */,
 				AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */,
@@ -781,6 +785,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Shokugy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ygukohs.Shokugy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -797,6 +802,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Shokugy/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ygukohs.Shokugy;
 				PRODUCT_NAME = "$(TARGET_NAME)";

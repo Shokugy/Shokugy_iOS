@@ -29,7 +29,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.titleView = searchTextField
@@ -37,7 +37,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func tapSearchBtn() {
-        RestrauntManager.searchRestraunt(searchTextField.text!)
+        RestaurantManager.searchRestraunt(searchTextField.text!)
         searchTextField.resignFirstResponder()
     }
     

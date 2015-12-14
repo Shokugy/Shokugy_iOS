@@ -25,14 +25,14 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func setNavigationBar() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "postIcon.png"), style: .Plain, target: self, action: "tapPostBtn")
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
     
     func setUp() {
         let coverView = UIView()
-        coverView.backgroundColor = UIColor(red: 252/255, green: 230/255, blue: 102/255, alpha: 1)
+        coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         coverView.frame.size = CGSizeMake(self.view.frame.width, 170)
         coverView.frame.origin = CGPointMake(0, 0)
         self.view.addSubview(coverView)
@@ -163,9 +163,10 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     func setPostViewStoreNameLabel() -> UILabel {
         let storeNameLabel = UILabel()
         storeNameLabel.text = "すき家　茶屋町店"
+        storeNameLabel.font = UIFont.systemFontOfSize(30)
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.frame = CGRectMake(0, 0, self.view.frame.width, 100)
-        storeNameLabel.backgroundColor = UIColor(red: 252/255, green: 230/255, blue: 102/255, alpha: 1)
+        storeNameLabel.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         addGesture(storeNameLabel)
         
         return storeNameLabel
@@ -235,7 +236,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         let inviteView = UIView()
         inviteView.frame.size = CGSizeMake(300, 250)
         inviteView.center = CGPointMake(self.view.center.x, self.view.center.y-61)
-        inviteView.backgroundColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        inviteView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         inviteView.layer.cornerRadius = 10
         coverView.addSubview(inviteView)
         

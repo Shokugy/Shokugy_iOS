@@ -30,7 +30,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
             print("loginned")
         } else {
             //-------FBLoginView----------
-            viewController.view.backgroundColor = UIColor.yellowColor()
+            viewController.view.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
             let loginButton = FBSDKLoginButton()
             loginButton.center = self.view.center
             loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
@@ -96,7 +96,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     func setNavBar() {
         let rightBarBtn = UIBarButtonItem(image:UIImage(named: "et-line_e021(0)_48"), style: .Plain, target: self, action: "tapRightBarBtn")
         self.navigationItem.rightBarButtonItem = rightBarBtn
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
@@ -128,7 +128,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 96
+        return 115
     }
     
     func tapRightBarBtn() {
@@ -143,7 +143,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         cell.numOfLike.text = "\(sampleFav[(indexPath?.row)!])"
     }
     
-    func tapNumOfFavBtn() {
+    func tapShowMemberBtn() {
         let goingMemberViewController = GoingMenberViewController()
         self.navigationController?.pushViewController(goingMemberViewController, animated: true)
     }
@@ -155,7 +155,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         }
     }
     
-    func tapStoreNameBtn() {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storeDetailViewController = StoreDetailViewController()
         self.navigationController?.pushViewController(storeDetailViewController, animated: true)
     }
