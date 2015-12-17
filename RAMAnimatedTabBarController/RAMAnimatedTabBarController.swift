@@ -59,7 +59,7 @@ class RAMAnimatedTabBarController: UITabBarController {
         
         let containers = createViewContainers()
         //バーの色
-        UITabBar.appearance().barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
+        UITabBar.appearance().barTintColor = UIColor.whiteColor() //UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         UITabBar.appearance().translucent = false
         createCustomIcons(containers)
         
@@ -101,7 +101,7 @@ class RAMAnimatedTabBarController: UITabBarController {
             for (index, item) in items.enumerate() {
                 
                 //----------defaultの文字の色
-                item.textColor = UIColor.whiteColor() //(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
+                item.textColor = UIColor(red: 186/255, green: 189/255, blue: 194/255, alpha: 1) //(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
                 //-------------
 
                 assert(item.image != nil, "add image icon in UITabBarItem")
@@ -116,7 +116,7 @@ class RAMAnimatedTabBarController: UITabBarController {
 
                 let icon = UIImageView(image: item.image?.imageWithRenderingMode(.AlwaysTemplate))
                 icon.translatesAutoresizingMaskIntoConstraints = false
-                icon.tintColor = UIColor.whiteColor() //(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
+                icon.tintColor = UIColor(red: 186/255, green: 189/255, blue: 194/255, alpha: 1) //(red: 179/255, green: 179/255, blue: 179/255, alpha: 1)
                 //defaultでのアイコンの色　imagewithrenderingmode追加
 
                 // text

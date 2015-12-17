@@ -33,7 +33,7 @@
         <scene sceneID="yjz-I1-yj0">
             <objects>
                 <navigationController restorationIdentifier="1" automaticallyAdjustsScrollViewInsets="NO" id="1hp-Ix-tTl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home_high.png" selectedImage="home.png" id="UMh-Hs-RfE" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                    <tabBarItem key="tabBarItem" title="Home" image="home.png" selectedImage="home.png" id="UMh-Hs-RfE" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
                         <connections>
                             <outlet property="animation" destination="Aa1-Pv-d35" id="sWQ-hO-I2e"/>
                         </connections>
@@ -272,16 +272,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alert.png" width="48" height="48"/>
+        <image name="alert.png" width="44" height="44"/>
         <image name="alert_high.png" width="48" height="48"/>
-        <image name="home.png" width="48" height="48"/>
-        <image name="home_high.png" width="48" height="48"/>
-        <image name="ranking.png" width="48" height="48"/>
+        <image name="home.png" width="44" height="44"/>
+        <image name="ranking.png" width="44" height="44"/>
         <image name="ranking_high.png" width="48" height="48"/>
-        <image name="search.png" width="48" height="48"/>
-        <image name="user.png" width="48" height="48"/>
+        <image name="search.png" width="44" height="44"/>
+        <image name="user.png" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Y5s-YF-5oR"/>
+        <segue reference="lA5-sR-9pJ"/>
     </inferredMetricsTieBreakers>
 </document>
