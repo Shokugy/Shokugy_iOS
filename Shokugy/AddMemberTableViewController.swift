@@ -15,7 +15,7 @@ class AddMemberTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
 
     override func didReceiveMemoryWarning() {

@@ -32,7 +32,7 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        self.navigationItem.title = "Member"
+        self.navigationItem.setMyTitle("Member")
     }
     
     func setUp() {
@@ -51,6 +51,8 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
         goingMenberTableView.dataSource = self
         goingMenberTableView.delegate = self
         self.view.addSubview(goingMenberTableView)
+        
+        self.goingMenberTableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
     
     //----------TableViewControllerSetting------------

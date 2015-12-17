@@ -20,6 +20,8 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         
         setSeachTextField()
         tableView.registerNib(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+        
+        self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,11 +64,11 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 //        何メートル圏内ごとにセクションをわけてもおもしろいかな?
-        return 1
+        return 10
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -88,5 +90,22 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         let storeDetailViewController = StoreDetailViewController()
         self.navigationController?.pushViewController(storeDetailViewController, animated: true)
     }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 6
+        } else {
+            return 3
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 10 {
+            return 6
+        } else {
+            return 3
+        }
+    }
+
 
 }

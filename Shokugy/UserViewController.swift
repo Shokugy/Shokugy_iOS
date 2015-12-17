@@ -130,9 +130,9 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userCoverView.addSubview(numOfCommentLabel)
         
         var image = UIImage(named: "member.png")?.imageWithRenderingMode(.AlwaysTemplate)
-        userCoverView.addSubview(makeBtn(self.view.center.x-90, tag: 1, image: image!))
+        userCoverView.addSubview(makeBtn(self.view.center.x-100, tag: 1, image: image!))
         image = UIImage(named: "change.png")?.imageWithRenderingMode(.AlwaysTemplate)
-        userCoverView.addSubview(makeBtn(self.view.center.x+85, tag: 2, image: image!))
+        userCoverView.addSubview(makeBtn(self.view.center.x+93, tag: 2, image: image!))
         
         selfCommentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - userCoverView.frame.height - 64 - 49)
         selfCommentTableView.frame.origin = CGPointMake(0, 180)
@@ -142,13 +142,13 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         selfCommentTableView.scrollEnabled = true
         self.view.addSubview(selfCommentTableView)
         
-        
+        self.selfCommentTableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
     
     func makeBtn(x: CGFloat, tag: Int, image: UIImage) -> UIButton {
         let button = UIButton()
-        button.frame.size = CGSizeMake(40, 40)
-        button.center.y = 70
+        button.frame.size = CGSizeMake(44, 44)
+        button.center.y = 85
         button.center.x = x
         button.tag = tag
         button.setImage(image, forState: .Normal)
@@ -181,15 +181,18 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //---------------TableViewSetting-----------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 12
+        return 1
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 12
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = selfCommentTableView.dequeueReusableCellWithIdentifier("customCell", forIndexPath: indexPath) as! HomeTableViewCell
+        
+        cell.layer.borderWidth = 0.1
+        cell.layer.cornerRadius = 2
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
@@ -197,7 +200,23 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 96
+        return 94
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 6
+        } else {
+            return 3
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 12 {
+            return 6
+        } else {
+            return 3
+        }
     }
 
 }

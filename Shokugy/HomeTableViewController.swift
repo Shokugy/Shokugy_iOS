@@ -1,10 +1,23 @@
-//
-//  HomeTableViewController.swift
-//  Shokugy
-//
-//  Created by 堀江健太朗 on 2015/11/13.
-//  Copyright © 2015年 Shokugy. All rights reserved.
-//
+extension UINavigationItem {
+    
+    func setMyTitle(title: String) {
+        let labelView = UILabel()
+        labelView.frame.size = CGSize(width: 30, height: 30)
+        labelView.text = title
+        labelView.font = UIFont.systemFontOfSize(25)
+        labelView.textColor = UIColor.whiteColor()
+        self.titleView = labelView
+    }
+    
+}
+
+extension UITableView {
+    func colorBackground(color: UIColor) {
+        let view = UIView(frame: self.frame)
+        view.backgroundColor = color
+        self.backgroundView = view
+    }
+}
 
 import UIKit
 import FBSDKCoreKit
@@ -21,6 +34,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         super.viewDidLoad()
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
+       
+        self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
     
     //----------------------fbsdk---------------------------------------------------------
@@ -84,7 +99,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -94,23 +108,36 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     }
     
     func setNavBar() {
-        let rightBarBtn = UIBarButtonItem(image:UIImage(named: "et-line_e021(0)_48"), style: .Plain, target: self, action: "tapRightBarBtn")
+        let rightBarBtn = UIBarButtonItem(image:UIImage(named: "invite"), style: .Plain, target: self, action: "tapRightBarBtn")
         self.navigationItem.rightBarButtonItem = rightBarBtn
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationItem.setMyTitle("Shokugy")
     }
-
-    // MARK: - Table view data source
-
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 6
+        } else {
+            return 3
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == (sampleData.count - 1) {
+            return 6
+        } else {
+            return 3
+        }
+    }
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return sampleData.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return sampleData.count
+        return 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -124,11 +151,12 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
+        //テキストフィールドの行数に合わせてセルの大きさを変える
         return cell
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 115
+        return 94
     }
     
     func tapRightBarBtn() {

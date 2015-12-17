@@ -84,6 +84,8 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         commentTableView.dataSource = self
         commentTableView.delegate = self
         self.view.addSubview(commentTableView)
+        
+        self.commentTableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
     
     func tapPostBtn() {
