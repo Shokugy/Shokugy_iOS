@@ -16,11 +16,18 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var numOfGoodLabel: UILabel!
     @IBOutlet weak var rateImageView: UIImageView!
     @IBOutlet weak var postDateLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         userImageView.layer.cornerRadius = userImageView.frame.width/2
         userImageView.clipsToBounds = true
+        
+        let image = UIImage(named: "like.png")?.imageWithRenderingMode(.AlwaysTemplate)
+        likeButton.setImage(image, forState: .Normal)
+        likeButton.imageView?.tintColor = UIColor.grayColor()
+        
+        self.selectionStyle = UITableViewCellSelectionStyle.None
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -28,7 +35,9 @@ class CommentTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    @IBAction func goodBtn(sender: UIButton) {
+
+    @IBAction func tapLikeButton(sender: UIButton) {
+        sender.imageView?.tintColor = UIColor.redColor()
     }
     
 }
