@@ -10,12 +10,12 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUp()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -251,17 +251,17 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.addSubview(coverView)
         
         let inviteView = UIView()
-        inviteView.frame.size = CGSizeMake(300, 250)
+        inviteView.frame.size = CGSizeMake(300, 180)
         inviteView.center = CGPointMake(self.view.center.x, self.view.center.y-61)
-        inviteView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
+        inviteView.backgroundColor = UIColor(red: 252 / 255, green: 166 / 255, blue: 51 / 255, alpha: 1)
         inviteView.layer.cornerRadius = 10
         coverView.addSubview(inviteView)
         
         inviteView.addSubview(setInviteViewTextField(inviteView))
         inviteView.addSubview(setInviteViewStoreNameLabel(inviteView, text: "すき家"))
         
-        inviteView.addSubview(setInviteViewBtn("cancel", x: inviteView.frame.width/4, superView: inviteView, tag: 1))
-        inviteView.addSubview(setInviteViewBtn("募集", x: inviteView.frame.width/4*3, superView: inviteView, tag: 2))
+        inviteView.addSubview(setInviteViewBtn("Cancel", x: inviteView.frame.width / 4 - 25, superView: inviteView, tag: 1))
+        inviteView.addSubview(setInviteViewBtn("Invite", x: inviteView.frame.width / 4 * 2 - 20, superView: inviteView, tag: 2))
         inviteView.addSubview(setInviteViewAddMember(inviteView))
         
         return coverView
@@ -270,18 +270,18 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     func setInviteViewStoreNameLabel(superView: UIView, text: String) -> UILabel {
         let label = UILabel()
         label.frame.size = CGSizeMake(superView.frame.width, 50)
-        label.frame.origin = CGPointMake(20, 0)
+        label.frame.origin = CGPointMake(17, 10)
         label.text = text
         label.textColor = UIColor.whiteColor()
-        label.font = UIFont(name: "HiraKakuProN-W3", size: 25)
+        label.font = UIFont.systemFontOfSize(25)
         
         return label
     }
     
     func setInviteViewTextField(superView: UIView) -> UITextField {
-        textField.frame.size = CGSizeMake(superView.frame.width-16, 40)
-        textField.center = CGPointMake(superView.center.x-superView.frame.origin.x, 65)
-        textField.placeholder = "一言"
+        textField.frame.size = CGSizeMake(superView.frame.width-35, 35)
+        textField.center = CGPointMake(superView.center.x-superView.frame.origin.x, 75)
+        textField.placeholder = "ひとこと"
         textField.layer.borderWidth = 0.1
         textField.layer.cornerRadius = 10
         textField.backgroundColor = UIColor.whiteColor()
@@ -291,9 +291,11 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
 
     func setInviteViewAddMember(superView: UIView) -> UIButton {
         let button = UIButton()
-        button.setImage(UIImage(named: "user.png"), forState: .Normal)
-        button.frame.size = CGSizeMake(40, 40)
-        button.center = CGPointMake(superView.frame.width/4*3, 140)
+        let image = UIImage(named: "+member")?.imageWithRenderingMode(.AlwaysTemplate)
+        button.setImage(image, forState: .Normal)
+        button.imageView?.tintColor = UIColor.whiteColor()
+        button.frame.size = CGSizeMake(44, 44)
+        button.center = CGPointMake(superView.frame.width/5 - 25, 120)
         button.addTarget(self, action: "tapAddMember", forControlEvents: .TouchUpInside)
         return button
     }
@@ -303,7 +305,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         button.setTitle(text, forState: .Normal)
         button.setTitleColor(UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1), forState: .Highlighted)
         button.frame.size = CGSizeMake(60, 30)
-        button.center = CGPointMake(x, 200)
+        button.center = CGPointMake(x, 150)
         button.tag = tag
         button.addTarget(self, action: "tapInviteViewBtn:", forControlEvents: .TouchUpInside)
         

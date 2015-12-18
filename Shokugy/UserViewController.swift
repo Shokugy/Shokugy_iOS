@@ -25,21 +25,27 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setNavBar()
+        
+        //-----------------fb test-------------
+        
+        fbFetchDataSample()
+        //------------------------------------
+    }
+    
+    func setNavBar() {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png"), style: UIBarButtonItemStyle.Done, target: self, action: "tapSettingBtn")
-        
-        //------fb test-------------
-        
-        fbFetchDataSample()
-        //--------------------
     }
+    
+    //---------------------settingView----------------------------------
     
     func tapSettingBtn() {
         setSettingView()
@@ -67,7 +73,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    //------------fb test------------------------------------------
+    //---------------------------------fb test------------------------------------------
     
     func fbFetchDataSample() {
         let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
@@ -178,7 +184,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navController.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //---------------TableViewSetting-----------
+    //---------------------------TableViewSetting-------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

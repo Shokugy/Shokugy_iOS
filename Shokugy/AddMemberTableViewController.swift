@@ -20,7 +20,6 @@ class AddMemberTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -31,10 +30,9 @@ class AddMemberTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
     }
 
-    // MARK: - Table view data source
-
+    //-------------------TableViewSetting--------------------------
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return sectionTitleAry.count
     }
     
@@ -43,7 +41,6 @@ class AddMemberTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 5
     }
     
@@ -72,7 +69,7 @@ class AddMemberTableViewController: UITableViewController {
         //タップされたインデックスを配列で管理してメンバーを（ry
     }
     
-    //--------------sectionindex-----------
+    //-------------------sectionindexFunction--------------
 //    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
 //        return sectionTitleAry
 //    }

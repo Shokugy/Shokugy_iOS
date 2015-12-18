@@ -34,7 +34,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         super.viewDidLoad()
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
-       
         self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
     
@@ -116,49 +115,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         self.navigationItem.setMyTitle("Shokugy")
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 6
-        } else {
-            return 3
-        }
-    }
-    
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == (sampleData.count - 1) {
-            return 6
-        } else {
-            return 3
-        }
-    }
-    
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sampleData.count
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell") as! HomeTableViewCell
-        cell.customDelegate = self
-        
-        cell.userName.text = sampleData[indexPath.row]
-        cell.numOfLike.text = "\(sampleFav[indexPath.row])"
-        cell.layer.borderWidth = 0.1
-        cell.layer.cornerRadius = 2
-        
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-        
-        //テキストフィールドの行数に合わせてセルの大きさを変える
-        return cell
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 94
-    }
-    
     func tapRightBarBtn() {
         self.performSegueWithIdentifier("ToSearchViewController", sender: self)
     }
@@ -183,11 +139,54 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         }
     }
     
+    //--------------TableViewSetting---------------------------------------------------
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let storeDetailViewController = StoreDetailViewController()
         self.navigationController?.pushViewController(storeDetailViewController, animated: true)
     }
-
     
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sampleData.count
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell") as! HomeTableViewCell
+        cell.customDelegate = self
+        
+        cell.userName.text = sampleData[indexPath.row]
+        cell.numOfLike.text = "\(sampleFav[indexPath.row])"
+        cell.layer.borderWidth = 0.1
+        cell.layer.cornerRadius = 2
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        //テキストフィールドの行数に合わせてセルの大きさを変える
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 94
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 6
+        } else {
+            return 3
+        }
+    }
+    
+    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == (sampleData.count - 1) {
+            return 6
+        } else {
+            return 3
+        }
+    }
 
 }
