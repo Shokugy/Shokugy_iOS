@@ -45,7 +45,6 @@
 		AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */; };
 		AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5382B31BFDA431009CEB6C /* UserViewController.swift */; };
 		AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */; };
-		AA7685A71C002DFA00FADCA7 /* 3.5-star-rating..png in Resources */ = {isa = PBXBuildFile; fileRef = AA7685A61C002DFA00FADCA7 /* 3.5-star-rating..png */; };
 		AA92627C1C080E6E00C0A19E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9262791C080E6E00C0A19E /* FBSDKCoreKit.framework */; };
 		AA92627D1C080E6E00C0A19E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA92627A1C080E6E00C0A19E /* FBSDKLoginKit.framework */; };
 		AA92627E1C080E6E00C0A19E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA92627B1C080E6E00C0A19E /* FBSDKShareKit.framework */; };
@@ -62,6 +61,11 @@
 		AA971CAE1C2339B4003531B6 /* ranking.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CA91C2339B4003531B6 /* ranking.png */; };
 		AA971CAF1C2339B4003531B6 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CAA1C2339B4003531B6 /* search.png */; };
 		AA971CB01C2339B4003531B6 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CAB1C2339B4003531B6 /* user.png */; };
+		AA971CD21C23D09D003531B6 /* rate1.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CCD1C23D09D003531B6 /* rate1.png */; };
+		AA971CD31C23D09D003531B6 /* rate2.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CCE1C23D09D003531B6 /* rate2.png */; };
+		AA971CD41C23D09D003531B6 /* rate3.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CCF1C23D09D003531B6 /* rate3.png */; };
+		AA971CD51C23D09D003531B6 /* rate4.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CD01C23D09D003531B6 /* rate4.png */; };
+		AA971CD61C23D09D003531B6 /* rate5.png in Resources */ = {isa = PBXBuildFile; fileRef = AA971CD11C23D09D003531B6 /* rate5.png */; };
 		AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */; };
 		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
 		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
@@ -134,7 +138,6 @@
 		AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		AA5382B31BFDA431009CEB6C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewController.swift; sourceTree = "<group>"; };
-		AA7685A61C002DFA00FADCA7 /* 3.5-star-rating..png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3.5-star-rating..png"; sourceTree = "<group>"; };
 		AA9262791C080E6E00C0A19E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		AA92627A1C080E6E00C0A19E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		AA92627B1C080E6E00C0A19E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -151,6 +154,11 @@
 		AA971CA91C2339B4003531B6 /* ranking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ranking.png; sourceTree = "<group>"; };
 		AA971CAA1C2339B4003531B6 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		AA971CAB1C2339B4003531B6 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		AA971CCD1C23D09D003531B6 /* rate1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate1.png; sourceTree = "<group>"; };
+		AA971CCE1C23D09D003531B6 /* rate2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate2.png; sourceTree = "<group>"; };
+		AA971CCF1C23D09D003531B6 /* rate3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate3.png; sourceTree = "<group>"; };
+		AA971CD01C23D09D003531B6 /* rate4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate4.png; sourceTree = "<group>"; };
+		AA971CD11C23D09D003531B6 /* rate5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rate5.png; sourceTree = "<group>"; };
 		AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
@@ -314,7 +322,7 @@
 		AA24EE8A1BF58ED000112A63 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				AA7685A61C002DFA00FADCA7 /* 3.5-star-rating..png */,
+				AA971CCC1C23D09D003531B6 /* rate */,
 				AA971C9B1C22F5C8003531B6 /* -member.png */,
 				AA971C9C1C22F5C8003531B6 /* +member.png */,
 				AA971C9D1C22F5C8003531B6 /* change.png */,
@@ -400,6 +408,18 @@
 				AA24EEB71BF5A7E800112A63 /* RAMTransitionItemAnimation.swift */,
 			);
 			path = TransitionAniamtions;
+			sourceTree = "<group>";
+		};
+		AA971CCC1C23D09D003531B6 /* rate */ = {
+			isa = PBXGroup;
+			children = (
+				AA971CCD1C23D09D003531B6 /* rate1.png */,
+				AA971CCE1C23D09D003531B6 /* rate2.png */,
+				AA971CCF1C23D09D003531B6 /* rate3.png */,
+				AA971CD01C23D09D003531B6 /* rate4.png */,
+				AA971CD11C23D09D003531B6 /* rate5.png */,
+			);
+			path = rate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,13 +532,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7685A71C002DFA00FADCA7 /* 3.5-star-rating..png in Resources */,
 				AA24EE601BF4E9EE00112A63 /* LaunchScreen.storyboard in Resources */,
 				AA971CA21C22F5C8003531B6 /* member.png in Resources */,
 				AA971C9F1C22F5C8003531B6 /* -member.png in Resources */,
 				AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */,
 				AA971C9A1C22C9ED003531B6 /* hukidashi.png in Resources */,
 				AA9B36951BF8FCB300E83C3A /* batu.png in Resources */,
+				AA971CD21C23D09D003531B6 /* rate1.png in Resources */,
+				AA971CD41C23D09D003531B6 /* rate3.png in Resources */,
 				AA971CA51C230DE1003531B6 /* setting.png in Resources */,
 				AA971CA01C22F5C8003531B6 /* +member.png in Resources */,
 				AA971CAE1C2339B4003531B6 /* ranking.png in Resources */,
@@ -528,6 +549,7 @@
 				AA24EE5D1BF4E9EE00112A63 /* Assets.xcassets in Resources */,
 				AA24EED11BF5ABB700112A63 /* alert_high.png in Resources */,
 				AAC204561C1E5C05009C2015 /* Default-568h@2x.png in Resources */,
+				AA971CD61C23D09D003531B6 /* rate5.png in Resources */,
 				AA24EED91BF5ABB700112A63 /* user_high.png in Resources */,
 				AA971CAD1C2339B4003531B6 /* home.png in Resources */,
 				AA24EEE01BF5AE8300112A63 /* SearchTableViewCell.xib in Resources */,
@@ -537,7 +559,9 @@
 				AA971CAC1C2339B4003531B6 /* alert.png in Resources */,
 				AA971C961C22B67E003531B6 /* invite.png in Resources */,
 				AA971CB01C2339B4003531B6 /* user.png in Resources */,
+				AA971CD51C23D09D003531B6 /* rate4.png in Resources */,
 				AA24EE8E1BF58FCD00112A63 /* HomeTableViewCell.xib in Resources */,
+				AA971CD31C23D09D003531B6 /* rate2.png in Resources */,
 				AA971CAF1C2339B4003531B6 /* search.png in Resources */,
 				AA971CA11C22F5C8003531B6 /* change.png in Resources */,
 				AA24EED71BF5ABB700112A63 /* search_high.png in Resources */,

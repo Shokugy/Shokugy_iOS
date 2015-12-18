@@ -45,36 +45,33 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         storeNameLabel.frame.origin = CGPointMake(10, 16)
         coverView.addSubview(storeNameLabel)
         
-        let rateImageView = UIImageView(image: UIImage(named: "3.5-star-rating."))
+        let rateImageView = UIImageView(image: UIImage(named: "rate4"))
         rateImageView.clipsToBounds = true
-        rateImageView.frame.size = CGSizeMake(self.view.frame.width/3*2, 40)
-        rateImageView.frame.origin.x = storeNameLabel.frame.origin.x
+        rateImageView.frame.size = CGSizeMake(self.view.frame.width/2, 40)
+        rateImageView.frame.origin.x = storeNameLabel.frame.origin.x - 2
         rateImageView.frame.origin.y = storeNameLabel.frame.origin.y + storeNameLabel.frame.height + 16
         coverView.addSubview(rateImageView)
         
-        let rateNumLabel = UILabel()
-        rateNumLabel.textColor = UIColor.whiteColor()
-        rateNumLabel.text = "4.5"
-        rateNumLabel.sizeToFit()
-        rateNumLabel.center.y = rateImageView.center.y
-        rateNumLabel.frame.origin.x = rateImageView.frame.origin.x + rateImageView.frame.width + 8
-        coverView.addSubview(rateNumLabel)
-        
         let inviteBtn = UIButton()
-        inviteBtn.setTitle("募集", forState: .Normal)
-        inviteBtn.setTitleColor(UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1), forState: .Highlighted)
+        let inviteImage = UIImage(named: "invite")?.imageWithRenderingMode(.AlwaysTemplate)
+        inviteBtn.imageView?.tintColor = UIColor.whiteColor()
+        inviteBtn.setImage(inviteImage, forState: .Normal)
+        inviteBtn.setTitle("Invite!", forState: .Normal)
+        inviteBtn.titleLabel?.font = UIFont.systemFontOfSize(12)
+        inviteBtn.titleLabel
+        inviteBtn.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
         inviteBtn.sizeToFit()
-        inviteBtn.frame.origin.x = storeNameLabel.frame.origin.x
+        inviteBtn.frame.origin.x = storeNameLabel.frame.origin.x - 2
         inviteBtn.frame.origin.y = rateImageView.frame.origin.y + rateImageView.frame.height + 16
         inviteBtn.addTarget(self, action: "tapInviteBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(inviteBtn)
         
         let taberoguBtn = UIButton()
-        taberoguBtn.setTitle("食べログへ", forState: .Normal)
-        taberoguBtn.setTitleColor(UIColor(red: 252/255, green: 221/255, blue: 0/255, alpha: 1), forState: .Highlighted)
+        taberoguBtn.setTitle("ぐるなびへ", forState: .Normal)
+        taberoguBtn.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
         taberoguBtn.sizeToFit()
-        taberoguBtn.frame.origin.y = storeNameLabel.frame.origin.y
-        taberoguBtn.frame.origin.x = self.view.frame.width - taberoguBtn.frame.width - 20
+        taberoguBtn.frame.origin.y = inviteBtn.frame.origin.y + 7
+        taberoguBtn.frame.origin.x = self.view.frame.width - taberoguBtn.frame.width - 26
         taberoguBtn.addTarget(self, action: "tapTaberoguBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(taberoguBtn)
         
@@ -111,21 +108,39 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         cell.layer.borderWidth = 0.1
         cell.userImageView.layer.cornerRadius = cell.userImageView.frame.width/2
         
+        cell.rateImageView.image = UIImage(named: "rate4")
+        
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 10
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
         
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 6
+        } else {
+            return 3
+        }
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 10 {
+            return 6
+        } else {
+            return 3
+        }
     }
     
     
@@ -224,7 +239,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         postTextView.resignFirstResponder()
     }
     
-    //------------------invite view--------------
+    //------------------invite view------------------------------------
     
     let coverView = UIView()
     let textField = UITextField()

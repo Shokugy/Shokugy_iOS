@@ -195,6 +195,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.layer.cornerRadius = 2
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.plusBtn.removeFromSuperview()
         
         return cell
     }
