@@ -17,6 +17,7 @@ class AlertTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.selectionStyle = .None
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

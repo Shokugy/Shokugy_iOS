@@ -19,18 +19,22 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         setSeachTextField()
-        tableView.registerNib(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         
+        tableView.registerNib(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setNavBar()
+    }
+    
+    func setNavBar() {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -60,7 +64,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
-    //-------------TableViewSetting---------
+    //-------------TableViewSetting-----------------------------------
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 //        何メートル圏内ごとにセクションをわけてもおもしろいかな?

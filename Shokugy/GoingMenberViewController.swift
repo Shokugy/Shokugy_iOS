@@ -20,7 +20,6 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,7 +54,7 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
         self.goingMenberTableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
     }
     
-    //----------TableViewControllerSetting------------
+    //------------------------TableViewControllerSetting-------------------
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()

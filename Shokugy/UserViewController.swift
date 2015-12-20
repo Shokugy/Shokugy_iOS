@@ -16,7 +16,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let settingView = UIView()
     let userImageView = UIImageView()
     let userNameLabel = UILabel()
-
+    var isPutSettingView: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,35 +26,59 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setNavBar()
+        
+        //-----------------fb test-------------
+        
+        fbFetchDataSample()
+        //------------------------------------
+    }
+    
+    func setNavBar() {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png"), style: UIBarButtonItemStyle.Done, target: self, action: "tapSettingBtn")
-        
-        //------fb test-------------
-        
-        fbFetchDataSample()
-        //--------------------
     }
     
+    //---------------------settingView----------------------------------
+    
     func tapSettingBtn() {
-        setSettingView()
+        if isPutSettingView {
+            setSettingView()
+            
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.settingView.frame.origin = CGPointZero
+            }
+            
+            isPutSettingView = false
+        } else {
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
+                }, completion: { (finished) -> Void in
+                    self.settingView.removeFromSuperview()
+            })
+            
+            isPutSettingView = true
+        }
     }
     
     func setSettingView() {
         settingView.frame.size = self.view.frame.size
-        settingView.frame.origin = CGPointZero
+        settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
         settingView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
+        
         let logoutBtn = FBSDKLoginButton()
         logoutBtn.center.x = self.view.center.x
         logoutBtn.center.y = self.view.frame.height / CGFloat(2)
         logoutBtn.delegate = self
         settingView.addSubview(logoutBtn)
+        
         self.view.addSubview(settingView)
     }
     
@@ -67,7 +92,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    //------------fb test------------------------------------------
+    //---------------------------------fb test------------------------------------------
     
     func fbFetchDataSample() {
         let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
@@ -178,7 +203,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navController.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    //---------------TableViewSetting-----------
+    //---------------------------TableViewSetting-------------------------
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -195,6 +220,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.layer.cornerRadius = 2
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        if cell.plusBtn != nil {
+            cell.plusBtn.removeFromSuperview()
+        }
+        
         
         return cell
     }
