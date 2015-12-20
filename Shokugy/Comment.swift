@@ -9,5 +9,9 @@
 import UIKit
 
 class Comment: NSObject {
-
+    var userID: Int?
+    var rate: Int?
+    var comment: String?
+    var numOfLike: Int?
+    var postTime: String?
 }

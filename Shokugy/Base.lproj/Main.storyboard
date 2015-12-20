@@ -23,6 +23,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="jE9-rl-TQQ" kind="show" identifier="ToSearchViewController" id="Y5s-YF-5oR"/>
+                        <segue destination="6is-lA-jSY" kind="show" identifier="SegueToStoreDetailViewController" id="Cz9-Ip-Htd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGS-Eb-btC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,6 +149,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRF-NK-aBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4245.5" y="-9.5"/>
+        </scene>
+        <!--Store Detail View Controller-->
+        <scene sceneID="9NO-2w-Ulg">
+            <objects>
+                <viewController id="6is-lA-jSY" customClass="StoreDetailViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nhc-bJ-SqW"/>
+                        <viewControllerLayoutGuide type="bottom" id="b2O-WO-sY6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fVf-J3-Eva">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kmv-zz-qU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4903.5" y="72.5"/>
         </scene>
         <!--Animated Tab Bar Controller-->
         <scene sceneID="Pjo-oY-Oku">
@@ -281,6 +301,6 @@
         <image name="user.png" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lA5-sR-9pJ"/>
+        <segue reference="Y5s-YF-5oR"/>
     </inferredMetricsTieBreakers>
 </document>

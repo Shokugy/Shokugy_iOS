@@ -9,5 +9,10 @@
 import UIKit
 
 class Post: NSObject {
-
+    var storeName: String?
+    var access: String?
+    var comment: String?
+    var postTime: String?
+    var userID: Int?
+    var goingMemberUserIDArray: [Int] = []
 }

@@ -18,8 +18,8 @@ class RestaurantManager: NSObject {
             "name": searchWord
         ]
         
-        Alamofire.request(.POST, "http://localhost:3000/", parameters: params, encoding: .JSON).responseString { (any) -> Void in
-            print(any)
+        Alamofire.request(.POST, "http://localhost:3000/api/v1/restaurants/search", parameters: params, encoding: .JSON).responseJSON { (any) -> Void in
+            print("hoge")
         }
     }
 

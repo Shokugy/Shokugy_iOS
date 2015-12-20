@@ -1,5 +1,5 @@
 //
-//  AddMemberTableViewController.swift
+//  AddMemberTableller.swift
 //  Shokugy
 //
 //  Created by 堀江健太朗 on 2015/11/18.

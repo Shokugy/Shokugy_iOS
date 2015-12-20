@@ -69,6 +69,10 @@
 		AAC204561C1E5C05009C2015 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC204551C1E5C05009C2015 /* Default-568h@2x.png */; };
 		AACBF8CF1C1F013D00041184 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8CE1C1F013D00041184 /* Restaurant.swift */; };
 		AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8D01C1F014D00041184 /* RestaurantManager.swift */; };
+		AAE810651C2652360041F5C6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE810641C2652360041F5C6 /* Post.swift */; };
+		AAE810671C2652400041F5C6 /* PostCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE810661C2652400041F5C6 /* PostCollection.swift */; };
+		AAE810691C2661E30041F5C6 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE810681C2661E30041F5C6 /* Comment.swift */; };
+		AAE8106B1C2661EF0041F5C6 /* CommentCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE8106A1C2661EF0041F5C6 /* CommentCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +162,10 @@
 		AAC204551C1E5C05009C2015 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AACBF8CE1C1F013D00041184 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		AACBF8D01C1F014D00041184 /* RestaurantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
+		AAE810641C2652360041F5C6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		AAE810661C2652400041F5C6 /* PostCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollection.swift; sourceTree = "<group>"; };
+		AAE810681C2661E30041F5C6 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		AAE8106A1C2661EF0041F5C6 /* CommentCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCollection.swift; sourceTree = "<group>"; };
 		E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shokugy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -307,6 +315,10 @@
 				AA29235B1C099F2900F2478E /* User.swift */,
 				AACBF8CE1C1F013D00041184 /* Restaurant.swift */,
 				AACBF8D01C1F014D00041184 /* RestaurantManager.swift */,
+				AAE810641C2652360041F5C6 /* Post.swift */,
+				AAE810661C2652400041F5C6 /* PostCollection.swift */,
+				AAE810681C2661E30041F5C6 /* Comment.swift */,
+				AAE8106A1C2661EF0041F5C6 /* CommentCollection.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -634,6 +646,7 @@
 				AACBF8CF1C1F013D00041184 /* Restaurant.swift in Sources */,
 				AA24EEC01BF5A7E800112A63 /* RAMItemAnimationProtocol.swift in Sources */,
 				AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */,
+				AAE810691C2661E30041F5C6 /* Comment.swift in Sources */,
 				AA24EE871BF58D3200112A63 /* HomeTableViewController.swift in Sources */,
 				AA09CF541BF857BB005CBD7C /* StoreDetailViewController.swift in Sources */,
 				AA24EEBF1BF5A7E800112A63 /* RAMAnimatedTabBarController.swift in Sources */,
@@ -648,7 +661,10 @@
 				AA24EE8D1BF58FCD00112A63 /* HomeTableViewCell.swift in Sources */,
 				AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */,
 				AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */,
+				AAE810651C2652360041F5C6 /* Post.swift in Sources */,
+				AAE810671C2652400041F5C6 /* PostCollection.swift in Sources */,
 				AA24EEEC1BF5CC5900112A63 /* AlertTableViewController.swift in Sources */,
+				AAE8106B1C2661EF0041F5C6 /* CommentCollection.swift in Sources */,
 				AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */,
 				AA24EEBD1BF5A7E800112A63 /* RAMRotationAnimation.swift in Sources */,
 				AA24EEBB1BF5A7E800112A63 /* RAMFrameItemAnimation.swift in Sources */,

@@ -19,6 +19,8 @@ extension UITableView {
     }
 }
 
+//----------------------------------------------------------------
+
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
@@ -27,6 +29,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     let sampleData = ["soya", "yuya", "kotasawadaIndy"]
     var sampleFav = [1,2,0]
+    let postCollection: PostCollection = PostCollection()
+    var sendPost: Post = Post()
     
     let viewController = UIViewController()
 
@@ -35,6 +39,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
+        
+        postCollection.getPosts()
     }
     
     //----------------------fbsdk---------------------------------------------------------
@@ -136,18 +142,23 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         if segue.identifier == "toGoingMenberViewController" {
             let goingMenberViewController = segue.destinationViewController as! GoingMenberViewController
             goingMenberViewController.storeName = "すき家　茶屋町店"
+        } else if segue.identifier == "SegueToStoreDetailViewController" {
+            let storeDetailViewController = segue.destinationViewController as! StoreDetailViewController
+            storeDetailViewController.receivePost = sendPost
         }
     }
     
     //--------------TableViewSetting---------------------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storeDetailViewController = StoreDetailViewController()
-        self.navigationController?.pushViewController(storeDetailViewController, animated: true)
+        sendPost = postCollection.postArray[indexPath.section]
+        self.performSegueWithIdentifier("SegueToStoreDetailViewController", sender: self)
     }
     
+    
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sampleData.count
+        return postCollection.postArray.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,8 +169,15 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell") as! HomeTableViewCell
         cell.customDelegate = self
         
+    
+        let post = postCollection.postArray[indexPath.section]
         cell.userName.text = sampleData[indexPath.row]
-        cell.numOfLike.text = "\(sampleFav[indexPath.row])"
+//        cell.profImageView.image 
+        cell.storeName.text = post.storeName
+        cell.storeAccess.text = post.access
+        cell.userComment.text = post.comment
+        cell.postTime.text = post.postTime
+        cell.numOfLike.text = "\(post.goingMemberUserIDArray.count)"
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
@@ -182,7 +200,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == (sampleData.count - 1) {
+        if section == (postCollection.postArray.count) {
             return 6
         } else {
             return 3

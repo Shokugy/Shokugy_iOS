@@ -7,6 +7,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     let placeholderLabel = UILabel()
     let postTextView = UITextView()
     let commentTableView = UITableView()
+    var receivePost: Post = Post()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,18 +39,26 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.addSubview(coverView)
         
         let storeNameLabel = UILabel()
-        storeNameLabel.text = "すき家　茶屋町店"
+        storeNameLabel.text = receivePost.storeName
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.font = UIFont(name: (storeNameLabel.font?.fontName)!, size: 27)
         storeNameLabel.sizeToFit()
         storeNameLabel.frame.origin = CGPointMake(10, 16)
         coverView.addSubview(storeNameLabel)
         
+        let storeAccessLabel = UILabel()
+        storeAccessLabel.text = receivePost.access
+        storeAccessLabel.textColor = UIColor.whiteColor()
+        storeAccessLabel.font = UIFont.systemFontOfSize(13)
+        storeAccessLabel.sizeToFit()
+        storeAccessLabel.frame.origin = CGPoint(x: 14, y: storeNameLabel.frame.origin.y + storeNameLabel.frame.height + 5)
+        coverView.addSubview(storeAccessLabel)
+        
         let rateImageView = UIImageView(image: UIImage(named: "rate4"))
         rateImageView.clipsToBounds = true
         rateImageView.frame.size = CGSizeMake(self.view.frame.width/2, 40)
         rateImageView.frame.origin.x = storeNameLabel.frame.origin.x - 2
-        rateImageView.frame.origin.y = storeNameLabel.frame.origin.y + storeNameLabel.frame.height + 16
+        rateImageView.frame.origin.y = storeAccessLabel.frame.origin.y + storeAccessLabel.frame.height + 10
         coverView.addSubview(rateImageView)
         
         let inviteBtn = UIButton()
@@ -62,7 +71,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         inviteBtn.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
         inviteBtn.sizeToFit()
         inviteBtn.frame.origin.x = storeNameLabel.frame.origin.x - 2
-        inviteBtn.frame.origin.y = rateImageView.frame.origin.y + rateImageView.frame.height + 16
+        inviteBtn.frame.origin.y = rateImageView.frame.origin.y + rateImageView.frame.height + 5
         inviteBtn.addTarget(self, action: "tapInviteBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(inviteBtn)
         
