@@ -11,6 +11,7 @@
 		AA09CF501BF84BFF005CBD7C /* GoingMenberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA09CF4F1BF84BFF005CBD7C /* GoingMenberViewController.swift */; };
 		AA09CF521BF854AE005CBD7C /* pug.png in Resources */ = {isa = PBXBuildFile; fileRef = AA09CF511BF854AE005CBD7C /* pug.png */; };
 		AA09CF541BF857BB005CBD7C /* StoreDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA09CF531BF857BB005CBD7C /* StoreDetailViewController.swift */; };
+		AA11CF591C24AF3700960BD7 /* batu.png in Resources */ = {isa = PBXBuildFile; fileRef = AA11CF581C24AF3700960BD7 /* batu.png */; };
 		AA24EE531BF4E9EE00112A63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA24EE521BF4E9EE00112A63 /* AppDelegate.swift */; };
 		AA24EE581BF4E9EE00112A63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA24EE561BF4E9EE00112A63 /* Main.storyboard */; };
 		AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA24EE591BF4E9EE00112A63 /* Shokugy.xcdatamodeld */; };
@@ -65,7 +66,6 @@
 		AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */; };
 		AA9B368D1BF8953B00E83C3A /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */; };
 		AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36901BF8E84A00E83C3A /* postIcon.png */; };
-		AA9B36951BF8FCB300E83C3A /* batu.png in Resources */ = {isa = PBXBuildFile; fileRef = AA9B36941BF8FCB300E83C3A /* batu.png */; };
 		AAC204561C1E5C05009C2015 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC204551C1E5C05009C2015 /* Default-568h@2x.png */; };
 		AACBF8CF1C1F013D00041184 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8CE1C1F013D00041184 /* Restaurant.swift */; };
 		AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8D01C1F014D00041184 /* RestaurantManager.swift */; };
@@ -94,6 +94,7 @@
 		AA09CF4F1BF84BFF005CBD7C /* GoingMenberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoingMenberViewController.swift; sourceTree = "<group>"; };
 		AA09CF511BF854AE005CBD7C /* pug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pug.png; sourceTree = "<group>"; };
 		AA09CF531BF857BB005CBD7C /* StoreDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreDetailViewController.swift; sourceTree = "<group>"; };
+		AA11CF581C24AF3700960BD7 /* batu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batu.png; sourceTree = "<group>"; };
 		AA24EE4F1BF4E9EE00112A63 /* Shokugy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shokugy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA24EE521BF4E9EE00112A63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA24EE571BF4E9EE00112A63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,7 +155,6 @@
 		AA9B368A1BF8953B00E83C3A /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		AA9B368B1BF8953B00E83C3A /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		AA9B36901BF8E84A00E83C3A /* postIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postIcon.png; sourceTree = "<group>"; };
-		AA9B36941BF8FCB300E83C3A /* batu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batu.png; sourceTree = "<group>"; };
 		AAC204551C1E5C05009C2015 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AACBF8CE1C1F013D00041184 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		AACBF8D01C1F014D00041184 /* RestaurantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
@@ -323,11 +323,11 @@
 				AA971CA31C230DE1003531B6 /* setting.png */,
 				AA971CA41C230DE1003531B6 /* showMember.png */,
 				AA971C9E1C22F5C8003531B6 /* member.png */,
+				AA11CF581C24AF3700960BD7 /* batu.png */,
 				AA971C951C22B67E003531B6 /* invite.png */,
 				AA971C991C22C9ED003531B6 /* hukidashi.png */,
 				AA09CF511BF854AE005CBD7C /* pug.png */,
 				AA9B36901BF8E84A00E83C3A /* postIcon.png */,
-				AA9B36941BF8FCB300E83C3A /* batu.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -529,11 +529,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA24EE601BF4E9EE00112A63 /* LaunchScreen.storyboard in Resources */,
+				AA11CF591C24AF3700960BD7 /* batu.png in Resources */,
 				AA971CA21C22F5C8003531B6 /* member.png in Resources */,
 				AA971C9F1C22F5C8003531B6 /* -member.png in Resources */,
 				AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */,
 				AA971C9A1C22C9ED003531B6 /* hukidashi.png in Resources */,
-				AA9B36951BF8FCB300E83C3A /* batu.png in Resources */,
 				AA971CD21C23D09D003531B6 /* rate1.png in Resources */,
 				AA971CD41C23D09D003531B6 /* rate3.png in Resources */,
 				AA971CA51C230DE1003531B6 /* setting.png in Resources */,

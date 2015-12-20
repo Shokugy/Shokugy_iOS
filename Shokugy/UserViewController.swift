@@ -16,7 +16,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let settingView = UIView()
     let userImageView = UIImageView()
     let userNameLabel = UILabel()
-
+    var isPutSettingView: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,18 +49,36 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //---------------------settingView----------------------------------
     
     func tapSettingBtn() {
-        setSettingView()
+        if isPutSettingView {
+            setSettingView()
+            
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.settingView.frame.origin = CGPointZero
+            }
+            
+            isPutSettingView = false
+        } else {
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
+                }, completion: { (finished) -> Void in
+                    self.settingView.removeFromSuperview()
+            })
+            
+            isPutSettingView = true
+        }
     }
     
     func setSettingView() {
         settingView.frame.size = self.view.frame.size
-        settingView.frame.origin = CGPointZero
+        settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
         settingView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
+        
         let logoutBtn = FBSDKLoginButton()
         logoutBtn.center.x = self.view.center.x
         logoutBtn.center.y = self.view.frame.height / CGFloat(2)
         logoutBtn.delegate = self
         settingView.addSubview(logoutBtn)
+        
         self.view.addSubview(settingView)
     }
     
@@ -201,7 +220,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.layer.cornerRadius = 2
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.plusBtn.removeFromSuperview()
+        
+        if cell.plusBtn != nil {
+            cell.plusBtn.removeFromSuperview()
+        }
+        
         
         return cell
     }

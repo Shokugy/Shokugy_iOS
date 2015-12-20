@@ -155,14 +155,17 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         navController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
         postViewController.view.frame = view.frame
-        postViewController.view.backgroundColor = UIColor.whiteColor()
+        postViewController.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
         navController.setViewControllers([postViewController], animated: true)
         postViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "batu.png"), style: .Plain, target: self, action: "tapCloseBtn")
         postViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: "postViewPostBtn")
-        postViewController.navigationItem.title = "口コミ投稿"
-        postViewController.view.addSubview(setPostViewStoreNameLabel())
-        postViewController.view.addSubview(setPostViewStoreRateview())
-        postViewController.view.addSubview(setPostViewTextView())
+        postViewController.navigationItem.setMyTitle("口コミ投稿")
+        let storeNameLabel = setPostViewStoreNameLabel()
+        postViewController.view.addSubview(storeNameLabel)
+        let storeRateView = setPostViewStoreRateview(storeNameLabel)
+        postViewController.view.addSubview(storeRateView)
+        let textView = setPostViewTextView(storeRateView)
+        postViewController.view.addSubview(textView)
         addGesture(postViewController.view)
         
         return navController
@@ -177,32 +180,38 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         postViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func setPostViewStoreNameLabel() -> UILabel {
+    func setPostViewStoreNameLabel() -> UIView {
+        let coverView = UIView()
+        coverView.frame = CGRectMake(0, 0, self.view.frame.width, 100)
+        coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         let storeNameLabel = UILabel()
         storeNameLabel.text = "すき家　茶屋町店"
-        storeNameLabel.font = UIFont.systemFontOfSize(30)
+        storeNameLabel.font = UIFont.systemFontOfSize(35)
         storeNameLabel.textColor = UIColor.whiteColor()
-        storeNameLabel.frame = CGRectMake(0, 0, self.view.frame.width, 100)
-        storeNameLabel.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        addGesture(storeNameLabel)
+        storeNameLabel.frame = CGRectMake(26, 0, self.view.frame.width, 100)
+        addGesture(coverView)
+        coverView.addSubview(storeNameLabel)
         
-        return storeNameLabel
+        return coverView
     }
     
-    func setPostViewStoreRateview() -> UIView {
-        let view = UIView()
-        view.frame = CGRectMake(0, 100, self.view.frame.width, 80)
+    func setPostViewStoreRateview(topView: UIView) -> UIView {
+        let coverView = UIView()
+        coverView.frame = CGRectMake(0, topView.frame.origin.y + topView.frame.height, self.view.frame.width, 60)
+        coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         let imageView = UIImageView()
+        imageView.frame = CGRectMake(23, 0, self.view.frame.width / 3 * 2, 60)
+
+        imageView.image = UIImage(named: "rate4")
         
-        view.backgroundColor = UIColor.redColor()
-        view.addSubview(imageView)
-        addGesture(view)
+        coverView.addSubview(imageView)
+        addGesture(coverView)
         
-        return view
+        return coverView
     }
 
-    func setPostViewTextView() -> UITextView {
-        postTextView.frame = CGRectMake(5, 190, self.view.frame.width-10, 200)
+    func setPostViewTextView(topView: UIView) -> UITextView {
+        postTextView.frame = CGRectMake(5, topView.frame.origin.y + topView.frame.height + 10, self.view.frame.width-10, 200)
         postTextView.layer.borderWidth = 1
         postTextView.layer.cornerRadius = 10
         postTextView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).CGColor
@@ -240,14 +249,19 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     //------------------invite view------------------------------------
-    
-    let coverView = UIView()
+    let effect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+    let coverView = UIVisualEffectView()
     let textField = UITextField()
 
     func setInviteView() -> UIView {
-        coverView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6)
+        coverView.effect = effect
         coverView.frame.size = self.view.frame.size
         coverView.frame.origin = CGPointMake(0, self.view.frame.height)
+        let blurEffect = UIBlurEffect(style: .ExtraLight)
+        let effectView = UIVisualEffectView(effect: blurEffect)
+        effectView.frame.size = self.view.frame.size
+        effectView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
+        
         self.view.addSubview(coverView)
         
         let inviteView = UIView()
@@ -322,6 +336,11 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
             })
         case 2:
             print("post")
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.coverView.frame.origin = CGPointMake(0, self.view.frame.height)
+            }, completion: { (finished) -> Void in
+                self.coverView.removeFromSuperview()
+            })
         default:
             break
         }

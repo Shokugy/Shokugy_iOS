@@ -21,7 +21,6 @@ class RestaurantManager: NSObject {
         Alamofire.request(.POST, "http://localhost:3000/", parameters: params, encoding: .JSON).responseString { (any) -> Void in
             print(any)
         }
-        
     }
 
 }
