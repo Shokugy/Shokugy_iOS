@@ -30,7 +30,7 @@ class ReviewCollection: NSObject {
     
     class func saveReview(review: Review) {
         let restaurantID = Int(review.restaurantID!)
-        let userID = Int(review.userID!)
+        let userID = Int(review.userID!) //いらないぽ
         
         let params: [String: AnyObject] = [
             "review": review.review!,

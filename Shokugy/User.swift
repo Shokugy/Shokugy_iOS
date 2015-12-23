@@ -62,7 +62,7 @@ class User: NSObject {
             print(json)
             print("createUser")
         }
-        //user_idの取得＆セット  any["id"]...?
+        //user_idの取得＆セット  any["id"]...?     
         setUser(2,name: name, userFBID: userFBID)
     }
     

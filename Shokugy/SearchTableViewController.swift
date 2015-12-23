@@ -46,6 +46,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func tapSearchBtn() {
+        restaurantArray = []
         RestaurantManager.searchRestraunt(searchTextField.text!) { (json) -> Void in
             for i in 0..<json.count {
                 self.makeRestaurant(json[i])

@@ -209,12 +209,15 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func postViewPostBtn() {
+        // userFBID保存されてない
         review?.userID = User.currentUser.userFBID
         review?.restaurantID = restaurant.restaurantID
         review?.rate = 1.5
         review?.review = reviewTextView.text
         ReviewCollection.saveReview(review!)
         reviewViewController.dismissViewControllerAnimated(true, completion: nil)
+        
+        reviewTextView.text = nil
     }
     
     func setPostViewStoreNameLabel() -> UIView {
