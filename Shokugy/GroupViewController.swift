@@ -8,13 +8,16 @@
 
 import UIKit
 
-class GroupViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class GroupViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
     
     let sampleGroupArray = ["div", "サークル", "oppai", "oppai", "oppai", "oppai", "oppai"]
     var collectionView: UICollectionView!
-    var isCancelButton: Bool = false
+//    var isCancelButton: Bool = false
     let groupLoginView = UIView()
     let newGroupView = UIView()
+    var groupNameTextField: UITextField!
+    var newGroupPasswordTextField: UITextField!
+    var passwordConfTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +36,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         flowLayout.minimumLineSpacing = 48
         flowLayout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 32, right: 16)
         flowLayout.itemSize = CGSizeMake(self.view.frame.width / 5 * 2, self.view.frame.width / 5 * 2)
-        let frame = CGRect(x: 0, y: 64, width: self.view.frame.width, height: self.view.frame.height - 64)
+        let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         collectionView = UICollectionView(frame: frame , collectionViewLayout: flowLayout)
         collectionView.backgroundColor = UIColor.orangeColor()
         self.collectionView.registerNib(UINib(nibName: "GroupCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cell")
@@ -41,20 +44,20 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.delegate = self
         self.view.addSubview(collectionView)
         
-        isCancelButton = true
-        if isCancelButton {
-            let cancelButton = UIButton()
-            cancelButton.frame.size = CGSize(width: 44, height: 44)
-            cancelButton.frame.origin = CGPoint(x: 10, y: 10)
-            cancelButton.setImage(UIImage(named: "batu"), forState: .Normal)
-            cancelButton.addTarget(self, action: "tapCancelButton", forControlEvents: .TouchUpInside)
-            self.view.addSubview(cancelButton)
-        }
+//        isCancelButton = true
+//        if isCancelButton {
+//            let cancelButton = UIButton()
+//            cancelButton.frame.size = CGSize(width: 44, height: 44)
+//            cancelButton.frame.origin = CGPoint(x: 10, y: 10)
+//            cancelButton.setImage(UIImage(named: "batu"), forState: .Normal)
+//            cancelButton.addTarget(self, action: "tapCancelButton", forControlEvents: .TouchUpInside)
+//            self.view.addSubview(cancelButton)
+//        }
         
         let addButton = UIButton()
         addButton.setImage(UIImage(named: "plus"), forState: .Normal)
-        addButton.frame.size = CGSize(width: 88, height: 88)
-        addButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height - 64)
+        addButton.frame.size = CGSize(width: 120, height: 120)
+        addButton.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 4 * 3)
         addButton.addTarget(self, action: "tapPlusButton", forControlEvents: .TouchUpInside)
         addButton.layer.shadowColor = UIColor.grayColor().CGColor
         addButton.layer.shadowOffset = CGSize(width: 3, height: 3)
@@ -63,16 +66,17 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.view.addSubview(addButton)
     }
     
-    func tapCancelButton() {
-        print("cancelbuttontapped")
-    }
-    
+//    func tapCancelButton() {
+//        print("cancelbuttontapped")
+//        self.dismissViewControllerAnimated(true, completion: nil)
+//    }
+//    
     func tapPlusButton() {
         print("tapplusbutton")
         
         setNewGroupView()
         UIView.animateWithDuration(0.5) { () -> Void in
-            self.newGroupView.frame.origin.y = self.view.frame.origin.y
+            self.newGroupView.frame.origin.y = self.view.frame.origin.y - 64
         }
 
     }
@@ -116,11 +120,16 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         
         self.setGroupLoginView()
         UIView.animateWithDuration(0.5) { () -> Void in
-            self.groupLoginView.frame.origin.y = self.view.frame.origin.y
+            self.groupLoginView.frame.origin.y = self.view.frame.origin.y - 64
         }
     }
     
-    //----------------------groupLoginView
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //----------------------groupLoginView-------------------------------
     
     func setGroupLoginView() {
         groupLoginView.frame = self.view.frame
@@ -163,6 +172,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         passwordTextField.placeholder = "Password"
         passwordTextField.backgroundColor = UIColor.whiteColor()
         passwordTextField.layer.cornerRadius = 10
+        passwordTextField.delegate = self
         groupLoginView.addSubview(passwordTextField)
         
         let backButton = UIButton()
@@ -184,7 +194,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         }
     }
     
-    //--------------------------newGroupView-----------------
+    //---------------------------------newGroupView-------------------------------
     
     func setNewGroupView() {
         newGroupView.frame = self.view.frame
@@ -201,24 +211,32 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         groupNameLabel.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 4)
         newGroupView.addSubview(groupNameLabel)
         
-        let groupNameTextField = makeNewGroupTextField("Group Name", standardFrame: groupNameLabel.frame)
+        groupNameTextField = makeNewGroupTextField("Group Name", standardFrame: groupNameLabel.frame)
         newGroupView.addSubview(groupNameTextField)
         
         let passwordLabel = makeNewGroupLabel("Password", standardFrame: groupNameTextField.frame)
         newGroupView.addSubview(passwordLabel)
         
-        let passwordTextField = makeNewGroupTextField("Password", standardFrame: passwordLabel.frame)
-        newGroupView.addSubview(passwordTextField)
+        newGroupPasswordTextField = makeNewGroupTextField("Password", standardFrame: passwordLabel.frame)
+        newGroupView.addSubview(newGroupPasswordTextField)
         
-        let passwordConfLabel = makeNewGroupLabel("Password Confirmation", standardFrame: passwordTextField.frame)
+        let passwordConfLabel = makeNewGroupLabel("Password Confirmation", standardFrame: newGroupPasswordTextField.frame)
         newGroupView.addSubview(passwordConfLabel)
         
-        let passwordConfTextField = makeNewGroupTextField("Password Confirmation", standardFrame: passwordConfLabel.frame)
+        passwordConfTextField = makeNewGroupTextField("Password Confirmation", standardFrame: passwordConfLabel.frame)
         newGroupView.addSubview(passwordConfTextField)
         
         
         
-        
+        let createButton = UIButton()
+        createButton.setTitle("Create", forState: .Normal)
+        createButton.titleLabel?.font = UIFont.systemFontOfSize(30)
+        createButton.sizeToFit()
+        createButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        createButton.setTitleColor(UIColor.yellowColor(), forState: .Highlighted)
+        createButton.center = CGPoint(x: self.view.center.x, y: passwordConfTextField.frame.origin.y + passwordConfTextField.frame.height + 32)
+        createButton.addTarget(self, action: "tapCreateButton", forControlEvents: .TouchUpInside)
+        newGroupView.addSubview(createButton)
         
         let backButton = UIButton()
         backButton.frame.size = CGSize(width: 44, height: 44)
@@ -236,6 +254,11 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
             }) { (finished) -> Void in
                 self.newGroupView.removeFromSuperview()
         }
+    }
+    
+    func tapCreateButton() {
+        GroupManager.createGroup(groupNameTextField.text!, password: newGroupPasswordTextField.text!, passwordConf: passwordConfTextField.text!)
+        print("tapcreate")        
     }
     
     func makeNewGroupLabel(name: String, standardFrame: CGRect) -> UILabel {
@@ -256,6 +279,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         textField.placeholder = name
         textField.backgroundColor = UIColor.whiteColor()
         textField.layer.cornerRadius = 10
+        textField.delegate = self
         
         return textField
     }

@@ -65,6 +65,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         super.viewWillAppear(animated)
         setNavBar()
         setFBLogin()
+        
+//        print(User.currentUser.id, User.currentUser.name, User.currentUser.userFBID)
     }
     
     func setNavBar() {
