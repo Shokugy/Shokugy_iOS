@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import UIKit
+
+extension UINavigationItem {
+    
+    func setMyTitle(title: String) {
+        let labelView = UILabel()
+        labelView.frame.size = CGSize(width: 30, height: 30)
+        labelView.text = title
+        labelView.font = UIFont.systemFontOfSize(25)
+        labelView.textColor = UIColor.whiteColor()
+        self.titleView = labelView
+    }
+    
+}

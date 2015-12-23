@@ -7,3 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
+extension UITableView {
+    func colorBackground(color: UIColor) {
+        let view = UIView(frame: self.frame)
+        view.backgroundColor = color
+        self.backgroundView = view
+    }
+}
