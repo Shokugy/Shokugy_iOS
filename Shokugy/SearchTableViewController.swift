@@ -14,6 +14,9 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     
     let searchTextField = UITextField()
     let searchBtn = UIButton()
+    var restaurantArray: [Restaurant] = []
+    var sendRestaurant: Restaurant!
+    var restaurantsJSON: [JSON] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +46,14 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func tapSearchBtn() {
-        RestaurantManager.searchRestraunt(searchTextField.text!)
+        RestaurantManager.searchRestraunt(searchTextField.text!) { (json) -> Void in
+            for i in 0..<json.count {
+                self.makeRestaurant(json[i])
+            }
+            
+            self.tableView.reloadData()
+        }
+        
         searchTextField.resignFirstResponder()
     }
     
@@ -64,11 +74,27 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let storeDetailViewController = segue.destinationViewController as! StoreDetailViewController
+        storeDetailViewController.receiveRestaurant = sendRestaurant
+    }
+    
+    func makeRestaurant(restaurantJSON: JSON) {
+        let restaurant = Restaurant()
+        restaurant.restaurantID = restaurantJSON["id"].int
+        restaurant.name = restaurantJSON["name"].string
+        restaurant.nameKana = restaurantJSON["nameKana"].string
+        restaurant.link = restaurantJSON["link"].string
+        restaurant.imageURL = restaurantJSON["imageURL"].string
+        restaurant.addres = restaurantJSON["address"].string
+        
+        restaurantArray.append(restaurant)
+    }
+    
     //-------------TableViewSetting-----------------------------------
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        何メートル圏内ごとにセクションをわけてもおもしろいかな?
-        return 10
+        return restaurantArray.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,6 +103,14 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("customCell") as! SearchTableViewCell
+        let restaurant = restaurantArray[indexPath.section]
+        
+        cell.storeNameLabel.text = restaurant.name
+        cell.storeAccessLabel.text = restaurant.addres
+//        cell.storeDistanceLabel.text
+        let imageURL = NSURL(string: restaurant.imageURL!)
+        let imageData = NSData(contentsOfURL: imageURL!)
+        cell.rateImageView.image = UIImage(data: imageData!)
         
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
@@ -91,8 +125,9 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storeDetailViewController = StoreDetailViewController()
-        self.navigationController?.pushViewController(storeDetailViewController, animated: true)
+        sendRestaurant = restaurantArray[indexPath.section]
+        print(sendRestaurant.name)
+        self.performSegueWithIdentifier("SegueToStoreDetailViewController", sender: self)
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

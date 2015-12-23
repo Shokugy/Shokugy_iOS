@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FBSDKCoreKit
 import FBSDKLoginKit
 
 class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FBSDKLoginButtonDelegate {
@@ -17,11 +16,13 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userImageView = UIImageView()
     let userNameLabel = UILabel()
     var isPutSettingView: Bool = true
+    let user = User.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
+        setUser()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,11 +33,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         
         setNavBar()
-        
-        //-----------------fb test-------------
-        
-        fbFetchDataSample()
-        //------------------------------------
     }
     
     func setNavBar() {
@@ -92,28 +88,10 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
     }
     
-    //---------------------------------fb test------------------------------------------
-    
-    func fbFetchDataSample() {
-        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
-        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-            
-            if(error == nil)
-            {
-                print("result \(result)")
-                let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(result["id"] as! String)/picture?type=large")!)!)
-                self.userImageView.image = profileImage
-                self.userNameLabel.text = result["name"] as? String
-            }
-            else
-            {
-                print("error \(error)")
-            }
-        })
-
+    func setUser() {
+            userImageView.image = user.avatar
+            userNameLabel.text = user.name
     }
-    
-    //----------------------------------------------------------------
     
     func setUp() {
         let userCoverView = UIView()

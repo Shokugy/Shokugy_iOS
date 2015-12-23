@@ -13,6 +13,7 @@ class Post: NSObject {
     var access: String?
     var comment: String?
     var postTime: String?
-    var userID: Int?
+    var userID: String?
+    var restaurantID: Int?
     var goingMemberUserIDArray: [Int] = []
 }

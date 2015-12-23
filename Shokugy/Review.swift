@@ -6,8 +6,15 @@
 //  Copyright © 2015年 Shokugy. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class Review: NSObject {
+    
+    var userID: Int?
+    var restaurantID: Int?
+    var rate: Float?
+    var review: String?
+    var numOfLike: Int?
+    var postTime: String?
 
 }

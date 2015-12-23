@@ -7,11 +7,14 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     let placeholderLabel = UILabel()
     let postTextView = UITextView()
     let commentTableView = UITableView()
-    var receivePost: Post = Post()
+    var receivePost: Post?
+    var receiveRestaurant: Restaurant?
+    var restaurant: Restaurant = Restaurant()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchRestaurant()
         setUp()
     }
 
@@ -24,6 +27,16 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         setNavigationBar()
     }
     
+    func fetchRestaurant() {
+        if let post = receivePost {
+            restaurant = RestaurantManager.fetchRestaurant(post.restaurantID!)
+            print("hoge")
+        } else {
+            restaurant = receiveRestaurant!
+            print("piyo")
+        }
+    }
+    
     func setNavigationBar() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "postIcon.png"), style: .Plain, target: self, action: "tapPostBtn")
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
@@ -32,14 +45,23 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func setUp() {
+        let backgroundImageView = UIImageView()
+        backgroundImageView.frame.size = CGSizeMake(self.view.frame.width, 170)
+        backgroundImageView.frame.origin = CGPointMake(0, 0)
+        let imageURL = NSURL(string: restaurant.imageURL!)
+        let imageData = NSData(contentsOfURL: imageURL!)
+        backgroundImageView.image = UIImage(data: imageData!)
+        backgroundImageView.userInteractionEnabled = true
+        self.view.addSubview(backgroundImageView)
+        
+        
         let coverView = UIView()
-        coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        coverView.frame.size = CGSizeMake(self.view.frame.width, 170)
-        coverView.frame.origin = CGPointMake(0, 0)
-        self.view.addSubview(coverView)
+        coverView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6   )
+        coverView.frame = backgroundImageView.frame
+        backgroundImageView.addSubview(coverView)
         
         let storeNameLabel = UILabel()
-        storeNameLabel.text = receivePost.storeName
+        storeNameLabel.text = restaurant.name!
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.font = UIFont(name: (storeNameLabel.font?.fontName)!, size: 27)
         storeNameLabel.sizeToFit()
@@ -47,7 +69,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         coverView.addSubview(storeNameLabel)
         
         let storeAccessLabel = UILabel()
-        storeAccessLabel.text = receivePost.access
+        storeAccessLabel.text = restaurant.addres!
         storeAccessLabel.textColor = UIColor.whiteColor()
         storeAccessLabel.font = UIFont.systemFontOfSize(13)
         storeAccessLabel.sizeToFit()
