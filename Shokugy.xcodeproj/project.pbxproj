@@ -41,6 +41,8 @@
 		AA359CD71C29531100CE0D56 /* ReviewCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CD61C29531100CE0D56 /* ReviewCollection.swift */; };
 		AA359CDA1C29A08700CE0D56 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CD91C29A08700CE0D56 /* UITableView+Extension.swift */; };
 		AA359CDC1C29A0A000CE0D56 /* UINavigationItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CDB1C29A0A000CE0D56 /* UINavigationItem+Extension.swift */; };
+		AA359CDE1C2A439400CE0D56 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CDD1C2A439400CE0D56 /* Invite.swift */; };
+		AA359CE01C2A43A900CE0D56 /* InviteCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CDF1C2A43A900CE0D56 /* InviteCollection.swift */; };
 		AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */; };
 		AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */; };
 		AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5382B31BFDA431009CEB6C /* UserViewController.swift */; };
@@ -75,8 +77,6 @@
 		AAC204561C1E5C05009C2015 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC204551C1E5C05009C2015 /* Default-568h@2x.png */; };
 		AACBF8CF1C1F013D00041184 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8CE1C1F013D00041184 /* Restaurant.swift */; };
 		AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8D01C1F014D00041184 /* RestaurantManager.swift */; };
-		AAE810651C2652360041F5C6 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE810641C2652360041F5C6 /* Post.swift */; };
-		AAE810671C2652400041F5C6 /* PostCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE810661C2652400041F5C6 /* PostCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +138,8 @@
 		AA359CD61C29531100CE0D56 /* ReviewCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewCollection.swift; sourceTree = "<group>"; };
 		AA359CD91C29A08700CE0D56 /* UITableView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		AA359CDB1C29A0A000CE0D56 /* UINavigationItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extension.swift"; sourceTree = "<group>"; };
+		AA359CDD1C2A439400CE0D56 /* Invite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
+		AA359CDF1C2A43A900CE0D56 /* InviteCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteCollection.swift; sourceTree = "<group>"; };
 		AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 		AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		AA5382B31BFDA431009CEB6C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -172,8 +174,6 @@
 		AAC204551C1E5C05009C2015 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AACBF8CE1C1F013D00041184 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		AACBF8D01C1F014D00041184 /* RestaurantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
-		AAE810641C2652360041F5C6 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		AAE810661C2652400041F5C6 /* PostCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollection.swift; sourceTree = "<group>"; };
 		E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shokugy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -327,10 +327,10 @@
 				AA29235B1C099F2900F2478E /* User.swift */,
 				AACBF8CE1C1F013D00041184 /* Restaurant.swift */,
 				AACBF8D01C1F014D00041184 /* RestaurantManager.swift */,
-				AAE810641C2652360041F5C6 /* Post.swift */,
-				AAE810661C2652400041F5C6 /* PostCollection.swift */,
 				AA359CD41C2952F400CE0D56 /* Review.swift */,
 				AA359CD61C29531100CE0D56 /* ReviewCollection.swift */,
+				AA359CDD1C2A439400CE0D56 /* Invite.swift */,
+				AA359CDF1C2A43A900CE0D56 /* InviteCollection.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -669,6 +669,7 @@
 				AA69EB971C283DB6005D3099 /* CheckReachability.swift in Sources */,
 				AA24EEC01BF5A7E800112A63 /* RAMItemAnimationProtocol.swift in Sources */,
 				AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */,
+				AA359CDE1C2A439400CE0D56 /* Invite.swift in Sources */,
 				AA24EE871BF58D3200112A63 /* HomeTableViewController.swift in Sources */,
 				AA09CF541BF857BB005CBD7C /* StoreDetailViewController.swift in Sources */,
 				AA24EEBF1BF5A7E800112A63 /* RAMAnimatedTabBarController.swift in Sources */,
@@ -683,9 +684,8 @@
 				AA24EEF31BF5D0A700112A63 /* AlertTableViewCell.swift in Sources */,
 				AA24EE8D1BF58FCD00112A63 /* HomeTableViewCell.swift in Sources */,
 				AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */,
+				AA359CE01C2A43A900CE0D56 /* InviteCollection.swift in Sources */,
 				AA9B368C1BF8953B00E83C3A /* CommentTableViewCell.swift in Sources */,
-				AAE810651C2652360041F5C6 /* Post.swift in Sources */,
-				AAE810671C2652400041F5C6 /* PostCollection.swift in Sources */,
 				AA24EEEC1BF5CC5900112A63 /* AlertTableViewController.swift in Sources */,
 				AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */,
 				AA24EEBD1BF5A7E800112A63 /* RAMRotationAnimation.swift in Sources */,
