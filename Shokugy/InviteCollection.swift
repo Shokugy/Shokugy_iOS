@@ -6,8 +6,38 @@
 //  Copyright © 2015年 Shokugy. All rights reserved.
 //
 
-import Cocoa
+import UIKit
+import Alamofire
 
 class InviteCollection: NSObject {
+    static let sharedInstance = InviteCollection()
+    
+    var inviteArray: [Invite] = []
+    
+    func getInvites() {
+        for _ in 1...10 {
+            let invite = Invite()
+            invite.storeName = "すきや"
+            invite.access = "大阪市北区"
+            invite.comment = "いきましょー"
+            invite.postTime = "5分前"
+            invite.userID = "1"
+            invite.restaurantID = 1
+            invite.goingMemberUserIDArray = ["1", "2", "3"]
+            
+            inviteArray.append(invite)
+        }
+    }
+    
+    class func getInvites() {
+        let params: [String: AnyObject] = [
+            "name": "hoge"
+        ]
+        
+        Alamofire.request(.POST, "http://localhost:3000/api/v1/restaurants/search", parameters: params, encoding: .JSON).responseJSON { (any) -> Void in
+            print(any)
+        }
+        
+    }
 
 }

@@ -6,8 +6,14 @@
 //  Copyright © 2015年 Shokugy. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class Invite: NSObject {
-
+    var storeName: String?
+    var access: String?
+    var comment: String?
+    var postTime: String?
+    var userID: String?
+    var restaurantID: Int?
+    var goingMemberUserIDArray: [String] = []
 }

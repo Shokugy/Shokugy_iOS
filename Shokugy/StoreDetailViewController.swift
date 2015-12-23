@@ -3,13 +3,15 @@ import UIKit
 
 class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate {
     
-    let postViewController = UIViewController()
+    let reviewViewController = UIViewController()
     let placeholderLabel = UILabel()
     let postTextView = UITextView()
     let commentTableView = UITableView()
-    var receivePost: Post?
+    var receiveInvite: Invite?
     var receiveRestaurant: Restaurant?
     var restaurant: Restaurant = Restaurant()
+    var review: Review?
+    var reviewTextView = UITextView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +30,10 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func fetchRestaurant() {
-        if let post = receivePost {
+        if let post = receiveInvite {
             restaurant = RestaurantManager.fetchRestaurant(post.restaurantID!)
-            print("hoge")
         } else {
             restaurant = receiveRestaurant!
-            print("piyo")
         }
     }
     
@@ -52,6 +52,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         let imageData = NSData(contentsOfURL: imageURL!)
         backgroundImageView.image = UIImage(data: imageData!)
         backgroundImageView.userInteractionEnabled = true
+        backgroundImageView.contentMode = UIViewContentMode.ScaleToFill
         self.view.addSubview(backgroundImageView)
         
         
@@ -117,7 +118,8 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tapPostBtn() {
-        self.presentViewController(setPostViewController(), animated: true, completion: nil)
+        review = Review()
+        self.presentViewController(setReviewViewController(), animated: true, completion: nil)
     }
     
     func tapInviteBtn() {
@@ -175,9 +177,9 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
-    //------------postViweControllerSetting------------------------
+    //------------reviewViweControllerSetting------------------------
     
-    func setPostViewController() -> UIViewController {
+    func setReviewViewController() -> UIViewController {
         let navController = UINavigationController()
         navController.navigationBar.barTintColor = self.navigationController?.navigationBar.barTintColor
         navController.navigationBar.tintColor = UIColor.whiteColor()
@@ -185,30 +187,34 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         addGesture(navController.view)
         navController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
-        postViewController.view.frame = view.frame
-        postViewController.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-        navController.setViewControllers([postViewController], animated: true)
-        postViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "batu.png"), style: .Plain, target: self, action: "tapCloseBtn")
-        postViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: "postViewPostBtn")
-        postViewController.navigationItem.setMyTitle("口コミ投稿")
+        reviewViewController.view.frame = view.frame
+        reviewViewController.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+        navController.setViewControllers([reviewViewController], animated: true)
+        reviewViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "batu.png"), style: .Plain, target: self, action: "tapCloseBtn")
+        reviewViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: "postViewPostBtn")
+        reviewViewController.navigationItem.setMyTitle("口コミ投稿")
         let storeNameLabel = setPostViewStoreNameLabel()
-        postViewController.view.addSubview(storeNameLabel)
+        reviewViewController.view.addSubview(storeNameLabel)
         let storeRateView = setPostViewStoreRateview(storeNameLabel)
-        postViewController.view.addSubview(storeRateView)
-        let textView = setPostViewTextView(storeRateView)
-        postViewController.view.addSubview(textView)
-        addGesture(postViewController.view)
+        reviewViewController.view.addSubview(storeRateView)
+        reviewTextView = setPostViewTextView(storeRateView)
+        reviewViewController.view.addSubview(reviewTextView)
+        addGesture(reviewViewController.view)
         
         return navController
     }
     
     func tapCloseBtn() {
-        postViewController.dismissViewControllerAnimated(true, completion: nil)
+        reviewViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func postViewPostBtn() {
-        print("posted")
-        postViewController.dismissViewControllerAnimated(true, completion: nil)
+        review?.userID = User.currentUser.userFBID
+        review?.restaurantID = restaurant.restaurantID
+        review?.rate = 1.5
+        review?.review = reviewTextView.text
+        ReviewCollection.saveReview(review!)
+        reviewViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func setPostViewStoreNameLabel() -> UIView {
@@ -216,7 +222,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         coverView.frame = CGRectMake(0, 0, self.view.frame.width, 100)
         coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         let storeNameLabel = UILabel()
-        storeNameLabel.text = "すき家　茶屋町店"
+        storeNameLabel.text = restaurant.name!
         storeNameLabel.font = UIFont.systemFontOfSize(35)
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.frame = CGRectMake(26, 0, self.view.frame.width, 100)
