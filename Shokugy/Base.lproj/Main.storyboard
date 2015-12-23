@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="0tg-mJ-N5s">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tky-Gp-tzS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -204,7 +204,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Oxq-i0-ZFr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PPA-yB-Mjy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01l-2Y-2JO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3276" y="2406"/>
+            <point key="canvasLocation" x="3364.5" y="2219.5"/>
         </scene>
         <!--User View Controller-->
         <scene sceneID="miL-AA-jBv">
@@ -229,6 +229,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="eeF-Br-wDA"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="0tg-mJ-N5s" kind="show" identifier="ToGroupViewController" id="Xug-Wc-rfK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

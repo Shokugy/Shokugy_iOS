@@ -46,7 +46,6 @@ class User: NSObject {
             let userFBID = result["id"] as! String
             
             createUser(userName, userFBID: userFBID)
-            saveDataForDevice()
         })
         
     }
@@ -57,13 +56,12 @@ class User: NSObject {
             "fb_id": userFBID
         ]
         Alamofire.request(.POST, "http://localhost:3000/api/v1/users/create", parameters: params, encoding: .JSON).responseString { (any) -> Void in
-            print("hogetopcreateuuser")
             let json = JSON(data: any.data!)
-            print(json)
-            print("createUser")
+            let userID = json["userId"].int
+            
+            setUser(userID!,name: name, userFBID: userFBID)
+            saveDataForDevice()
         }
-        //user_idの取得＆セット  any["id"]...?     
-        setUser(2,name: name, userFBID: userFBID)
     }
     
     class func saveDataForDevice() {

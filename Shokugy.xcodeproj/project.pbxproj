@@ -46,7 +46,9 @@
 		AA359CE41C2ADB2E00CE0D56 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CE31C2ADB2E00CE0D56 /* GroupViewController.swift */; };
 		AA359CE91C2AF80800CE0D56 /* GroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CE71C2AF80800CE0D56 /* GroupCollectionViewCell.swift */; };
 		AA359CEA1C2AF80800CE0D56 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA359CE81C2AF80800CE0D56 /* GroupCollectionViewCell.xib */; };
-		AA359CEE1C2B09E300CE0D56 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = AA359CED1C2B09E300CE0D56 /* plus.png */; };
+		AA359CF21C2B49CC00CE0D56 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = AA359CF11C2B49CC00CE0D56 /* plus.png */; };
+		AA359CF41C2B4A8900CE0D56 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CF31C2B4A8900CE0D56 /* Group.swift */; };
+		AA359CF61C2B4A9900CE0D56 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA359CF51C2B4A9900CE0D56 /* GroupManager.swift */; };
 		AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */; };
 		AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */; };
 		AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5382B31BFDA431009CEB6C /* UserViewController.swift */; };
@@ -147,7 +149,9 @@
 		AA359CE31C2ADB2E00CE0D56 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		AA359CE71C2AF80800CE0D56 /* GroupCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewCell.swift; sourceTree = "<group>"; };
 		AA359CE81C2AF80800CE0D56 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
-		AA359CED1C2B09E300CE0D56 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		AA359CF11C2B49CC00CE0D56 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		AA359CF31C2B4A8900CE0D56 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		AA359CF51C2B4A9900CE0D56 /* GroupManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		AA4B94031BFF0F1900A64019 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 		AA4B94041BFF0F1900A64019 /* RankingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RankingTableViewCell.xib; sourceTree = "<group>"; };
 		AA5382B31BFDA431009CEB6C /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -342,6 +346,8 @@
 				AA359CD61C29531100CE0D56 /* ReviewCollection.swift */,
 				AA359CDD1C2A439400CE0D56 /* Invite.swift */,
 				AA359CDF1C2A43A900CE0D56 /* InviteCollection.swift */,
+				AA359CF31C2B4A8900CE0D56 /* Group.swift */,
+				AA359CF51C2B4A9900CE0D56 /* GroupManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -359,11 +365,11 @@
 				AA971CA41C230DE1003531B6 /* showMember.png */,
 				AA971C9E1C22F5C8003531B6 /* member.png */,
 				AA11CF581C24AF3700960BD7 /* batu.png */,
-				AA359CED1C2B09E300CE0D56 /* plus.png */,
 				AA971C951C22B67E003531B6 /* invite.png */,
 				AA971C991C22C9ED003531B6 /* hukidashi.png */,
 				AA09CF511BF854AE005CBD7C /* pug.png */,
 				AA9B36901BF8E84A00E83C3A /* postIcon.png */,
+				AA359CF11C2B49CC00CE0D56 /* plus.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -581,7 +587,7 @@
 				AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */,
 				AA971C9A1C22C9ED003531B6 /* hukidashi.png in Resources */,
 				AA971CD21C23D09D003531B6 /* rate1.png in Resources */,
-				AA359CEE1C2B09E300CE0D56 /* plus.png in Resources */,
+				AA359CF21C2B49CC00CE0D56 /* plus.png in Resources */,
 				AA971CD41C23D09D003531B6 /* rate3.png in Resources */,
 				AA971CA51C230DE1003531B6 /* setting.png in Resources */,
 				AA971CA01C22F5C8003531B6 /* +member.png in Resources */,
@@ -706,6 +712,8 @@
 				AA62DB921BFF007C006BFA98 /* RankingTableViewController.swift in Sources */,
 				AA24EEBD1BF5A7E800112A63 /* RAMRotationAnimation.swift in Sources */,
 				AA359CDA1C29A08700CE0D56 /* UITableView+Extension.swift in Sources */,
+				AA359CF41C2B4A8900CE0D56 /* Group.swift in Sources */,
+				AA359CF61C2B4A9900CE0D56 /* GroupManager.swift in Sources */,
 				AA359CD51C2952F400CE0D56 /* Review.swift in Sources */,
 				AA24EEBB1BF5A7E800112A63 /* RAMFrameItemAnimation.swift in Sources */,
 				AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */,

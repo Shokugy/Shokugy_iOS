@@ -192,7 +192,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         navController.setViewControllers([reviewViewController], animated: true)
         reviewViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "batu.png"), style: .Plain, target: self, action: "tapCloseBtn")
         reviewViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: "postViewPostBtn")
-        reviewViewController.navigationItem.setMyTitle("口コミ投稿")
+        reviewViewController.navigationItem.setMyTitle("Post Review")
         let storeNameLabel = setPostViewStoreNameLabel()
         reviewViewController.view.addSubview(storeNameLabel)
         let storeRateView = setPostViewStoreRateview(storeNameLabel)

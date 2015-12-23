@@ -42,57 +42,9 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png"), style: UIBarButtonItemStyle.Done, target: self, action: "tapSettingBtn")
     }
     
-    //---------------------settingView----------------------------------
-    
-    func tapSettingBtn() {
-        if isPutSettingView {
-            setSettingView()
-            
-            UIView.animateWithDuration(0.3) { () -> Void in
-                self.settingView.frame.origin = CGPointZero
-            }
-            
-            isPutSettingView = false
-        } else {
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
-                }, completion: { (finished) -> Void in
-                    self.settingView.removeFromSuperview()
-            })
-            
-            isPutSettingView = true
-        }
-    }
-    
-    func setSettingView() {
-        settingView.frame.size = self.view.frame.size
-        settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
-        settingView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        
-        let logoutBtn = FBSDKLoginButton()
-        logoutBtn.center.x = self.view.center.x
-        logoutBtn.center.y = self.view.frame.height / CGFloat(2)
-        logoutBtn.delegate = self
-        settingView.addSubview(logoutBtn)
-        
-        self.view.addSubview(settingView)
-    }
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("logout")
-        let userDefault = NSUserDefaults.standardUserDefaults()
-        userDefault.removeObjectForKey("user")
-        settingView.removeFromSuperview()
-        self.tabBarController?.selectedIndex = 0
-
-    }
-    
     func setUser() {
-            userImageView.image = user.avatar
-            userNameLabel.text = user.name
+            userImageView.image = user.avatar!
+            userNameLabel.text = user.name!
     }
     
     func setUp() {
@@ -176,8 +128,14 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.presentViewController(navController, animated: true, completion: nil)
         } else if sender.tag == 2 {
             print("tapChange")
+            self.performSegueWithIdentifier("ToGroupViewController", sender: self)
         }
     }
+    
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        let groupViewController = segue.destinationViewController as! GroupViewController
+//        groupViewController.isCancelButton = true
+//    }
     
     func tapNavCancelBtn() {
         navController.dismissViewControllerAnimated(true, completion: nil)
@@ -228,5 +186,54 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return 3
         }
     }
+    
+    //---------------------settingView----------------------------------
+    
+    func tapSettingBtn() {
+        if isPutSettingView {
+            setSettingView()
+            
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.settingView.frame.origin = CGPointZero
+            }
+            
+            isPutSettingView = false
+        } else {
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
+                }, completion: { (finished) -> Void in
+                    self.settingView.removeFromSuperview()
+            })
+            
+            isPutSettingView = true
+        }
+    }
+    
+    func setSettingView() {
+        settingView.frame.size = self.view.frame.size
+        settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
+        settingView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
+        
+        let logoutBtn = FBSDKLoginButton()
+        logoutBtn.center.x = self.view.center.x
+        logoutBtn.center.y = self.view.frame.height / CGFloat(2)
+        logoutBtn.delegate = self
+        settingView.addSubview(logoutBtn)
+        
+        self.view.addSubview(settingView)
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("logout")
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        userDefault.removeObjectForKey("user")
+        settingView.removeFromSuperview()
+        self.tabBarController?.selectedIndex = 0
+        
+    }
+
 
 }

@@ -30,17 +30,21 @@ class ReviewCollection: NSObject {
     
     class func saveReview(review: Review) {
         let restaurantID = Int(review.restaurantID!)
-        let userID = Int(review.userID!) //いらないぽ
         
         let params: [String: AnyObject] = [
             "review": review.review!,
             "rate": Float(3),
             "restaurant_id": restaurantID,
-            "user_id": 1
         ]
         
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/reviews/create", parameters: params, encoding: .JSON).responseString { (any) -> Void in
-            print(any)
+        let URL = NSURL(string: "http://localhost:3000/api/v1/reviews/create")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "POST"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+        manager.request(request).responseString { (any) in
+                print(any)
         }
     }
 
