@@ -10,11 +10,11 @@ import UIKit
 
 class Review: NSObject {
     
-    var userID: Int?
+    var userID: String?
     var restaurantID: Int?
     var rate: Float?
     var review: String?
-    var numOfLike: Int?
+//    var numOfLike: Int?
     var postTime: String?
 
 }

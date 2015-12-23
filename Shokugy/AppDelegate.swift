@@ -52,8 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             alertController.addAction(defaultAction)
             
             self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
-            User.fetchDataFromDevice()
-            
+            User.fetchDataFromDeviceSetUser()
         }
         
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.

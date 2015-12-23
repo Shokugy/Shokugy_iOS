@@ -16,7 +16,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userImageView = UIImageView()
     let userNameLabel = UILabel()
     var isPutSettingView: Bool = true
-    let user = User.sharedInstance
+    let user = User.currentUser
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,9 +83,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("logout")
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        userDefault.removeObjectForKey("user")
         settingView.removeFromSuperview()
         self.tabBarController?.selectedIndex = 0
-        
+
     }
     
     func setUser() {

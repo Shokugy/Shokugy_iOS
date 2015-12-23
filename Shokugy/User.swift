@@ -8,19 +8,28 @@
 
 import UIKit
 import FBSDKLoginKit
+import Alamofire
+import SwiftyJSON
 
 class User: NSObject {
-    static let sharedInstance = User()
+    static let currentUser = User()
     
+    var id: Int?
     var name: String?
     var avatar: UIImage?
     var userFBID: String?
 
+    class func getUser() {
+        
+    }
     
-    class func setUser(name: String, avatar: UIImage, userFBID: String) {
-        sharedInstance.name = name
-        sharedInstance.avatar = avatar
-        sharedInstance.userFBID = userFBID
+    class func setUser(id: Int, name: String,userFBID: String) {
+        let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(userFBID)/picture?type=large")!)!)
+
+        currentUser.id = id
+        currentUser.name = name
+        currentUser.avatar = profileImage
+        currentUser.userFBID = userFBID
     }
     
     class func fetchUserFromFB() {
@@ -29,41 +38,59 @@ class User: NSObject {
             
             guard error == nil else {
                 print(error)
+                print("where: fetchUserFromFB User.swift")
                 return
             }
             
-            print("result \(result)")
-            let userID = result["id"] as! String
-            let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(userID)/picture?type=large")!)!)
-            setUser(result["name"] as! String, avatar: profileImage!, userFBID: userID)
+            let userName = result["name"] as! String
+            let userFBID = result["id"] as! String
             
+            createUser(userName, userFBID: userFBID)
             saveDataForDevice()
-            
         })
         
     }
     
+    class func createUser(name: String, userFBID: String) {
+        let params: [String: AnyObject] = [
+            "name": name,
+            "fb_id": userFBID
+        ]
+        Alamofire.request(.POST, "http://localhost:3000/api/v1/users/create", parameters: params, encoding: .JSON).responseString { (any) -> Void in
+            print("hogetopcreateuuser")
+            let json = JSON(data: any.data!)
+            print(json)
+            print("createUser")
+        }
+        //user_idの取得＆セット  any["id"]...?
+        setUser(2,name: name, userFBID: userFBID)
+    }
+    
     class func saveDataForDevice() {
-        let avatarData = UIImagePNGRepresentation(sharedInstance.avatar!)
-        let userDic: [String: AnyObject] = ["name": sharedInstance.name!, "avatar": avatarData!, "fbID": sharedInstance.userFBID!]
+        let avatarData = UIImagePNGRepresentation(currentUser.avatar!)
+        let userDic: [String: AnyObject] = ["id": currentUser.id!, "name": currentUser.name!, "avatar": avatarData!, "fbID": currentUser.userFBID!]
         
         let ud = NSUserDefaults.standardUserDefaults()
         ud.setObject(userDic, forKey: "user")
         ud.synchronize()
     }
     
-    class func fetchDataFromDevice() -> Bool {
+    class func fetchDataFromDeviceSetUser() -> Bool {
         let ud = NSUserDefaults.standardUserDefaults()
-        let userDic = ud.objectForKey("user")
         
-        guard let _ = ud.objectForKey("user") else {
+        guard ud.objectForKey("user") != nil else {
             print("fetch error")
             return false
         }
-        sharedInstance.name = userDic!["name"] as? String
+        
+        let userDic = ud.objectForKey("user")
+        currentUser.id = userDic!["id"] as? Int
+        currentUser.name = userDic!["name"] as? String
         let avatarImage = userDic!["avatar"] as? NSData
-        sharedInstance.avatar = UIImage(data: avatarImage!)
-        sharedInstance.userFBID = userDic!["fbID"] as? String
+        currentUser.avatar = UIImage(data: avatarImage!)
+        currentUser.userFBID = userDic!["fbID"] as? String
+        
+        print("fetch success(user default)")
         
         return true
     }
