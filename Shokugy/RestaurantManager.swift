@@ -32,7 +32,7 @@ class RestaurantManager: NSObject {
         restaurant.name = "すき家"
         restaurant.nameKana = "すきや"
         restaurant.link = "hogehoge"
-        restaurant.imageURL = "piyopiyoImage"
+        restaurant.imageURL = "http://jobs.sukiya.jp/images/top/top_visual.png"
         restaurant.addres = "大阪市中崎町うん"
         
         return restaurant
