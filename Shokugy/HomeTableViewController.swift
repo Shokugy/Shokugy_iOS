@@ -1,25 +1,3 @@
-extension UINavigationItem {
-    
-    func setMyTitle(title: String) {
-        let labelView = UILabel()
-        labelView.frame.size = CGSize(width: 30, height: 30)
-        labelView.text = title
-        labelView.font = UIFont.systemFontOfSize(25)
-        labelView.textColor = UIColor.whiteColor()
-        self.titleView = labelView
-    }
-    
-}
-
-extension UITableView {
-    func colorBackground(color: UIColor) {
-        let view = UIView(frame: self.frame)
-        view.backgroundColor = color
-        self.backgroundView = view
-    }
-}
-
-//----------------------------------------------------------------
 
 import UIKit
 import FBSDKCoreKit
@@ -41,6 +19,9 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
         
         postCollection.getPosts()
+        
+        setFBLogin()
+        User.fetchUserFromFB()
     }
     
     //----------------------fbsdk---------------------------------------------------------
@@ -65,37 +46,13 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         if (error != nil)
         {
-            //エラー処理
-//        } else if result.isCancelled {
-            //キャンセルされた時
 
         } else {
-            //必要な情報が取れていることを確認(今回はemail必須)
-//            if result.grantedPermissions.contains("email")
-//            {
-                // 次の画面に遷移（後で）
-//                returnUserData()
-
-            }
-//        }
+        
+        }
+        
         viewController.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-//    func returnUserData() {
-//        
-//        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
-//        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-//            if(error == nil)
-//            {
-//                print("result \(result)")
-//            }
-//            else
-//            {
-//                print("error \(error)")
-//            }
-//        })
-//        
-//    }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
     }
@@ -108,7 +65,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setFBLogin()
         setNavBar()
     }
     
@@ -129,8 +85,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let contentView = sender.superview
         let cell = contentView?.superview as! HomeTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
-        sampleFav[(indexPath?.row)!] += 1
-        cell.numOfLike.text = "\(sampleFav[(indexPath?.row)!])"
+        postCollection.postArray[(indexPath?.section)!].goingMemberUserIDArray.append(4)// currentuserid
+        self.tableView.reloadData()
     }
     
     func tapShowMemberBtn() {
