@@ -10,11 +10,11 @@ import UIKit
 
 class Restaurant: NSObject {
 
+    var restaurantID: Int?
     var name: String?
-    var name_kana: String?
+    var nameKana: String?
     var link: String?
-    var image_url: String?
-    var pstal_code: String?
+    var imageURL: String?
     var addres: String?
     
 }

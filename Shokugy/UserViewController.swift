@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import FBSDKCoreKit
 import FBSDKLoginKit
+import Alamofire
+import SwiftyJSON
 
 class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FBSDKLoginButtonDelegate {
     
@@ -17,11 +18,25 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userImageView = UIImageView()
     let userNameLabel = UILabel()
     var isPutSettingView: Bool = true
+    let user = User.currentUser
+    var reviews: [Review] = []
+    var sendRestaurantID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
+        setUser()
+        
+        //-----test------
+        ReviewCollection.getMypageReview { (json) -> Void in
+            for i in 0 ..< json.count {
+                self.makeReview(json[i])
+            }
+            
+            self.selfCommentTableView.reloadData()
+        }
+        //-----------
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,11 +47,16 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         super.viewWillAppear(animated)
         
         setNavBar()
+    }
+    
+    func makeReview(reviewJSON: JSON) {
+        let review = Review()
+        review.review = reviewJSON["review"].string
+        review.restaurantName = reviewJSON["restaurantName"].string
+        review.restaurantAddress = reviewJSON["restaurantAddress"].string
+        review.restaurantID = reviewJSON["id"].int
         
-        //-----------------fb test-------------
-        
-        fbFetchDataSample()
-        //------------------------------------
+        reviews.append(review)
     }
     
     func setNavBar() {
@@ -46,74 +66,10 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png"), style: UIBarButtonItemStyle.Done, target: self, action: "tapSettingBtn")
     }
     
-    //---------------------settingView----------------------------------
-    
-    func tapSettingBtn() {
-        if isPutSettingView {
-            setSettingView()
-            
-            UIView.animateWithDuration(0.3) { () -> Void in
-                self.settingView.frame.origin = CGPointZero
-            }
-            
-            isPutSettingView = false
-        } else {
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
-                }, completion: { (finished) -> Void in
-                    self.settingView.removeFromSuperview()
-            })
-            
-            isPutSettingView = true
-        }
+    func setUser() {
+        userImageView.image = user.avatar!
+        userNameLabel.text = user.name!
     }
-    
-    func setSettingView() {
-        settingView.frame.size = self.view.frame.size
-        settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
-        settingView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        
-        let logoutBtn = FBSDKLoginButton()
-        logoutBtn.center.x = self.view.center.x
-        logoutBtn.center.y = self.view.frame.height / CGFloat(2)
-        logoutBtn.delegate = self
-        settingView.addSubview(logoutBtn)
-        
-        self.view.addSubview(settingView)
-    }
-    
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-    }
-    
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        print("logout")
-        settingView.removeFromSuperview()
-        self.tabBarController?.selectedIndex = 0
-        
-    }
-    
-    //---------------------------------fb test------------------------------------------
-    
-    func fbFetchDataSample() {
-        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
-        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-            
-            if(error == nil)
-            {
-                print("result \(result)")
-                let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(result["id"] as! String)/picture?type=large")!)!)
-                self.userImageView.image = profileImage
-                self.userNameLabel.text = result["name"] as? String
-            }
-            else
-            {
-                print("error \(error)")
-            }
-        })
-
-    }
-    
-    //----------------------------------------------------------------
     
     func setUp() {
         let userCoverView = UIView()
@@ -163,7 +119,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         selfCommentTableView.frame.origin = CGPointMake(0, 180)
         selfCommentTableView.delegate = self
         selfCommentTableView.dataSource = self
-        selfCommentTableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+        selfCommentTableView.registerNib(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         selfCommentTableView.scrollEnabled = true
         self.view.addSubview(selfCommentTableView)
         
@@ -196,6 +152,14 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.presentViewController(navController, animated: true, completion: nil)
         } else if sender.tag == 2 {
             print("tapChange")
+            self.performSegueWithIdentifier("ToGroupViewController", sender: self)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ToStoreDetailViewController" {
+        let storeDetailViewController = segue.destinationViewController as! StoreDetailViewController
+        storeDetailViewController.receiveRestaurantID = sendRestaurantID
         }
     }
     
@@ -210,27 +174,31 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 12
+        return reviews.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = selfCommentTableView.dequeueReusableCellWithIdentifier("customCell", forIndexPath: indexPath) as! HomeTableViewCell
+        let cell = selfCommentTableView.dequeueReusableCellWithIdentifier("customCell", forIndexPath: indexPath) as! CommentTableViewCell
+        
+        let review = reviews[indexPath.section]
+        cell.userName.text = User.currentUser.name
+        cell.userImageView.image = User.currentUser.avatar
+        cell.rateImageView.image = UIImage(named: "rate4")
+        cell.userReviewLabel.text = review.review
+        cell.storeNameLabel.text = review.restaurantName
+        cell.storeAccessLabel.text = review.restaurantAddress
         
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        if cell.plusBtn != nil {
-            cell.plusBtn.removeFromSuperview()
-        }
-        
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 94
+        return 110
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -248,5 +216,58 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             return 3
         }
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        sendRestaurantID = reviews[indexPath.section].restaurantID
+        self.performSegueWithIdentifier("ToStoreDetailViewController", sender: self)
+    }
+    
+    //---------------------settingView----------------------------------
+    
+    func tapSettingBtn() {
+        if isPutSettingView {
+            setSettingView()
+            
+            UIView.animateWithDuration(0.3) { () -> Void in
+                self.settingView.frame.origin = CGPointZero
+            }
+            
+            isPutSettingView = false
+        } else {
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
+                }, completion: { (finished) -> Void in
+                    self.settingView.removeFromSuperview()
+            })
+            
+            isPutSettingView = true
+        }
+    }
+    
+    func setSettingView() {
+        settingView.frame.size = self.view.frame.size
+        settingView.frame.origin = CGPoint(x: 0, y: self.view.frame.height)
+        settingView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
+        
+        let logoutBtn = FBSDKLoginButton()
+        logoutBtn.center.x = self.view.center.x
+        logoutBtn.center.y = self.view.frame.height / CGFloat(2)
+        logoutBtn.delegate = self
+        settingView.addSubview(logoutBtn)
+        
+        self.view.addSubview(settingView)
+    }
+    
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    }
+    
+    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        print("logout")
+        let userDefault = NSUserDefaults.standardUserDefaults()
+        userDefault.removeObjectForKey("user")
+        settingView.removeFromSuperview()
+        self.tabBarController?.selectedIndex = 0
+    }
+
 
 }

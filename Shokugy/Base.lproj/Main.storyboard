@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tky-Gp-tzS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Tky-Gp-tzS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -23,11 +23,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <segue destination="jE9-rl-TQQ" kind="show" identifier="ToSearchViewController" id="Y5s-YF-5oR"/>
+                        <segue destination="6is-lA-jSY" kind="show" identifier="SegueToStoreDetailViewController" id="Cz9-Ip-Htd"/>
+                        <segue destination="0tg-mJ-N5s" kind="show" identifier="ToGroupViewController" id="BLI-22-88p"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGS-Eb-btC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4476.5" y="729.5"/>
+            <point key="canvasLocation" x="4529.5" y="765.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="yjz-I1-yj0">
@@ -59,7 +61,7 @@
                     </userDefinedRuntimeAttributes>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="4020.5" y="729.5"/>
+            <point key="canvasLocation" x="3974.5" y="737.5"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="tlo-Rc-fH1">
@@ -78,6 +80,9 @@
                         <nil key="title"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="6is-lA-jSY" kind="show" identifier="SegueToStoreDetailViewController" id="VCn-4N-Vz9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hh-6e-xeZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,6 +154,25 @@
             </objects>
             <point key="canvasLocation" x="4245.5" y="-9.5"/>
         </scene>
+        <!--Store Detail View Controller-->
+        <scene sceneID="9NO-2w-Ulg">
+            <objects>
+                <viewController id="6is-lA-jSY" customClass="StoreDetailViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nhc-bJ-SqW"/>
+                        <viewControllerLayoutGuide type="bottom" id="b2O-WO-sY6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fVf-J3-Eva">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kmv-zz-qU1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5461.5" y="2374.5"/>
+        </scene>
         <!--Animated Tab Bar Controller-->
         <scene sceneID="Pjo-oY-Oku">
             <objects>
@@ -172,6 +196,25 @@
             </objects>
             <point key="canvasLocation" x="3423.5" y="1309.5"/>
         </scene>
+        <!--Group View Controller-->
+        <scene sceneID="V5L-9A-vcu">
+            <objects>
+                <viewController id="0tg-mJ-N5s" customClass="GroupViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SGt-CN-axI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Oxq-i0-ZFr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PPA-yB-Mjy">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01l-2Y-2JO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3364.5" y="2219.5"/>
+        </scene>
         <!--User View Controller-->
         <scene sceneID="miL-AA-jBv">
             <objects>
@@ -187,16 +230,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="eeF-Br-wDA"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="0tg-mJ-N5s" kind="show" identifier="ToGroupViewController" id="Xug-Wc-rfK"/>
+                        <segue destination="6is-lA-jSY" kind="show" identifier="ToStoreDetailViewController" id="sfX-aV-Oxh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3856.5" y="2758.5"/>
+            <point key="canvasLocation" x="3856.5" y="2892.5"/>
         </scene>
         <!--Alert-->
         <scene sceneID="WTh-cA-Yiw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hfZ-xj-XpP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Alert" image="alert.png" selectedImage="alert_high.png" id="U55-VN-oRL" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                    <tabBarItem key="tabBarItem" title="Alert" image="alert.png" selectedImage="alert.png" id="U55-VN-oRL" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
                         <connections>
                             <outlet property="animation" destination="ouy-61-Cpq" id="2Bh-IF-Grs"/>
                         </connections>
@@ -222,7 +269,7 @@
         <scene sceneID="g1G-IW-1ct">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="j0I-zi-XHV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ranking" image="ranking.png" selectedImage="ranking_high.png" id="wrU-wU-ugl" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
+                    <tabBarItem key="tabBarItem" title="Ranking" image="ranking.png" selectedImage="ranking.png" id="wrU-wU-ugl" customClass="RAMAnimatedTabBarItem" customModule="Shokugy" customModuleProvider="target">
                         <connections>
                             <outlet property="animation" destination="znk-XP-FDW" id="Rkh-H4-4Ec"/>
                         </connections>
@@ -273,14 +320,14 @@
     </scenes>
     <resources>
         <image name="alert.png" width="44" height="44"/>
-        <image name="alert_high.png" width="48" height="48"/>
         <image name="home.png" width="44" height="44"/>
         <image name="ranking.png" width="44" height="44"/>
-        <image name="ranking_high.png" width="48" height="48"/>
         <image name="search.png" width="44" height="44"/>
         <image name="user.png" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lA5-sR-9pJ"/>
+        <segue reference="BLI-22-88p"/>
+        <segue reference="Y5s-YF-5oR"/>
+        <segue reference="Cz9-Ip-Htd"/>
     </inferredMetricsTieBreakers>
 </document>

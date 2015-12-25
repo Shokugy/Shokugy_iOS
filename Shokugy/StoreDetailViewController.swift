@@ -1,16 +1,26 @@
 
 import UIKit
+import WebKit
 
-class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate {
+class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, WKNavigationDelegate {
     
-    let postViewController = UIViewController()
+    let reviewViewController = UIViewController()
     let placeholderLabel = UILabel()
     let postTextView = UITextView()
     let commentTableView = UITableView()
+    var receiveInvite: Invite?
+    var receiveRestaurant: Restaurant?
+    var receiveRestaurantID: Int?
+    var restaurant: Restaurant = Restaurant()
+    var review: Review?
+    var reviewTextView = UITextView()
+    var inviteTextField = UITextField()
+    let wkWebView = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchRestaurant()
         setUp()
     }
 
@@ -23,6 +33,16 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         setNavigationBar()
     }
     
+    func fetchRestaurant() {
+        if let post = receiveInvite {
+            restaurant = RestaurantManager.fetchRestaurant(post.restaurantID!)
+        } else if let restaurantID = receiveRestaurantID {
+            restaurant = RestaurantManager.fetchRestaurant(restaurantID)
+        } else if receiveRestaurant != nil {
+            restaurant = receiveRestaurant!
+        }
+    }
+    
     func setNavigationBar() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "postIcon.png"), style: .Plain, target: self, action: "tapPostBtn")
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
@@ -31,25 +51,43 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func setUp() {
+        let backgroundImageView = UIImageView()
+        backgroundImageView.frame.size = CGSizeMake(self.view.frame.width, 170)
+        backgroundImageView.frame.origin = CGPointMake(0, 0)
+        let imageURL = NSURL(string: restaurant.imageURL!)
+        let imageData = NSData(contentsOfURL: imageURL!)
+        backgroundImageView.image = UIImage(data: imageData!)
+        backgroundImageView.userInteractionEnabled = true
+        backgroundImageView.contentMode = UIViewContentMode.ScaleToFill
+        self.view.addSubview(backgroundImageView)
+        
+        
         let coverView = UIView()
-        coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        coverView.frame.size = CGSizeMake(self.view.frame.width, 170)
-        coverView.frame.origin = CGPointMake(0, 0)
-        self.view.addSubview(coverView)
+        coverView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6   )
+        coverView.frame = backgroundImageView.frame
+        backgroundImageView.addSubview(coverView)
         
         let storeNameLabel = UILabel()
-        storeNameLabel.text = "すき家　茶屋町店"
+        storeNameLabel.text = restaurant.name!
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.font = UIFont(name: (storeNameLabel.font?.fontName)!, size: 27)
         storeNameLabel.sizeToFit()
         storeNameLabel.frame.origin = CGPointMake(10, 16)
         coverView.addSubview(storeNameLabel)
         
+        let storeAccessLabel = UILabel()
+        storeAccessLabel.text = restaurant.addres!
+        storeAccessLabel.textColor = UIColor.whiteColor()
+        storeAccessLabel.font = UIFont.systemFontOfSize(13)
+        storeAccessLabel.sizeToFit()
+        storeAccessLabel.frame.origin = CGPoint(x: 14, y: storeNameLabel.frame.origin.y + storeNameLabel.frame.height + 5)
+        coverView.addSubview(storeAccessLabel)
+        
         let rateImageView = UIImageView(image: UIImage(named: "rate4"))
         rateImageView.clipsToBounds = true
         rateImageView.frame.size = CGSizeMake(self.view.frame.width/2, 40)
         rateImageView.frame.origin.x = storeNameLabel.frame.origin.x - 2
-        rateImageView.frame.origin.y = storeNameLabel.frame.origin.y + storeNameLabel.frame.height + 16
+        rateImageView.frame.origin.y = storeAccessLabel.frame.origin.y + storeAccessLabel.frame.height + 10
         coverView.addSubview(rateImageView)
         
         let inviteBtn = UIButton()
@@ -62,7 +100,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         inviteBtn.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
         inviteBtn.sizeToFit()
         inviteBtn.frame.origin.x = storeNameLabel.frame.origin.x - 2
-        inviteBtn.frame.origin.y = rateImageView.frame.origin.y + rateImageView.frame.height + 16
+        inviteBtn.frame.origin.y = rateImageView.frame.origin.y + rateImageView.frame.height + 5
         inviteBtn.addTarget(self, action: "tapInviteBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(inviteBtn)
         
@@ -72,7 +110,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         taberoguBtn.sizeToFit()
         taberoguBtn.frame.origin.y = inviteBtn.frame.origin.y + 7
         taberoguBtn.frame.origin.x = self.view.frame.width - taberoguBtn.frame.width - 26
-        taberoguBtn.addTarget(self, action: "tapTaberoguBtn", forControlEvents: .TouchUpInside)
+        taberoguBtn.addTarget(self, action: "tapGurunabiBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(taberoguBtn)
         
         commentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - coverView.frame.height - 64 - 49)
@@ -83,10 +121,15 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.addSubview(commentTableView)
         
         self.commentTableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
+        
+        wkWebView.frame = self.view.frame  
+        wkWebView.allowsBackForwardNavigationGestures = true
+//        wkWebView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.New, context: nil)
     }
     
     func tapPostBtn() {
-        self.presentViewController(setPostViewController(), animated: true, completion: nil)
+        review = Review()
+        self.presentViewController(setReviewViewController(), animated: true, completion: nil)
     }
     
     func tapInviteBtn() {
@@ -96,8 +139,11 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    func tapTaberoguBtn() {
-        print("tapTaberogu")
+    func tapGurunabiBtn() {
+        let url = NSURL(string: restaurant.link!)
+        let req = NSURLRequest(URL: url!)
+        wkWebView.loadRequest(req)
+        self.view.addSubview(wkWebView)
     }
     
     //---------TableViewSetting-------------
@@ -107,6 +153,8 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         cell.layer.cornerRadius = 2
         cell.layer.borderWidth = 0.1
         cell.userImageView.layer.cornerRadius = cell.userImageView.frame.width/2
+        cell.storeNameLabel.removeFromSuperview()
+        cell.storeAccessLabel.removeFromSuperview()
         
         cell.rateImageView.image = UIImage(named: "rate4")
         
@@ -124,7 +172,6 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
-        
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -144,9 +191,9 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     
-    //------------postViweControllerSetting------------------------
+    //------------reviewViweControllerSetting------------------------
     
-    func setPostViewController() -> UIViewController {
+    func setReviewViewController() -> UIViewController {
         let navController = UINavigationController()
         navController.navigationBar.barTintColor = self.navigationController?.navigationBar.barTintColor
         navController.navigationBar.tintColor = UIColor.whiteColor()
@@ -154,30 +201,37 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         addGesture(navController.view)
         navController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         
-        postViewController.view.frame = view.frame
-        postViewController.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
-        navController.setViewControllers([postViewController], animated: true)
-        postViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "batu.png"), style: .Plain, target: self, action: "tapCloseBtn")
-        postViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: "postViewPostBtn")
-        postViewController.navigationItem.setMyTitle("口コミ投稿")
+        reviewViewController.view.frame = view.frame
+        reviewViewController.view.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+        navController.setViewControllers([reviewViewController], animated: true)
+        reviewViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "batu.png"), style: .Plain, target: self, action: "tapCloseBtn")
+        reviewViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .Plain, target: self, action: "postViewPostBtn")
+        reviewViewController.navigationItem.setMyTitle("Post Review")
         let storeNameLabel = setPostViewStoreNameLabel()
-        postViewController.view.addSubview(storeNameLabel)
+        reviewViewController.view.addSubview(storeNameLabel)
         let storeRateView = setPostViewStoreRateview(storeNameLabel)
-        postViewController.view.addSubview(storeRateView)
-        let textView = setPostViewTextView(storeRateView)
-        postViewController.view.addSubview(textView)
-        addGesture(postViewController.view)
+        reviewViewController.view.addSubview(storeRateView)
+        reviewTextView = setPostViewTextView(storeRateView)
+        reviewViewController.view.addSubview(reviewTextView)
+        addGesture(reviewViewController.view)
         
         return navController
     }
     
     func tapCloseBtn() {
-        postViewController.dismissViewControllerAnimated(true, completion: nil)
+        reviewViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func postViewPostBtn() {
-        print("posted")
-        postViewController.dismissViewControllerAnimated(true, completion: nil)
+        // userFBID保存されてない
+        review?.userID = User.currentUser.userFBID
+        review?.restaurantID = restaurant.restaurantID
+        review?.rate = 1.5
+        review?.review = reviewTextView.text
+        ReviewCollection.saveReview(review!)
+        reviewViewController.dismissViewControllerAnimated(true, completion: nil)
+        
+        reviewTextView.text = nil
     }
     
     func setPostViewStoreNameLabel() -> UIView {
@@ -185,7 +239,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         coverView.frame = CGRectMake(0, 0, self.view.frame.width, 100)
         coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
         let storeNameLabel = UILabel()
-        storeNameLabel.text = "すき家　茶屋町店"
+        storeNameLabel.text = restaurant.name!
         storeNameLabel.font = UIFont.systemFontOfSize(35)
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.frame = CGRectMake(26, 0, self.view.frame.width, 100)
@@ -271,8 +325,9 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         inviteView.layer.cornerRadius = 10
         coverView.addSubview(inviteView)
         
-        inviteView.addSubview(setInviteViewTextField(inviteView))
-        inviteView.addSubview(setInviteViewStoreNameLabel(inviteView, text: "すき家"))
+        inviteTextField = setInviteViewTextField(inviteView)
+        inviteView.addSubview(inviteTextField)
+        inviteView.addSubview(setInviteViewStoreNameLabel(inviteView, text: restaurant.name!))
         
         inviteView.addSubview(setInviteViewBtn("Cancel", x: inviteView.frame.width / 4 - 25, superView: inviteView, tag: 1))
         inviteView.addSubview(setInviteViewBtn("Invite", x: inviteView.frame.width / 4 * 2 - 20, superView: inviteView, tag: 2))
@@ -336,11 +391,13 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
             })
         case 2:
             print("post")
+            InviteCollection.postInvite(inviteTextField.text!, restaurantID: restaurant.restaurantID!, pressTime: String(NSDate()))
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.coverView.frame.origin = CGPointMake(0, self.view.frame.height)
             }, completion: { (finished) -> Void in
                 self.coverView.removeFromSuperview()
             })
+            inviteTextField.text = nil
         default:
             break
         }

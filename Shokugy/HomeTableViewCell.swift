@@ -1,5 +1,6 @@
 protocol HomeTableViewCellDelegate {
     func tapFavBtn(sender: UIButton)
+    func tapFavMinusBtn(sender: UIButton)
     func tapShowMemberBtn()
 }
 
@@ -19,6 +20,8 @@ class HomeTableViewCell: UITableViewCell {
     
     @IBOutlet weak var plusBtn: UIButton!
     @IBOutlet weak var showMemberBtn: UIButton!
+    
+    var isSelect: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,15 +48,16 @@ class HomeTableViewCell: UITableViewCell {
         
     }
     
-    var counter = 1
     @IBAction func tapFavBtn(sender: UIButton) {
-        if counter % 2 != 0 {
+        if !isSelect {
             sender.selected = true
             customDelegate?.tapFavBtn(sender)
+            isSelect = true
         } else {
             sender.selected = false
+            customDelegate?.tapFavMinusBtn(sender)
+            isSelect = false
         }
-        counter += 1
     }
     
     @IBAction func tapMemberDetailBtn(sender: UIButton) {

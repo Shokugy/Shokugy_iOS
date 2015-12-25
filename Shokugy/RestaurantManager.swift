@@ -12,15 +12,42 @@ import SwiftyJSON
 
 class RestaurantManager: NSObject {
 
-    class func searchRestraunt(searchWord: String) {
-        
+    class func searchRestraunt(searchWord: String, callback: (JSON) -> Void) {
         let params: [String: AnyObject] = [
             "name": searchWord
         ]
         
-        Alamofire.request(.POST, "http://localhost:3000/", parameters: params, encoding: .JSON).responseString { (any) -> Void in
-            print(any)
+        Alamofire.request(.POST, "http://localhost:3000/api/v1/restaurants/search", parameters: params, encoding: .JSON).responseJSON { (any) -> Void in
+            let json = JSON(data: any.data!)["restaurants"]
+            callback(json) 
+        }
+        
+    }
+    
+    class func fetchRestaurant(id: Int) -> Restaurant {
+        //id をもとにデータをとってくる
+        print("get data from server")
+        let restaurant = Restaurant()
+        restaurant.restaurantID = 1
+        restaurant.name = "すき家"
+        restaurant.nameKana = "すきや"
+        restaurant.link = "hogehoge"
+        restaurant.imageURL = "http://jobs.sukiya.jp/images/top/top_visual.png"
+        restaurant.addres = "大阪市中崎町うん"
+        
+        return restaurant
+    }
+    
+    class func getRestaurantRanking() {
+        let URL = NSURL(string: "http://localhost:3000/api/v1/restaurants/ranking")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        manager.request(mutableURLRequest).responseJSON { (any) -> Void in
+            print(JSON(data: any.data!))
         }
     }
 
 }
+

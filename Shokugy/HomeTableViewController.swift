@@ -1,23 +1,3 @@
-extension UINavigationItem {
-    
-    func setMyTitle(title: String) {
-        let labelView = UILabel()
-        labelView.frame.size = CGSize(width: 30, height: 30)
-        labelView.text = title
-        labelView.font = UIFont.systemFontOfSize(25)
-        labelView.textColor = UIColor.whiteColor()
-        self.titleView = labelView
-    }
-    
-}
-
-extension UITableView {
-    func colorBackground(color: UIColor) {
-        let view = UIView(frame: self.frame)
-        view.backgroundColor = color
-        self.backgroundView = view
-    }
-}
 
 import UIKit
 import FBSDKCoreKit
@@ -27,14 +7,18 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     let sampleData = ["soya", "yuya", "kotasawadaIndy"]
     var sampleFav = [1,2,0]
+    let inviteCollection: InviteCollection = InviteCollection()
+    var sendInvite: Invite = Invite()
     
-    let viewController = UIViewController()
+    let setUpViewController = UIViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
+        
+        inviteCollection.getInvites()
     }
     
     //----------------------fbsdk---------------------------------------------------------
@@ -42,54 +26,49 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     func setFBLogin() {
         if FBSDKAccessToken.currentAccessToken() != nil {
             print("loginned")
+            User.fetchDataFromDeviceSetUser()
         } else {
             //-------FBLoginView----------
-            viewController.view.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-            let loginButton = FBSDKLoginButton()
-            loginButton.center = self.view.center
-            loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
-            loginButton.delegate = self
-            viewController.view.addSubview(loginButton)
-            
-            self.presentViewController(viewController, animated: true, completion: nil)
+            setSetUpViewController()
+            self.presentViewController(setUpViewController, animated: true, completion: nil)
             //---------------------------
+            
         }
     }
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        if (error != nil)
-        {
-            //エラー処理
-//        } else if result.isCancelled {
-            //キャンセルされた時
-
-        } else {
-            //必要な情報が取れていることを確認(今回はemail必須)
-//            if result.grantedPermissions.contains("email")
-//            {
-                // 次の画面に遷移（後で）
-//                returnUserData()
-
-            }
-//        }
-        viewController.dismissViewControllerAnimated(true, completion: nil)
+    func setSetUpViewController() {
+        setUpViewController.view.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
+        
+//        let scrollView = UIScrollView()
+//        scrollView.frame = setUpViewController.view.frame
+//        scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
+//        scrollView.backgroundColor = UIColor.clearColor()
+        
+        let loginButton = FBSDKLoginButton()
+        loginButton.center = self.view.center
+        loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
+        loginButton.delegate = self
+        setUpViewController.view.addSubview(loginButton)
+        
+//        let groupViewController = GroupViewController(isFirst: true)
+//        groupViewController.receiveIsFirst = true
+//        let groupView = groupViewController.view
+//        groupView.frame.origin = CGPoint(x: scrollView.frame.width, y: 0)
+//        scrollView.addSubview(groupView)
+        
+//        setUpViewController.view.addSubview(scrollView)
     }
     
-//    func returnUserData() {
-//        
-//        let req = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id,email,gender,link,locale,name,timezone,updated_time,verified,last_name,first_name,middle_name"], HTTPMethod: "GET")
-//        req.startWithCompletionHandler({ (connection, result, error : NSError!) -> Void in
-//            if(error == nil)
-//            {
-//                print("result \(result)")
-//            }
-//            else
-//            {
-//                print("error \(error)")
-//            }
-//        })
-//        
-//    }
+    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+        guard error == nil else {
+            print(error)
+            return
+        }
+        
+        User.fetchUserFromFB()
+        setUpViewController.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("ToGroupViewController", sender: nil)
+    }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
     }
@@ -102,8 +81,10 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        setFBLogin()
         setNavBar()
+        setFBLogin()
+        
+//        print(User.currentUser.id, User.currentUser.name, User.currentUser.userFBID)
     }
     
     func setNavBar() {
@@ -123,8 +104,21 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let contentView = sender.superview
         let cell = contentView?.superview as! HomeTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
-        sampleFav[(indexPath?.row)!] += 1
-        cell.numOfLike.text = "\(sampleFav[(indexPath?.row)!])"
+        inviteCollection.inviteArray[(indexPath?.section)!].goingMemberUserIDArray.append(User.currentUser.userFBID!)
+        self.tableView.reloadData()
+    }
+    
+    func tapFavMinusBtn(sender: UIButton) {
+        let contentView = sender.superview
+        let cell = contentView?.superview as! HomeTableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        var goingMemberUserIDArray = inviteCollection.inviteArray[(indexPath?.section)!].goingMemberUserIDArray
+//        for i in 0 ..< goingMemberUserIDArray.count {
+//            if goingMemberUserIDArray[i] == User.currentUser.userFBID {
+//                goingMemberUserIDArray.removeAtIndex(i)
+//            }
+//        }
+        self.tableView.reloadData()
     }
     
     func tapShowMemberBtn() {
@@ -136,18 +130,23 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         if segue.identifier == "toGoingMenberViewController" {
             let goingMenberViewController = segue.destinationViewController as! GoingMenberViewController
             goingMenberViewController.storeName = "すき家　茶屋町店"
+        } else if segue.identifier == "SegueToStoreDetailViewController" {
+            let storeDetailViewController = segue.destinationViewController as! StoreDetailViewController
+            storeDetailViewController.receiveInvite = sendInvite
         }
     }
     
     //--------------TableViewSetting---------------------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let storeDetailViewController = StoreDetailViewController()
-        self.navigationController?.pushViewController(storeDetailViewController, animated: true)
+        sendInvite = inviteCollection.inviteArray[indexPath.section]
+        self.performSegueWithIdentifier("SegueToStoreDetailViewController", sender: self)
     }
     
+    
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return sampleData.count
+        return inviteCollection.inviteArray.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,12 +157,24 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeTableViewCell") as! HomeTableViewCell
         cell.customDelegate = self
         
+    
+        let invite = inviteCollection.inviteArray[indexPath.section]
         cell.userName.text = sampleData[indexPath.row]
-        cell.numOfLike.text = "\(sampleFav[indexPath.row])"
+//        cell.profImageView.image 
+        cell.storeName.text = invite.storeName
+        cell.storeAccess.text = invite.access
+        cell.userComment.text = invite.comment
+        cell.postTime.text = invite.postTime
+        cell.numOfLike.text = "\(invite.goingMemberUserIDArray.count)"
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
+        //------ユーザーの投稿ならボタン押せない  投稿昨日のあとにテスト-----------
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        if invite.userID == User.currentUser.userFBID {
+            cell.plusBtn.enabled = false
+        }
+        //-------------------------------------------------
         
         //テキストフィールドの行数に合わせてセルの大きさを変える
         return cell
@@ -182,7 +193,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == (sampleData.count - 1) {
+        if section == (inviteCollection.inviteArray.count) {
             return 6
         } else {
             return 3
