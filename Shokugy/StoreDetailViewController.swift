@@ -1,6 +1,7 @@
 
 import UIKit
 import WebKit
+import SwiftyJSON
 
 class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, WKNavigationDelegate {
     
@@ -16,12 +17,12 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     var reviewTextView = UITextView()
     var inviteTextField = UITextField()
     let wkWebView = WKWebView()
+    var reviewArray: [Review] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         fetchRestaurant()
-        setUp()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,12 +36,62 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func fetchRestaurant() {
         if let post = receiveInvite {
-            restaurant = RestaurantManager.fetchRestaurant(post.restaurantID!)
+            RestaurantManager.fetchRestaurant(post.restaurantID!, callback: { (json) -> Void in
+                self.makeRestaurant(json)
+                self.setUp()
+            })
+            
+            fetchRestaurantReviews(post.restaurantID!)
+            
         } else if let restaurantID = receiveRestaurantID {
-            restaurant = RestaurantManager.fetchRestaurant(restaurantID)
+            RestaurantManager.fetchRestaurant(restaurantID, callback: { (json) -> Void in
+                self.makeRestaurant(json)
+                self.setUp()
+                
+            })
+            
+            fetchRestaurantReviews(restaurantID)
+            
+            
         } else if receiveRestaurant != nil {
             restaurant = receiveRestaurant!
+            setUp()
+            
+            fetchRestaurantReviews((receiveRestaurant?.restaurantID!)!)
+
         }
+    }
+    
+    func fetchRestaurantReviews(restaurantID: Int) {
+        reviewArray = []
+        ReviewCollection.getRestaurantReviews(restaurantID) { (json) -> Void in
+            for i in 0 ..< json.count {
+                self.makeReview(json[i])
+                self.commentTableView.reloadData()
+            }
+        }
+    }
+    
+    func makeReview(json: JSON) {
+        let review = Review()
+        review.restaurantID = json["restaurantId"].int
+        review.rate = 4
+        review.review = json["review"].string
+        review.postTime = "12/24"
+        review.restaurantName = json["restaurantName"].string
+        review.restaurantAddress = json["restaurantAddress"].string
+        
+        reviewArray.append(review)
+    }
+    
+    func makeRestaurant(json: JSON) {
+        restaurant.restaurantID = json["id"].int
+        restaurant.name = json["name"].string
+        restaurant.nameKana = json["nameKana"].string
+        restaurant.link = json["link"].string
+        restaurant.imageURL = json["imageURL"].string
+        restaurant.addres = json["address"].string
+        
     }
     
     func setNavigationBar() {
@@ -113,7 +164,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         taberoguBtn.addTarget(self, action: "tapGurunabiBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(taberoguBtn)
         
-        commentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - coverView.frame.height - 64 - 49)
+        commentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - coverView.frame.height)// - 64 - 49)
         commentTableView.frame.origin = CGPointMake(0, coverView.frame.height)
         commentTableView.registerNib(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         commentTableView.dataSource = self
@@ -152,12 +203,20 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = commentTableView.dequeueReusableCellWithIdentifier("customCell") as! CommentTableViewCell
         cell.layer.cornerRadius = 2
         cell.layer.borderWidth = 0.1
-        cell.userImageView.layer.cornerRadius = cell.userImageView.frame.width/2
-        cell.storeNameLabel.removeFromSuperview()
-        cell.storeAccessLabel.removeFromSuperview()
+        let review = reviewArray[indexPath.section]
         
+        
+        if cell.storeNameLabel != nil {
+            cell.storeNameLabel.removeFromSuperview()
+            cell.storeAccessLabel.removeFromSuperview()
+        }
+        
+        cell.userImageView.image = User.currentUser.avatar
+        cell.userName.text = User.currentUser.name
+        
+        cell.userReviewLabel.text = review.review
         cell.rateImageView.image = UIImage(named: "rate4")
-        
+        cell.postDateLabel.text = review.postTime
         
         return cell
     }
@@ -167,7 +226,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 10
+        return reviewArray.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -223,14 +282,16 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func postViewPostBtn() {
-        // userFBID保存されてない
         review?.userID = User.currentUser.userFBID
         review?.restaurantID = restaurant.restaurantID
         review?.rate = 1.5
         review?.review = reviewTextView.text
-        ReviewCollection.saveReview(review!)
-        reviewViewController.dismissViewControllerAnimated(true, completion: nil)
+        review?.restaurantName = restaurant.name!
+        ReviewCollection.saveReview(review!) { () -> Void in
+            self.fetchRestaurantReviews(self.restaurant.restaurantID!)
+        }
         
+        self.reviewViewController.dismissViewControllerAnimated(true, completion: nil)
         reviewTextView.text = nil
     }
     
@@ -391,7 +452,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
             })
         case 2:
             print("post")
-            InviteCollection.postInvite(inviteTextField.text!, restaurantID: restaurant.restaurantID!, pressTime: String(NSDate()))
+            InviteCollection.postInvite(inviteTextField.text!, restaurantID: restaurant.restaurantID!)
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.coverView.frame.origin = CGPointMake(0, self.view.frame.height)
             }, completion: { (finished) -> Void in

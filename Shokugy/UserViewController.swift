@@ -54,8 +54,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         review.review = reviewJSON["review"].string
         review.restaurantName = reviewJSON["restaurantName"].string
         review.restaurantAddress = reviewJSON["restaurantAddress"].string
-        review.restaurantID = reviewJSON["id"].int
-        
+        review.restaurantID = reviewJSON["restaurantId"].int
         reviews.append(review)
     }
     
@@ -160,6 +159,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         if segue.identifier == "ToStoreDetailViewController" {
         let storeDetailViewController = segue.destinationViewController as! StoreDetailViewController
         storeDetailViewController.receiveRestaurantID = sendRestaurantID
+            print(sendRestaurantID)
         }
     }
     

@@ -14,6 +14,7 @@ class Invite: NSObject {
     var comment: String?
     var postTime: String?
     var userID: String?
+    var userName: String?   
     var restaurantID: Int?
     var goingMemberUserIDArray: [String] = []
 }

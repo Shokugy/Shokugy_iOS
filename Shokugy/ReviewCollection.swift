@@ -29,7 +29,7 @@ class ReviewCollection: NSObject {
         }
     }
     
-    class func saveReview(review: Review) {
+    class func saveReview(review: Review, callback: () -> Void) {
         let restaurantID = Int(review.restaurantID!)
         
         let params: [String: AnyObject] = [
@@ -45,7 +45,8 @@ class ReviewCollection: NSObject {
         let manager = Alamofire.Manager.sharedInstance
         let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
         manager.request(request).responseString { (any) in
-                print(any)
+                print(any.result)
+            callback()
         }
     }
     
@@ -57,14 +58,14 @@ class ReviewCollection: NSObject {
         let manager = Alamofire.Manager.sharedInstance
         
         manager.request(mutableURLRequest).responseJSON { (any) -> Void in
-            print(JSON(data: any.data!))
             let json = JSON(data: any.data!)["reviews"]
             callback(json)
         }
     }
     
-    class func getRestaurantReviews() {
-        let URL = NSURL(string: "http://localhost:3000/api/v1/reviews")!
+    class func getRestaurantReviews(restaurantID: Int, callback: (JSON) -> Void) {
+        
+        let URL = NSURL(string: "http://localhost:3000/api/v1/restaurants/\(restaurantID)")!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = "GET"
         mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
@@ -72,8 +73,9 @@ class ReviewCollection: NSObject {
         
         manager.request(mutableURLRequest).responseJSON { (any) -> Void in
             print(JSON(data: any.data!))
-//            let json = JSON(data: any.data!)["reviews"]
-//            callback(json)
+            let json = JSON(data: any.data!)["reviews"]
+            print(any.result)
+            callback(json)
         }
 
     }

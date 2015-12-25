@@ -8,42 +8,31 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class InviteCollection: NSObject {
     static let sharedInstance = InviteCollection()
     
     var inviteArray: [Invite] = []
     
-    func getInvites() {
-        for _ in 1...10 {
-            let invite = Invite()
-            invite.storeName = "すきや"
-            invite.access = "大阪市北区"
-            invite.comment = "いきましょー"
-            invite.postTime = "5分前"
-            invite.userID = "1"
-            invite.restaurantID = 1
-            invite.goingMemberUserIDArray = ["1", "2", "3"]
-            
-            inviteArray.append(invite)
+    class func getInvites(callback: (JSON) -> Void) {
+        let URL = NSURL(string: "http://localhost:3000/api/v1/invites")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        manager.request(mutableURLRequest).responseJSON { (any) -> Void in
+            let json = JSON(data: any.data!)["invites"]
+            print(any.result)
+            callback(json)
         }
     }
     
-    class func getInvites() {
-        let params: [String: AnyObject] = [
-            "name": "hoge"
-        ]
-        
-        Alamofire.request(.POST, "http://localhost:3000/api/v1/restaurants/search", parameters: params, encoding: .JSON).responseJSON { (any) -> Void in
-            print(any)
-        }
-    }
-    
-    class func postInvite(text: String, restaurantID: Int, pressTime: String) {
+    class func postInvite(text: String, restaurantID: Int) {
         let params: [String: AnyObject] = [
             "text": text,
             "restaurant_id": restaurantID,
-            "press_time": pressTime
+//            "press_time": pressTime
         ]
         
         let URL = NSURL(string: "http://localhost:3000/api/v1/invites/create")!
@@ -52,10 +41,10 @@ class InviteCollection: NSObject {
         mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
         let manager = Alamofire.Manager.sharedInstance
         let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
-        manager.request(request).responseJSON { (any) in
-            print(any)
+        manager.request(request).responseString { (any) in
+            print(any.result)
         }
-
     }
+    
 
 }

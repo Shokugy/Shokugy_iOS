@@ -2,13 +2,12 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SwiftyJSON
 
 class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate, FBSDKLoginButtonDelegate {
     
-    let sampleData = ["soya", "yuya", "kotasawadaIndy"]
-    var sampleFav = [1,2,0]
-    let inviteCollection: InviteCollection = InviteCollection()
     var sendInvite: Invite = Invite()
+    var inviteArray: [Invite] = []
     
     let setUpViewController = UIViewController()
 
@@ -17,8 +16,6 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         
         tableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "HomeTableViewCell")
         self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
-        
-        inviteCollection.getInvites()
     }
     
     //----------------------fbsdk---------------------------------------------------------
@@ -27,13 +24,48 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         if FBSDKAccessToken.currentAccessToken() != nil {
             print("loginned")
             User.fetchDataFromDeviceSetUser()
+            InviteCollection.getInvites({ (json) -> Void in
+                self.inviteArray = []
+                for i in 0 ..< json.count {
+                    self.makeInviteAndSet(json[i])
+                }
+                self.tableView.reloadData()
+            })
         } else {
             //-------FBLoginView----------
             setSetUpViewController()
             self.presentViewController(setUpViewController, animated: true, completion: nil)
             //---------------------------
+//            RestaurantManager.fetchRestaurant(1)
+
             
         }
+    }
+    
+    //-----test用-------
+    var counter = 0
+    //---------------
+    
+    func makeInviteAndSet(json: JSON) {
+        let invite = Invite()
+        invite.storeName = json["restaurantName"].string
+        invite.access = json["restaurantAddress"].string
+        invite.comment = json["text"].string
+        invite.postTime = json["date"].string
+        invite.userID = json["userFbId"].string
+        invite.userName = json["userName"].string
+        invite.restaurantID = json["restaurantId"].int
+//        invite.goingMemberUserIDArray.append(invite.userID!)
+        
+        //------test用
+        if counter % 2 == 0 {
+            invite.userID = "612751962169561"
+        }
+        invite.goingMemberUserIDArray.append(invite.userID!)
+        counter += 1
+        //-------
+        
+        inviteArray.append(invite)
     }
     
     func setSetUpViewController() {
@@ -104,7 +136,11 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let contentView = sender.superview
         let cell = contentView?.superview as! HomeTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
-        inviteCollection.inviteArray[(indexPath?.section)!].goingMemberUserIDArray.append(User.currentUser.userFBID!)
+        print("=")
+        print(inviteArray[(indexPath?.section)!].goingMemberUserIDArray)
+        inviteArray[(indexPath?.section)!].goingMemberUserIDArray.append(User.currentUser.userFBID!)
+        print(inviteArray[(indexPath?.section)!].goingMemberUserIDArray)
+        print("=")
         self.tableView.reloadData()
     }
     
@@ -112,13 +148,15 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let contentView = sender.superview
         let cell = contentView?.superview as! HomeTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
-        var goingMemberUserIDArray = inviteCollection.inviteArray[(indexPath?.section)!].goingMemberUserIDArray
-//        for i in 0 ..< goingMemberUserIDArray.count {
-//            if goingMemberUserIDArray[i] == User.currentUser.userFBID {
-//                goingMemberUserIDArray.removeAtIndex(i)
-//            }
-//        }
-        self.tableView.reloadData()
+        var goingMemberUserIDArray = inviteArray[(indexPath?.section)!].goingMemberUserIDArray
+        for i in 0 ..< goingMemberUserIDArray.count {
+            if goingMemberUserIDArray[i] == User.currentUser.userFBID! {
+                goingMemberUserIDArray.removeAtIndex(i)
+
+                inviteArray[(indexPath?.section)!].goingMemberUserIDArray = goingMemberUserIDArray
+                self.tableView.reloadData()
+            }
+        }
     }
     
     func tapShowMemberBtn() {
@@ -139,14 +177,14 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     //--------------TableViewSetting---------------------------------------------------
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        sendInvite = inviteCollection.inviteArray[indexPath.section]
+        sendInvite = inviteArray[indexPath.section]
         self.performSegueWithIdentifier("SegueToStoreDetailViewController", sender: self)
     }
     
     
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return inviteCollection.inviteArray.count
+        return inviteArray.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,20 +196,23 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         cell.customDelegate = self
         
     
-        let invite = inviteCollection.inviteArray[indexPath.section]
-        cell.userName.text = sampleData[indexPath.row]
+        let invite = inviteArray[indexPath.section]
+        cell.userName.text = "hoge"
 //        cell.profImageView.image 
         cell.storeName.text = invite.storeName
         cell.storeAccess.text = invite.access
         cell.userComment.text = invite.comment
         cell.postTime.text = invite.postTime
+        print(invite.goingMemberUserIDArray)
         cell.numOfLike.text = "\(invite.goingMemberUserIDArray.count)"
+        print(invite.goingMemberUserIDArray.count)
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
         //------ユーザーの投稿ならボタン押せない  投稿昨日のあとにテスト-----------
         cell.selectionStyle = UITableViewCellSelectionStyle.None
-        if invite.userID == User.currentUser.userFBID {
+
+        if invite.userID! == User.currentUser.userFBID! {
             cell.plusBtn.enabled = false
         }
         //-------------------------------------------------
@@ -193,7 +234,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == (inviteCollection.inviteArray.count) {
+        if section == inviteArray.count {
             return 6
         } else {
             return 3
