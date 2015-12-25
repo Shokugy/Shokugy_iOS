@@ -1,5 +1,6 @@
 protocol HomeTableViewCellDelegate {
     func tapFavBtn(sender: UIButton)
+    func tapFavMinusBtn(sender: UIButton)
     func tapShowMemberBtn()
 }
 
@@ -54,6 +55,7 @@ class HomeTableViewCell: UITableViewCell {
             isSelect = true
         } else {
             sender.selected = false
+            customDelegate?.tapFavMinusBtn(sender)
             isSelect = false
         }
     }

@@ -8,6 +8,8 @@
 
 import UIKit
 import FBSDKLoginKit
+import Alamofire
+import SwiftyJSON
 
 class UserViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FBSDKLoginButtonDelegate {
     
@@ -17,12 +19,24 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let userNameLabel = UILabel()
     var isPutSettingView: Bool = true
     let user = User.currentUser
+    var reviews: [Review] = []
+    var sendRestaurantID: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUp()
         setUser()
+        
+        //-----test------
+        ReviewCollection.getMypageReview { (json) -> Void in
+            for i in 0 ..< json.count {
+                self.makeReview(json[i])
+            }
+            
+            self.selfCommentTableView.reloadData()
+        }
+        //-----------
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +49,16 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         setNavBar()
     }
     
+    func makeReview(reviewJSON: JSON) {
+        let review = Review()
+        review.review = reviewJSON["review"].string
+        review.restaurantName = reviewJSON["restaurantName"].string
+        review.restaurantAddress = reviewJSON["restaurantAddress"].string
+        review.restaurantID = reviewJSON["id"].int
+        
+        reviews.append(review)
+    }
+    
     func setNavBar() {
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
@@ -43,8 +67,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func setUser() {
-            userImageView.image = user.avatar!
-            userNameLabel.text = user.name!
+        userImageView.image = user.avatar!
+        userNameLabel.text = user.name!
     }
     
     func setUp() {
@@ -95,7 +119,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         selfCommentTableView.frame.origin = CGPointMake(0, 180)
         selfCommentTableView.delegate = self
         selfCommentTableView.dataSource = self
-        selfCommentTableView.registerNib(UINib(nibName: "HomeTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
+        selfCommentTableView.registerNib(UINib(nibName: "CommentTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
         selfCommentTableView.scrollEnabled = true
         self.view.addSubview(selfCommentTableView)
         
@@ -132,10 +156,12 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        let groupViewController = segue.destinationViewController as! GroupViewController
-//        groupViewController.isCancelButton = true
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ToStoreDetailViewController" {
+        let storeDetailViewController = segue.destinationViewController as! StoreDetailViewController
+        storeDetailViewController.receiveRestaurantID = sendRestaurantID
+        }
+    }
     
     func tapNavCancelBtn() {
         navController.dismissViewControllerAnimated(true, completion: nil)
@@ -148,27 +174,31 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 12
+        return reviews.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = selfCommentTableView.dequeueReusableCellWithIdentifier("customCell", forIndexPath: indexPath) as! HomeTableViewCell
+        let cell = selfCommentTableView.dequeueReusableCellWithIdentifier("customCell", forIndexPath: indexPath) as! CommentTableViewCell
+        
+        let review = reviews[indexPath.section]
+        cell.userName.text = User.currentUser.name
+        cell.userImageView.image = User.currentUser.avatar
+        cell.rateImageView.image = UIImage(named: "rate4")
+        cell.userReviewLabel.text = review.review
+        cell.storeNameLabel.text = review.restaurantName
+        cell.storeAccessLabel.text = review.restaurantAddress
         
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        if cell.plusBtn != nil {
-            cell.plusBtn.removeFromSuperview()
-        }
-        
         
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 94
+        return 110
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -185,6 +215,11 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         } else {
             return 3
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        sendRestaurantID = reviews[indexPath.section].restaurantID
+        self.performSegueWithIdentifier("ToStoreDetailViewController", sender: self)
     }
     
     //---------------------settingView----------------------------------
@@ -232,7 +267,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         userDefault.removeObjectForKey("user")
         settingView.removeFromSuperview()
         self.tabBarController?.selectedIndex = 0
-        
     }
 
 

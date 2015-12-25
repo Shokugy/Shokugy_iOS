@@ -7,26 +7,54 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class GroupViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
     
-    let sampleGroupArray = ["div", "サークル", "oppai", "oppai", "oppai", "oppai", "oppai"]
     var collectionView: UICollectionView!
-//    var isCancelButton: Bool = false
     let groupLoginView = UIView()
     let newGroupView = UIView()
     var groupNameTextField: UITextField!
     var newGroupPasswordTextField: UITextField!
     var passwordConfTextField: UITextField!
+    var groups: [Group] = []
+    var receiveIsFirst: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setup()
+
+        getGroups()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        self.collectionView.reloadData() //フェッチしなおさないとだめか
+    }
+    
+    func getGroups() {
+        groups = []
+        GroupManager.getGroup { (json) -> Void in
+            for i in 0 ..< json.count {
+                self.makeGroupFromJSON(json[i])
+            }
+            
+            self.collectionView.reloadData()
+        }
+    }
+    
+    func makeGroupFromJSON(json: JSON) {
+        let group = Group()
+        group.groupID = json["id"].int
+        group.name = json["name"].string
+        
+        groups.append(group)
     }
     
     func setup() {
@@ -44,16 +72,6 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         collectionView.delegate = self
         self.view.addSubview(collectionView)
         
-//        isCancelButton = true
-//        if isCancelButton {
-//            let cancelButton = UIButton()
-//            cancelButton.frame.size = CGSize(width: 44, height: 44)
-//            cancelButton.frame.origin = CGPoint(x: 10, y: 10)
-//            cancelButton.setImage(UIImage(named: "batu"), forState: .Normal)
-//            cancelButton.addTarget(self, action: "tapCancelButton", forControlEvents: .TouchUpInside)
-//            self.view.addSubview(cancelButton)
-//        }
-        
         let addButton = UIButton()
         addButton.setImage(UIImage(named: "plus"), forState: .Normal)
         addButton.frame.size = CGSize(width: 120, height: 120)
@@ -65,12 +83,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         self.view.bringSubviewToFront(addButton)
         self.view.addSubview(addButton)
     }
-    
-//    func tapCancelButton() {
-//        print("cancelbuttontapped")
-//        self.dismissViewControllerAnimated(true, completion: nil)
-//    }
-//    
+      
     func tapPlusButton() {
         print("tapplusbutton")
         
@@ -93,14 +106,14 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sampleGroupArray.count
+        return groups.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! GroupCollectionViewCell
         cell.label.center = CGPoint(x: cell.frame.width / 2, y: cell.frame.height / 2)
         cell.label.font = UIFont.systemFontOfSize(cell.frame.width / 3 * 2 - 5)
-        let groupTitle: String = sampleGroupArray[indexPath.item]
+        let groupTitle: String = groups[indexPath.item].name!
         cell.label.text = String(groupTitle[groupTitle.startIndex])
         
         let titleLabelPoint = CGPoint(x: cell.center.x, y: cell.frame.origin.y + cell.frame.height + 15)
@@ -118,7 +131,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print(indexPath.item)
         
-        self.setGroupLoginView()
+        self.setGroupLoginView(indexPath.item)
         UIView.animateWithDuration(0.5) { () -> Void in
             self.groupLoginView.frame.origin.y = self.view.frame.origin.y - 64
         }
@@ -131,13 +144,14 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     //----------------------groupLoginView-------------------------------
     
-    func setGroupLoginView() {
+    func setGroupLoginView(selectItemIndex: Int) {
         groupLoginView.frame = self.view.frame
         groupLoginView.frame.origin.y = self.view.frame.height
         groupLoginView.backgroundColor = UIColor.orangeColor()
         
         let groupInitTitleLabel = UILabel()
-        groupInitTitleLabel.text = "d"
+        let groupTitle = groups[selectItemIndex].name
+        groupInitTitleLabel.text = String(groupTitle![(groupTitle?.startIndex)!])
         groupInitTitleLabel.textColor = UIColor.whiteColor()
         groupInitTitleLabel.textAlignment = NSTextAlignment.Center
         groupInitTitleLabel.font = UIFont.systemFontOfSize(120)
@@ -149,7 +163,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         groupLoginView.addSubview(groupInitTitleLabel)
         
         let groupTitleLabel = UILabel()
-        groupTitleLabel.text = "div"
+        groupTitleLabel.text = groupTitle
         groupTitleLabel.textColor = UIColor.whiteColor()
         groupTitleLabel.textAlignment = NSTextAlignment.Center
         groupTitleLabel.font = UIFont.systemFontOfSize(40)
@@ -211,13 +225,13 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         groupNameLabel.center = CGPoint(x: self.view.center.x, y: self.view.frame.height / 4)
         newGroupView.addSubview(groupNameLabel)
         
-        groupNameTextField = makeNewGroupTextField("Group Name", standardFrame: groupNameLabel.frame)
+        groupNameTextField = makeNewGroupTextField("Group Name(12文字以内）", standardFrame: groupNameLabel.frame)
         newGroupView.addSubview(groupNameTextField)
         
         let passwordLabel = makeNewGroupLabel("Password", standardFrame: groupNameTextField.frame)
         newGroupView.addSubview(passwordLabel)
         
-        newGroupPasswordTextField = makeNewGroupTextField("Password", standardFrame: passwordLabel.frame)
+        newGroupPasswordTextField = makeNewGroupTextField("Password(3文字以上）", standardFrame: passwordLabel.frame)
         newGroupView.addSubview(newGroupPasswordTextField)
         
         let passwordConfLabel = makeNewGroupLabel("Password Confirmation", standardFrame: newGroupPasswordTextField.frame)
@@ -257,8 +271,10 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
     }
     
     func tapCreateButton() {
-        GroupManager.createGroup(groupNameTextField.text!, password: newGroupPasswordTextField.text!, passwordConf: passwordConfTextField.text!)
-        print("tapcreate")        
+        GroupManager.createGroup(groupNameTextField.text!, password: newGroupPasswordTextField.text!, passwordConf: passwordConfTextField.text!, callback: {
+            self.getGroups()
+        })
+        newGroupView.removeFromSuperview()
     }
     
     func makeNewGroupLabel(name: String, standardFrame: CGRect) -> UILabel {

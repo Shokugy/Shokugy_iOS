@@ -25,6 +25,10 @@ class RankingTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         setNavBar()
+        
+        //----------test------
+        RestaurantManager.getRestaurantRanking()
+        //---------------------
     }
     
     func setNavBar() {

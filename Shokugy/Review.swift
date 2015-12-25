@@ -16,5 +16,11 @@ class Review: NSObject {
     var review: String?
 //    var numOfLike: Int?
     var postTime: String?
+    
+    
+    //------userViewのみ------
+    
+    var restaurantName: String?
+    var restaurantAddress: String?   
 
 }

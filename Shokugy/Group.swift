@@ -9,5 +9,6 @@
 import UIKit
 
 class Group: NSObject {
+    var groupID: Int?
     var name: String?
 }

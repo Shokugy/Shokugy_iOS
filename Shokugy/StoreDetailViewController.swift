@@ -1,7 +1,8 @@
 
 import UIKit
+import WebKit
 
-class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate {
+class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, WKNavigationDelegate {
     
     let reviewViewController = UIViewController()
     let placeholderLabel = UILabel()
@@ -9,9 +10,12 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     let commentTableView = UITableView()
     var receiveInvite: Invite?
     var receiveRestaurant: Restaurant?
+    var receiveRestaurantID: Int?
     var restaurant: Restaurant = Restaurant()
     var review: Review?
     var reviewTextView = UITextView()
+    var inviteTextField = UITextField()
+    let wkWebView = WKWebView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +36,9 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     func fetchRestaurant() {
         if let post = receiveInvite {
             restaurant = RestaurantManager.fetchRestaurant(post.restaurantID!)
-        } else {
+        } else if let restaurantID = receiveRestaurantID {
+            restaurant = RestaurantManager.fetchRestaurant(restaurantID)
+        } else if receiveRestaurant != nil {
             restaurant = receiveRestaurant!
         }
     }
@@ -104,7 +110,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         taberoguBtn.sizeToFit()
         taberoguBtn.frame.origin.y = inviteBtn.frame.origin.y + 7
         taberoguBtn.frame.origin.x = self.view.frame.width - taberoguBtn.frame.width - 26
-        taberoguBtn.addTarget(self, action: "tapTaberoguBtn", forControlEvents: .TouchUpInside)
+        taberoguBtn.addTarget(self, action: "tapGurunabiBtn", forControlEvents: .TouchUpInside)
         coverView.addSubview(taberoguBtn)
         
         commentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - coverView.frame.height - 64 - 49)
@@ -115,6 +121,10 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.addSubview(commentTableView)
         
         self.commentTableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
+        
+        wkWebView.frame = self.view.frame  
+        wkWebView.allowsBackForwardNavigationGestures = true
+//        wkWebView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.New, context: nil)
     }
     
     func tapPostBtn() {
@@ -129,8 +139,11 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    func tapTaberoguBtn() {
-        print("tapTaberogu")
+    func tapGurunabiBtn() {
+        let url = NSURL(string: restaurant.link!)
+        let req = NSURLRequest(URL: url!)
+        wkWebView.loadRequest(req)
+        self.view.addSubview(wkWebView)
     }
     
     //---------TableViewSetting-------------
@@ -140,6 +153,8 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         cell.layer.cornerRadius = 2
         cell.layer.borderWidth = 0.1
         cell.userImageView.layer.cornerRadius = cell.userImageView.frame.width/2
+        cell.storeNameLabel.removeFromSuperview()
+        cell.storeAccessLabel.removeFromSuperview()
         
         cell.rateImageView.image = UIImage(named: "rate4")
         
@@ -157,7 +172,6 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
-        
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -311,8 +325,9 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         inviteView.layer.cornerRadius = 10
         coverView.addSubview(inviteView)
         
-        inviteView.addSubview(setInviteViewTextField(inviteView))
-        inviteView.addSubview(setInviteViewStoreNameLabel(inviteView, text: "すき家"))
+        inviteTextField = setInviteViewTextField(inviteView)
+        inviteView.addSubview(inviteTextField)
+        inviteView.addSubview(setInviteViewStoreNameLabel(inviteView, text: restaurant.name!))
         
         inviteView.addSubview(setInviteViewBtn("Cancel", x: inviteView.frame.width / 4 - 25, superView: inviteView, tag: 1))
         inviteView.addSubview(setInviteViewBtn("Invite", x: inviteView.frame.width / 4 * 2 - 20, superView: inviteView, tag: 2))
@@ -376,11 +391,13 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
             })
         case 2:
             print("post")
+            InviteCollection.postInvite(inviteTextField.text!, restaurantID: restaurant.restaurantID!, pressTime: String(NSDate()))
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.coverView.frame.origin = CGPointMake(0, self.view.frame.height)
             }, completion: { (finished) -> Void in
                 self.coverView.removeFromSuperview()
             })
+            inviteTextField.text = nil
         default:
             break
         }

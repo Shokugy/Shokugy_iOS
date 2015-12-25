@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ReviewCollection: NSObject {
     
@@ -46,6 +47,35 @@ class ReviewCollection: NSObject {
         manager.request(request).responseString { (any) in
                 print(any)
         }
+    }
+    
+    class func getMypageReview(callback: (JSON) -> Void) {
+        let URL = NSURL(string: "http://localhost:3000/api/v1/reviews/mypage")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        
+        manager.request(mutableURLRequest).responseJSON { (any) -> Void in
+            print(JSON(data: any.data!))
+            let json = JSON(data: any.data!)["reviews"]
+            callback(json)
+        }
+    }
+    
+    class func getRestaurantReviews() {
+        let URL = NSURL(string: "http://localhost:3000/api/v1/reviews")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        
+        manager.request(mutableURLRequest).responseJSON { (any) -> Void in
+            print(JSON(data: any.data!))
+//            let json = JSON(data: any.data!)["reviews"]
+//            callback(json)
+        }
+
     }
 
 

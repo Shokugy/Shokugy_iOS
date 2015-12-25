@@ -10,7 +10,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     let inviteCollection: InviteCollection = InviteCollection()
     var sendInvite: Invite = Invite()
     
-    let viewController = UIViewController()
+    let setUpViewController = UIViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,17 +29,34 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
             User.fetchDataFromDeviceSetUser()
         } else {
             //-------FBLoginView----------
-            viewController.view.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-            let loginButton = FBSDKLoginButton()
-            loginButton.center = self.view.center
-            loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
-            loginButton.delegate = self
-            viewController.view.addSubview(loginButton)
-            
-            self.presentViewController(viewController, animated: true, completion: nil)
+            setSetUpViewController()
+            self.presentViewController(setUpViewController, animated: true, completion: nil)
             //---------------------------
             
         }
+    }
+    
+    func setSetUpViewController() {
+        setUpViewController.view.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
+        
+//        let scrollView = UIScrollView()
+//        scrollView.frame = setUpViewController.view.frame
+//        scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
+//        scrollView.backgroundColor = UIColor.clearColor()
+        
+        let loginButton = FBSDKLoginButton()
+        loginButton.center = self.view.center
+        loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
+        loginButton.delegate = self
+        setUpViewController.view.addSubview(loginButton)
+        
+//        let groupViewController = GroupViewController(isFirst: true)
+//        groupViewController.receiveIsFirst = true
+//        let groupView = groupViewController.view
+//        groupView.frame.origin = CGPoint(x: scrollView.frame.width, y: 0)
+//        scrollView.addSubview(groupView)
+        
+//        setUpViewController.view.addSubview(scrollView)
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -49,7 +66,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         }
         
         User.fetchUserFromFB()
-        viewController.dismissViewControllerAnimated(true, completion: nil)
+        setUpViewController.dismissViewControllerAnimated(true, completion: nil)
+        performSegueWithIdentifier("ToGroupViewController", sender: nil)
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
@@ -87,6 +105,19 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let cell = contentView?.superview as! HomeTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
         inviteCollection.inviteArray[(indexPath?.section)!].goingMemberUserIDArray.append(User.currentUser.userFBID!)
+        self.tableView.reloadData()
+    }
+    
+    func tapFavMinusBtn(sender: UIButton) {
+        let contentView = sender.superview
+        let cell = contentView?.superview as! HomeTableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        var goingMemberUserIDArray = inviteCollection.inviteArray[(indexPath?.section)!].goingMemberUserIDArray
+//        for i in 0 ..< goingMemberUserIDArray.count {
+//            if goingMemberUserIDArray[i] == User.currentUser.userFBID {
+//                goingMemberUserIDArray.removeAtIndex(i)
+//            }
+//        }
         self.tableView.reloadData()
     }
     

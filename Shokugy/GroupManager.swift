@@ -11,8 +11,9 @@ import Alamofire
 import SwiftyJSON
 
 class GroupManager: NSObject {
+    static var groups: [Group] = []
 
-    class func createGroup(name: String, password: String, passwordConf: String) {
+    class func createGroup(name: String, password: String, passwordConf: String, callback: () -> Void) {
         let params: [String: AnyObject] = [
             "name": name,
             "password": password,
@@ -23,13 +24,27 @@ class GroupManager: NSObject {
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = "POST"
         mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        mutableURLRequest.setValue(password, forHTTPHeaderField: "Password")
+        mutableURLRequest.setValue(passwordConf, forHTTPHeaderField: "Password-Confirmation")
         let manager = Alamofire.Manager.sharedInstance
         let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
         manager.request(request).responseJSON { (any) in
             print(any)
+            callback()
         }
-//        Alamofire.request(.POST, "http://localhost:3000/api/v1/groups/create", parameters: params, encoding: .JSON).responseJSON { (any) -> Void in
-//            print(any)
-//        }
+        
+    }
+    
+    class func getGroup(callback: (JSON) -> Void) {
+        let URL = NSURL(string: "http://localhost:3000/api/v1/groups")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        
+        manager.request(mutableURLRequest).responseJSON { (any) -> Void in
+            let json = JSON(data: any.data!)["groups"]
+            callback(json)
+        }
     }
 }

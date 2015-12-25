@@ -37,7 +37,25 @@ class InviteCollection: NSObject {
         Alamofire.request(.POST, "http://localhost:3000/api/v1/restaurants/search", parameters: params, encoding: .JSON).responseJSON { (any) -> Void in
             print(any)
         }
+    }
+    
+    class func postInvite(text: String, restaurantID: Int, pressTime: String) {
+        let params: [String: AnyObject] = [
+            "text": text,
+            "restaurant_id": restaurantID,
+            "press_time": pressTime
+        ]
         
+        let URL = NSURL(string: "http://localhost:3000/api/v1/invites/create")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "POST"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+        manager.request(request).responseJSON { (any) in
+            print(any)
+        }
+
     }
 
 }
