@@ -48,6 +48,7 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     func makeInviteAndSet(json: JSON) {
         let invite = Invite()
+        invite.id = json["id"].int
         invite.storeName = json["restaurantName"].string
         invite.access = json["restaurantAddress"].string
         invite.comment = json["text"].string
@@ -55,6 +56,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         invite.userID = json["userFbId"].string
         invite.userName = json["userName"].string
         invite.restaurantID = json["restaurantId"].int
+        let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(invite.userID!)/picture?type=large")!)!)
+        invite.userAvatar = profileImage
 //        invite.goingMemberUserIDArray.append(invite.userID!)
         
         //------test用
@@ -70,25 +73,20 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     
     func setSetUpViewController() {
         setUpViewController.view.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        
-//        let scrollView = UIScrollView()
-//        scrollView.frame = setUpViewController.view.frame
-//        scrollView.contentSize = CGSize(width: scrollView.frame.width * 2, height: scrollView.frame.height)
-//        scrollView.backgroundColor = UIColor.clearColor()
+        let backgroundImage = UIImage(named: "shokugy")
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        backgroundImageView.frame.size = CGSize(width: self.view.frame.width, height: self.view.frame.height + 64 + 49)
+        backgroundImageView.frame.origin = CGPointZero
+        backgroundImageView.userInteractionEnabled = true
+        setUpViewController.view.addSubview(backgroundImageView)
         
         let loginButton = FBSDKLoginButton()
         loginButton.center = self.view.center
         loginButton.readPermissions = ["public_profile","email"] //これかかないとemailとれない
         loginButton.delegate = self
-        setUpViewController.view.addSubview(loginButton)
+        backgroundImageView.addSubview(loginButton)
         
-//        let groupViewController = GroupViewController(isFirst: true)
-//        groupViewController.receiveIsFirst = true
-//        let groupView = groupViewController.view
-//        groupView.frame.origin = CGPoint(x: scrollView.frame.width, y: 0)
-//        scrollView.addSubview(groupView)
-        
-//        setUpViewController.view.addSubview(scrollView)
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -136,12 +134,9 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let contentView = sender.superview
         let cell = contentView?.superview as! HomeTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
-        print("=")
-        print(inviteArray[(indexPath?.section)!].goingMemberUserIDArray)
         inviteArray[(indexPath?.section)!].goingMemberUserIDArray.append(User.currentUser.userFBID!)
-        print(inviteArray[(indexPath?.section)!].goingMemberUserIDArray)
-        print("=")
         self.tableView.reloadData()
+        InviteCollection.postJoinMember(inviteArray[(indexPath?.section)!].id!)
     }
     
     func tapFavMinusBtn(sender: UIButton) {
@@ -159,15 +154,20 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         }
     }
     
-    func tapShowMemberBtn() {
-        let goingMemberViewController = GoingMenberViewController()
-        self.navigationController?.pushViewController(goingMemberViewController, animated: true)
+    func tapShowMemberBtn(sender: UIButton) {
+        let contentView = sender.superview
+        let cell = contentView?.superview as! HomeTableViewCell
+        let indexPath = self.tableView.indexPathForCell(cell)
+        sendInvite = inviteArray[indexPath!.section]
+        
+        self.performSegueWithIdentifier("ToGoingMemberViewController", sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "toGoingMenberViewController" {
+        if segue.identifier == "ToGoingMemberViewController" {
             let goingMenberViewController = segue.destinationViewController as! GoingMenberViewController
-            goingMenberViewController.storeName = "すき家　茶屋町店"
+            goingMenberViewController.receiveStoreName = sendInvite.storeName
+            goingMenberViewController.receiveGoingMemberArray = sendInvite.goingMemberUserIDArray
         } else if segue.identifier == "SegueToStoreDetailViewController" {
             let storeDetailViewController = segue.destinationViewController as! StoreDetailViewController
             storeDetailViewController.receiveInvite = sendInvite
@@ -197,15 +197,13 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         
     
         let invite = inviteArray[indexPath.section]
-        cell.userName.text = "hoge"
-//        cell.profImageView.image 
+        cell.userName.text = invite.userName
+        cell.profImageView.image = invite.userAvatar
         cell.storeName.text = invite.storeName
         cell.storeAccess.text = invite.access
         cell.userComment.text = invite.comment
         cell.postTime.text = invite.postTime
-        print(invite.goingMemberUserIDArray)
         cell.numOfLike.text = "\(invite.goingMemberUserIDArray.count)"
-        print(invite.goingMemberUserIDArray.count)
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
         

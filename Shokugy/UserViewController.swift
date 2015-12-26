@@ -27,16 +27,6 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         setUp()
         setUser()
-        
-        //-----test------
-        ReviewCollection.getMypageReview { (json) -> Void in
-            for i in 0 ..< json.count {
-                self.makeReview(json[i])
-            }
-            
-            self.selfCommentTableView.reloadData()
-        }
-        //-----------
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +35,14 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        reviews = []
+        ReviewCollection.getMypageReview { (json) -> Void in
+            for i in 0 ..< json.count {
+                self.makeReview(json[i])
+            }
+            
+            self.selfCommentTableView.reloadData()
+        }
         setNavBar()
     }
     
@@ -63,6 +60,12 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
         self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "setting.png"), style: UIBarButtonItemStyle.Done, target: self, action: "tapSettingBtn")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "change.png"), style: .Done, target: self, action: "tapChangeButton")
+    }
+    
+    func tapChangeButton() {
+        print("tapChange")
+        self.performSegueWithIdentifier("ToGroupViewController", sender: self)
     }
     
     func setUser() {
@@ -111,8 +114,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var image = UIImage(named: "member.png")?.imageWithRenderingMode(.AlwaysTemplate)
         userCoverView.addSubview(makeBtn(self.view.center.x-100, tag: 1, image: image!))
-        image = UIImage(named: "change.png")?.imageWithRenderingMode(.AlwaysTemplate)
-        userCoverView.addSubview(makeBtn(self.view.center.x+93, tag: 2, image: image!))
+        image = UIImage(named: "like.png")?.imageWithRenderingMode(.AlwaysTemplate)
+        userCoverView.addSubview(makeBtn(self.view.center.x+90, tag: 2, image: image!))
         
         selfCommentTableView.frame.size = CGSizeMake(self.view.frame.width, self.view.frame.height - userCoverView.frame.height - 64 - 49)
         selfCommentTableView.frame.origin = CGPointMake(0, 180)
@@ -150,8 +153,7 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             self.presentViewController(navController, animated: true, completion: nil)
         } else if sender.tag == 2 {
-            print("tapChange")
-            self.performSegueWithIdentifier("ToGroupViewController", sender: self)
+            self.performSegueWithIdentifier("LikeRestaurantTableViewController", sender: self)
         }
     }
     

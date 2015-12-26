@@ -9,12 +9,14 @@
 import UIKit
 
 class Invite: NSObject {
+    var id: Int?
     var storeName: String?
     var access: String?
     var comment: String?
     var postTime: String?
     var userID: String?
-    var userName: String?   
+    var userName: String?
+    var userAvatar: UIImage?
     var restaurantID: Int?
     var goingMemberUserIDArray: [String] = []
 }

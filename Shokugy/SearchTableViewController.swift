@@ -140,7 +140,7 @@ class SearchTableViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == 10 {
+        if section == 20 {
             return 6
         } else {
             return 3

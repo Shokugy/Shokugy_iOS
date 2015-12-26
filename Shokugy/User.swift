@@ -93,4 +93,22 @@ class User: NSObject {
         return true
     }
     
+    class func getUserWithFBID(fbID: String, callback: (JSON) -> Void) {
+        let URL = NSURL(string: "http://localhost:3000/api/v1/users/mypage")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.setValue(fbID, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        
+        manager.request(mutableURLRequest).responseJSON { (any) -> Void in
+            print("=============================")
+            print(JSON(data: any.data!))
+            let json = JSON(data: any.data!)
+            print(any.result)
+            callback(json)
+            print("=============================")
+        }
+
+    }
+    
 }

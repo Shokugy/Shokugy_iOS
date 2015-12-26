@@ -176,6 +176,28 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         wkWebView.frame = self.view.frame  
         wkWebView.allowsBackForwardNavigationGestures = true
 //        wkWebView.addObserver(self, forKeyPath: "estimatedProgress", options: NSKeyValueObservingOptions.New, context: nil)
+        
+        //-------仮 ---------------------
+        let favoriteButton = UIButton()
+        favoriteButton.frame.size = CGSize(width: 80, height: 80)
+        favoriteButton.center = CGPoint(x: self.view.frame.width - 64, y: self.view.frame.height - 64)
+        favoriteButton.setImage(UIImage(named: "Favorite"), forState: .Normal)
+        favoriteButton.layer.shadowColor = UIColor.grayColor().CGColor
+        favoriteButton.layer.shadowOpacity = 0.6
+        favoriteButton.layer.shadowOffset = CGSize(width: 5, height: 5)
+        favoriteButton.addTarget(self, action: "tapFavoriteButton", forControlEvents: .TouchUpInside)
+        self.view.addSubview(favoriteButton)
+        
+//        let btnCoverView = UIView()
+//        btnCoverView.frame = favoriteButton.frame
+//        btnCoverView.frame.size = CGSize(width: favoriteButton.frame.width + 5, height: favoriteButton.frame.height + 5)
+//        btnCoverView.backgroundColor = UIColor.whiteColor()
+//        btnCoverView.layer.cornerRadius = btnCoverView.frame.width / 2
+//        self.view.addSubview(btnCoverView)
+        
+        self.view.bringSubviewToFront(favoriteButton)
+        
+        //--------------------------
     }
     
     func tapPostBtn() {
@@ -188,6 +210,11 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         UIView.animateWithDuration(0.3) { () -> Void in
             coverView.frame.origin = CGPointMake(0, 0)
         }
+    }
+    
+    func tapFavoriteButton() {
+        print("tapfavorite")
+        RestaurantManager.postFavoriteRestaurant(restaurant.restaurantID!)
     }
     
     func tapGurunabiBtn() {

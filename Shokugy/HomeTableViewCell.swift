@@ -1,7 +1,7 @@
 protocol HomeTableViewCellDelegate {
     func tapFavBtn(sender: UIButton)
     func tapFavMinusBtn(sender: UIButton)
-    func tapShowMemberBtn()
+    func tapShowMemberBtn(sender: UIButton)
 }
 
 import UIKit
@@ -61,6 +61,6 @@ class HomeTableViewCell: UITableViewCell {
     }
     
     @IBAction func tapMemberDetailBtn(sender: UIButton) {
-        customDelegate?.tapShowMemberBtn()
+        customDelegate?.tapShowMemberBtn(sender)
     }
 }

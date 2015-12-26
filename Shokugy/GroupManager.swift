@@ -24,8 +24,8 @@ class GroupManager: NSObject {
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = "POST"
         mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
-        mutableURLRequest.setValue(password, forHTTPHeaderField: "Password")
-        mutableURLRequest.setValue(passwordConf, forHTTPHeaderField: "Password-Confirmation")
+        mutableURLRequest.setValue(password, forHTTPHeaderField: "Passwd")
+//        mutableURLRequest.setValue(passwordConf, forHTTPHeaderField: "Password-Confirmation")
         let manager = Alamofire.Manager.sharedInstance
         let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
         manager.request(request).responseJSON { (any) in
@@ -46,5 +46,26 @@ class GroupManager: NSObject {
             let json = JSON(data: any.data!)["groups"]
             callback(json)
         }
+    }
+    
+    class func loginGroup(name: String, password: String) {
+        let params: [String: AnyObject] = [
+            "name": name,
+        ]
+        
+        let URL = NSURL(string: "http://localhost:3000/api/v1/groups/login")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "POST"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        mutableURLRequest.setValue(password, forHTTPHeaderField: "Passwd")
+        let manager = Alamofire.Manager.sharedInstance
+        let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+        manager.request(request).responseJSON { (any) in
+            print(JSON(data: any.data!))
+            print("------")
+            print(any.result)
+//            callback()
+        }
+
     }
 }

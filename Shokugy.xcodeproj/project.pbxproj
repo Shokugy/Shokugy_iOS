@@ -83,6 +83,12 @@
 		AAC204561C1E5C05009C2015 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AAC204551C1E5C05009C2015 /* Default-568h@2x.png */; };
 		AACBF8CF1C1F013D00041184 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8CE1C1F013D00041184 /* Restaurant.swift */; };
 		AACBF8D11C1F014D00041184 /* RestaurantManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBF8D01C1F014D00041184 /* RestaurantManager.swift */; };
+		AAEC0B261C2DBEDD0036FFEE /* init.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEC0B251C2DBEDD0036FFEE /* init.png */; };
+		AAEC0B281C2DCFE00036FFEE /* LikeRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC0B271C2DCFE00036FFEE /* LikeRestaurantTableViewController.swift */; };
+		AAEC0B2A1C2DD1230036FFEE /* shokugy.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEC0B291C2DD1230036FFEE /* shokugy.png */; };
+		AAEC0B2C1C2DD6490036FFEE /* Favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = AAEC0B2B1C2DD6490036FFEE /* Favorite.png */; };
+		AAEC0B2E1C2DF0980036FFEE /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC0B2D1C2DF0980036FFEE /* Notification.swift */; };
+		AAEC0B301C2DF37F0036FFEE /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEC0B2F1C2DF37F0036FFEE /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +192,12 @@
 		AAC204551C1E5C05009C2015 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AACBF8CE1C1F013D00041184 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		AACBF8D01C1F014D00041184 /* RestaurantManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantManager.swift; sourceTree = "<group>"; };
+		AAEC0B251C2DBEDD0036FFEE /* init.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = init.png; sourceTree = "<group>"; };
+		AAEC0B271C2DCFE00036FFEE /* LikeRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeRestaurantTableViewController.swift; sourceTree = "<group>"; };
+		AAEC0B291C2DD1230036FFEE /* shokugy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shokugy.png; sourceTree = "<group>"; };
+		AAEC0B2B1C2DD6490036FFEE /* Favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Favorite.png; sourceTree = "<group>"; };
+		AAEC0B2D1C2DF0980036FFEE /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		AAEC0B2F1C2DF37F0036FFEE /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		E77FA66D48E5A5BE49C15D1D /* Pods-Shokugy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shokugy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shokugy/Pods-Shokugy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -332,6 +344,7 @@
 				AA5382B31BFDA431009CEB6C /* UserViewController.swift */,
 				AA62DB911BFF007C006BFA98 /* RankingTableViewController.swift */,
 				AA359CE31C2ADB2E00CE0D56 /* GroupViewController.swift */,
+				AAEC0B271C2DCFE00036FFEE /* LikeRestaurantTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -348,6 +361,8 @@
 				AA359CDF1C2A43A900CE0D56 /* InviteCollection.swift */,
 				AA359CF31C2B4A8900CE0D56 /* Group.swift */,
 				AA359CF51C2B4A9900CE0D56 /* GroupManager.swift */,
+				AAEC0B2D1C2DF0980036FFEE /* Notification.swift */,
+				AAEC0B2F1C2DF37F0036FFEE /* NotificationManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -358,7 +373,10 @@
 				AA69A3401C23EC28006F17F5 /* tabbarItem */,
 				AA971CCC1C23D09D003531B6 /* rate */,
 				AA971C9B1C22F5C8003531B6 /* -member.png */,
+				AAEC0B251C2DBEDD0036FFEE /* init.png */,
 				AA971C9C1C22F5C8003531B6 /* +member.png */,
+				AAEC0B2B1C2DD6490036FFEE /* Favorite.png */,
+				AAEC0B291C2DD1230036FFEE /* shokugy.png */,
 				AA69A3411C23EC5F006F17F5 /* like.png */,
 				AA971C9D1C22F5C8003531B6 /* change.png */,
 				AA971CA31C230DE1003531B6 /* setting.png */,
@@ -582,6 +600,7 @@
 				AA359CEA1C2AF80800CE0D56 /* GroupCollectionViewCell.xib in Resources */,
 				AA24EE601BF4E9EE00112A63 /* LaunchScreen.storyboard in Resources */,
 				AA11CF591C24AF3700960BD7 /* batu.png in Resources */,
+				AAEC0B2C1C2DD6490036FFEE /* Favorite.png in Resources */,
 				AA971CA21C22F5C8003531B6 /* member.png in Resources */,
 				AA971C9F1C22F5C8003531B6 /* -member.png in Resources */,
 				AA4B94061BFF0F1900A64019 /* RankingTableViewCell.xib in Resources */,
@@ -592,6 +611,7 @@
 				AA971CA51C230DE1003531B6 /* setting.png in Resources */,
 				AA971CA01C22F5C8003531B6 /* +member.png in Resources */,
 				AA971CAE1C2339B4003531B6 /* ranking.png in Resources */,
+				AAEC0B261C2DBEDD0036FFEE /* init.png in Resources */,
 				AA24EEF41BF5D0A700112A63 /* AlertTableViewCell.xib in Resources */,
 				AA9B36911BF8E84A00E83C3A /* postIcon.png in Resources */,
 				AA09CF521BF854AE005CBD7C /* pug.png in Resources */,
@@ -604,6 +624,7 @@
 				AA971CAC1C2339B4003531B6 /* alert.png in Resources */,
 				AA971C961C22B67E003531B6 /* invite.png in Resources */,
 				AA971CB01C2339B4003531B6 /* user.png in Resources */,
+				AAEC0B2A1C2DD1230036FFEE /* shokugy.png in Resources */,
 				AA69A3421C23EC5F006F17F5 /* like.png in Resources */,
 				AA971CD51C23D09D003531B6 /* rate4.png in Resources */,
 				AA24EE8E1BF58FCD00112A63 /* HomeTableViewCell.xib in Resources */,
@@ -690,12 +711,14 @@
 				AA359CE41C2ADB2E00CE0D56 /* GroupViewController.swift in Sources */,
 				AA24EEC01BF5A7E800112A63 /* RAMItemAnimationProtocol.swift in Sources */,
 				AA5382B41BFDA431009CEB6C /* UserViewController.swift in Sources */,
+				AAEC0B301C2DF37F0036FFEE /* NotificationManager.swift in Sources */,
 				AA359CE91C2AF80800CE0D56 /* GroupCollectionViewCell.swift in Sources */,
 				AA359CDE1C2A439400CE0D56 /* Invite.swift in Sources */,
 				AA24EE871BF58D3200112A63 /* HomeTableViewController.swift in Sources */,
 				AA09CF541BF857BB005CBD7C /* StoreDetailViewController.swift in Sources */,
 				AA24EEBF1BF5A7E800112A63 /* RAMAnimatedTabBarController.swift in Sources */,
 				AA359CD71C29531100CE0D56 /* ReviewCollection.swift in Sources */,
+				AAEC0B2E1C2DF0980036FFEE /* Notification.swift in Sources */,
 				AA24EEBE1BF5A7E800112A63 /* RAMTransitionItemAnimation.swift in Sources */,
 				AA24EEBC1BF5A7E800112A63 /* RAMFumeAnimation.swift in Sources */,
 				AA24EE531BF4E9EE00112A63 /* AppDelegate.swift in Sources */,
@@ -716,6 +739,7 @@
 				AA359CF61C2B4A9900CE0D56 /* GroupManager.swift in Sources */,
 				AA359CD51C2952F400CE0D56 /* Review.swift in Sources */,
 				AA24EEBB1BF5A7E800112A63 /* RAMFrameItemAnimation.swift in Sources */,
+				AAEC0B281C2DCFE00036FFEE /* LikeRestaurantTableViewController.swift in Sources */,
 				AA24EE5B1BF4E9EE00112A63 /* Shokugy.xcdatamodeld in Sources */,
 				AA4B94051BFF0F1900A64019 /* RankingTableViewCell.swift in Sources */,
 				AA2783F81BFC6054003FA3A0 /* AddMemberTableViewController.swift in Sources */,

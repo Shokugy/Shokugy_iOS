@@ -25,6 +25,7 @@ class InviteCollection: NSObject {
             let json = JSON(data: any.data!)["invites"]
             print(any.result)
             callback(json)
+//            print(json)
         }
     }
     
@@ -43,6 +44,23 @@ class InviteCollection: NSObject {
         let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
         manager.request(request).responseString { (any) in
             print(any.result)
+        }
+    }
+    
+    class func postJoinMember(inviteID: Int) {
+        let params: [String: AnyObject] = [
+            "invite_id": inviteID
+        ]
+        
+        let URL = NSURL(string: "http://localhost:3000/api/v1/invites/join")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "POST"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+        manager.request(request).responseString { (any) in
+            print(any.result)
+            print(JSON(data: any.data!))
         }
     }
     

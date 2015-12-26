@@ -47,6 +47,38 @@ class RestaurantManager: NSObject {
             print(JSON(data: any.data!))
         }
     }
+    
+    class func postFavoriteRestaurant(restaurantID: Int) {
+        let params: [String: AnyObject] = [
+            "restaurant_id": restaurantID
+        ]
+        let URL = NSURL(string: "http://localhost:3000/api/v1/restaurants/favorite")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "POST"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        let request = Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+        manager.request(request).responseString { (any) in
+            print(any.result)
+            print(JSON(data: any.data!))
+//            callback()
+        }
+    }
+    
+    class func getFavoriteRestaurants(callback: (JSON) -> Void) {
+        let URL = NSURL(string: "http://localhost:3000/api/v1/restaurants/favorite")!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
+        mutableURLRequest.HTTPMethod = "GET"
+        mutableURLRequest.setValue(User.currentUser.userFBID!, forHTTPHeaderField: "Fb-Id")
+        let manager = Alamofire.Manager.sharedInstance
+        manager.request(mutableURLRequest).responseJSON { (any) -> Void in
+            print(any.result)
+            print(JSON(data: any.data!))
+            let json = JSON(data: any.data!)["restaurants"]
+            callback(json)
+        }
+
+    }
 
 }
 

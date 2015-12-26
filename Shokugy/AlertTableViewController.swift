@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class AlertTableViewController: UITableViewController {
+    
+    var notifications: [Notification] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.registerNib(UINib(nibName: "AlertTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
-        
         self.tableView.colorBackground(UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1))
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +29,22 @@ class AlertTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         setNavBar()
+        
+        NotificationManager.getNotification { (json) -> Void in
+            self.notifications = []
+            for i in 0 ..< json.count {
+                self.makeNotification(json[i])
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
+    func makeNotification(json: JSON) {
+        let notification = Notification()
+        notification.content = json["content"].string
+        notification.date = json["date"].string
+        
+        notifications.append(notification)
     }
     
     func setNavBar() {
@@ -38,7 +57,7 @@ class AlertTableViewController: UITableViewController {
     //----------------------------TableViewSetting------------------------------
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 10
+        return notifications.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -47,6 +66,10 @@ class AlertTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("customCell") as! AlertTableViewCell
+        let notification = notifications[indexPath.section]
+        
+        cell.alertDetail.text = notification.content!
+        cell.alertTime.text = notification.date!
         
         cell.layer.cornerRadius = 2
         cell.layer.borderWidth = 0.1

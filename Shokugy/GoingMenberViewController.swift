@@ -11,7 +11,8 @@ import UIKit
 class GoingMenberViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var goingMenberTableView = UITableView()
-    var storeName: String?
+    var receiveStoreName: String?
+    var receiveGoingMemberArray: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +38,8 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
     func setUp() {
         let storeNameLabel = UILabel()
         storeNameLabel.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        storeNameLabel.text = "すき家　茶屋町店"
+        print(receiveStoreName)
+        storeNameLabel.text = receiveStoreName!
         storeNameLabel.textColor = UIColor.whiteColor()
         storeNameLabel.font = UIFont(name: (storeNameLabel.font?.fontName)!, size: 23)
         storeNameLabel.textAlignment = NSTextAlignment.Center
@@ -58,6 +60,11 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        let goingMemberFBID = receiveGoingMemberArray[indexPath.section]
+        User.getUserWithFBID(goingMemberFBID, callback: { (json) -> Void in
+            cell.textLabel?.text = json["name"].string
+        })
+        
         cell.layer.cornerRadius = 2
         cell.layer.borderWidth = 0.1
         
@@ -66,16 +73,16 @@ class GoingMenberViewController: UIViewController, UITableViewDataSource, UITabl
             cell.accessoryView = UIImageView(image: UIImage(named: "et-line_e021(0)_48"))
         }
         cell.imageView?.frame = CGRectMake(0, 0, 80, 80)
-        cell.imageView?.image = UIImage(named: "pug.png")
+        let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(goingMemberFBID)/picture?type=large")!)!)
+        cell.imageView?.image = profileImage
         cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.width)!/2
         cell.imageView?.clipsToBounds = true
-        cell.textLabel?.text = "soya takahashi"
         
         return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return receiveGoingMemberArray.count
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

@@ -12,13 +12,15 @@ import SwiftyJSON
 class GroupViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UITextFieldDelegate {
     
     var collectionView: UICollectionView!
-    let groupLoginView = UIView()
+    var groupLoginView = UIView()
     let newGroupView = UIView()
     var groupNameTextField: UITextField!
     var newGroupPasswordTextField: UITextField!
     var passwordConfTextField: UITextField!
     var groups: [Group] = []
     var receiveIsFirst: Bool = false
+    var loginGroupName: String?
+    let loginPasswordTextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +133,7 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print(indexPath.item)
         
-        self.setGroupLoginView(indexPath.item)
+        self.setGrouploginView(indexPath.item)
         UIView.animateWithDuration(0.5) { () -> Void in
             self.groupLoginView.frame.origin.y = self.view.frame.origin.y - 64
         }
@@ -144,13 +146,15 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
     
     //----------------------groupLoginView-------------------------------
     
-    func setGroupLoginView(selectItemIndex: Int) {
+    func setGrouploginView(selectItemIndex: Int) {
         groupLoginView.frame = self.view.frame
         groupLoginView.frame.origin.y = self.view.frame.height
         groupLoginView.backgroundColor = UIColor.orangeColor()
         
         let groupInitTitleLabel = UILabel()
         let groupTitle = groups[selectItemIndex].name
+        loginGroupName = groupTitle
+        
         groupInitTitleLabel.text = String(groupTitle![(groupTitle?.startIndex)!])
         groupInitTitleLabel.textColor = UIColor.whiteColor()
         groupInitTitleLabel.textAlignment = NSTextAlignment.Center
@@ -180,14 +184,24 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         passwordLabel.center = CGPoint(x: groupLoginView.center.x, y: groupTitleLabel.frame.origin.y + groupTitleLabel.frame.height + 40)
         groupLoginView.addSubview(passwordLabel)
         
-        let passwordTextField = UITextField()
-        passwordTextField.frame.size = CGSize(width: self.view.frame.width / 3 * 2, height: 40)
-        passwordTextField.center = CGPoint(x: groupLoginView.center.x, y: passwordLabel.frame.origin.y + passwordLabel.frame.height + 32)
-        passwordTextField.placeholder = "Password"
-        passwordTextField.backgroundColor = UIColor.whiteColor()
-        passwordTextField.layer.cornerRadius = 10
-        passwordTextField.delegate = self
-        groupLoginView.addSubview(passwordTextField)
+        loginPasswordTextField.frame.size = CGSize(width: self.view.frame.width / 3 * 2, height: 40)
+        loginPasswordTextField.center = CGPoint(x: groupLoginView.center.x, y: passwordLabel.frame.origin.y + passwordLabel.frame.height + 32)
+        loginPasswordTextField.placeholder = "Password"
+        loginPasswordTextField.backgroundColor = UIColor.whiteColor()
+        loginPasswordTextField.layer.cornerRadius = 10
+        loginPasswordTextField.delegate = self
+        groupLoginView.addSubview(loginPasswordTextField)
+        
+        let loginButton = UIButton()
+        loginButton.setTitle("Login", forState: .Normal)
+        loginButton.titleLabel?.font = UIFont.systemFontOfSize(30)
+        loginButton.sizeToFit()
+        loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        loginButton.setTitleColor(UIColor.yellowColor(), forState: .Highlighted)
+        loginButton.center = CGPoint(x: self.view.center.x, y: loginPasswordTextField.frame.origin.y + loginPasswordTextField.frame.height + 32)
+        loginButton.addTarget(self, action: "tapLoginButton", forControlEvents: .TouchUpInside)
+        groupLoginView.addSubview(loginButton)
+
         
         let backButton = UIButton()
         backButton.frame.size = CGSize(width: 44, height: 44)
@@ -200,13 +214,33 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
         
     }
     
+    func tapLoginButton() {
+        GroupManager.loginGroup(loginGroupName!, password: loginPasswordTextField.text!)
+
+        UIView.animateWithDuration(0.5, animations: { () -> Void in
+            self.groupLoginView.frame.origin.y = self.view.frame.height
+            }) { (finished) -> Void in
+                self.groupLoginView.removeFromSuperview()
+        }
+        
+        loginGroupName = nil
+        loginPasswordTextField.text = nil
+        groupLoginView = UIView()
+    }
+    
     func tapGroupLoginBackButton() {
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             self.groupLoginView.frame.origin.y = self.view.frame.height
             }) { (finished) -> Void in
                 self.groupLoginView.removeFromSuperview()
         }
+        
+        loginGroupName = nil
+        loginPasswordTextField.text = nil
+        groupLoginView = UIView()
     }
+    
+    
     
     //---------------------------------newGroupView-------------------------------
     
@@ -268,6 +302,10 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
             }) { (finished) -> Void in
                 self.newGroupView.removeFromSuperview()
         }
+        
+        groupNameTextField.text = nil
+        newGroupPasswordTextField.text = nil
+        passwordConfTextField.text = nil
     }
     
     func tapCreateButton() {
@@ -275,6 +313,10 @@ class GroupViewController: UIViewController, UICollectionViewDataSource, UIColle
             self.getGroups()
         })
         newGroupView.removeFromSuperview()
+        
+        groupNameTextField.text = nil
+        newGroupPasswordTextField.text = nil
+        passwordConfTextField.text = nil
     }
     
     func makeNewGroupLabel(name: String, standardFrame: CGRect) -> UILabel {

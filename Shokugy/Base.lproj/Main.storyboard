@@ -25,6 +25,7 @@
                         <segue destination="jE9-rl-TQQ" kind="show" identifier="ToSearchViewController" id="Y5s-YF-5oR"/>
                         <segue destination="6is-lA-jSY" kind="show" identifier="SegueToStoreDetailViewController" id="Cz9-Ip-Htd"/>
                         <segue destination="0tg-mJ-N5s" kind="show" identifier="ToGroupViewController" id="BLI-22-88p"/>
+                        <segue destination="4bl-VX-lpZ" kind="show" identifier="ToGoingMemberViewController" id="12d-iG-XNj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iGS-Eb-btC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -215,6 +216,25 @@
             </objects>
             <point key="canvasLocation" x="3364.5" y="2219.5"/>
         </scene>
+        <!--Going Menber View Controller-->
+        <scene sceneID="tKX-qX-Zxt">
+            <objects>
+                <viewController id="4bl-VX-lpZ" customClass="GoingMenberViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VbN-78-PQ3"/>
+                        <viewControllerLayoutGuide type="bottom" id="SZ2-dJ-NR6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R08-ia-uWr">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N6V-ed-k1o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5025.5" y="265.5"/>
+        </scene>
         <!--User View Controller-->
         <scene sceneID="miL-AA-jBv">
             <objects>
@@ -233,11 +253,31 @@
                     <connections>
                         <segue destination="0tg-mJ-N5s" kind="show" identifier="ToGroupViewController" id="Xug-Wc-rfK"/>
                         <segue destination="6is-lA-jSY" kind="show" identifier="ToStoreDetailViewController" id="sfX-aV-Oxh"/>
+                        <segue destination="UXg-50-agD" kind="show" identifier="LikeRestaurantTableViewController" id="mwj-pt-CHP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rx5-KB-g1I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3856.5" y="2892.5"/>
+        </scene>
+        <!--Like Restaurant Table View Controller-->
+        <scene sceneID="jiu-aU-iHh">
+            <objects>
+                <tableViewController id="UXg-50-agD" customClass="LikeRestaurantTableViewController" customModule="Shokugy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2o6-MO-3rP">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="UXg-50-agD" id="1RT-xE-LHK"/>
+                            <outlet property="delegate" destination="UXg-50-agD" id="1vu-UL-RQ7"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5zD-dC-2jI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4416.5" y="3304.5"/>
         </scene>
         <!--Alert-->
         <scene sceneID="WTh-cA-Yiw">
