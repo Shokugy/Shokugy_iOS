@@ -80,6 +80,7 @@ class LikeRestaurantTableViewController: UITableViewController {
         let imageURL = NSURL(string: restaurant.imageURL!)
         let imageData = NSData(contentsOfURL: imageURL!)
         cell.rateImageView.image = UIImage(data: imageData!)
+        cell.rateImageView.contentMode = UIViewContentMode.ScaleAspectFill
 //        cell.averageRateLabel
         
         cell.layer.borderWidth = 0.1

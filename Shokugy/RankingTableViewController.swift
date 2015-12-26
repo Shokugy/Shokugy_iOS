@@ -27,7 +27,9 @@ class RankingTableViewController: UITableViewController {
         setNavBar()
         
         //----------test------
+        print("===================")
         RestaurantManager.getRestaurantRanking()
+        print("===================")
         //---------------------
     }
     

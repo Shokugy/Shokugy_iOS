@@ -3,7 +3,7 @@ import UIKit
 import WebKit
 import SwiftyJSON
 
-class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, WKNavigationDelegate {
+class StoreDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, UITextFieldDelegate, WKNavigationDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     let reviewViewController = UIViewController()
     let placeholderLabel = UILabel()
@@ -18,6 +18,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
     var inviteTextField = UITextField()
     let wkWebView = WKWebView()
     var reviewArray: [Review] = []
+    var rates: [String] = ["0", "1", "1.5","2", "2.5", "3", "3.5", "4", "4.5", "5"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -134,7 +135,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         storeAccessLabel.frame.origin = CGPoint(x: 14, y: storeNameLabel.frame.origin.y + storeNameLabel.frame.height + 5)
         coverView.addSubview(storeAccessLabel)
         
-        let rateImageView = UIImageView(image: UIImage(named: "rate4"))
+        let rateImageView = UIImageView(image: UIImage(named: "stars_4"))
         rateImageView.clipsToBounds = true
         rateImageView.frame.size = CGSizeMake(self.view.frame.width/2, 40)
         rateImageView.frame.origin.x = storeNameLabel.frame.origin.x - 2
@@ -224,6 +225,8 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         self.view.addSubview(wkWebView)
     }
     
+    var counterhoge = 2
+    
     //---------TableViewSetting-------------
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -242,8 +245,9 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         cell.userName.text = User.currentUser.name
         
         cell.userReviewLabel.text = review.review
-        cell.rateImageView.image = UIImage(named: "rate4")
-        cell.postDateLabel.text = review.postTime
+        cell.rateImageView.image = UIImage(named: "stars_4")
+        cell.postDateLabel.text = String(counterhoge) + "時間前"
+        counterhoge += 3
         
         return cell
     }
@@ -295,7 +299,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         reviewViewController.navigationItem.setMyTitle("Post Review")
         let storeNameLabel = setPostViewStoreNameLabel()
         reviewViewController.view.addSubview(storeNameLabel)
-        let storeRateView = setPostViewStoreRateview(storeNameLabel)
+        let storeRateView = setPostViewStorePickerview(storeNameLabel)
         reviewViewController.view.addSubview(storeRateView)
         reviewTextView = setPostViewTextView(storeRateView)
         reviewViewController.view.addSubview(reviewTextView)
@@ -337,23 +341,60 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         return coverView
     }
     
-    func setPostViewStoreRateview(topView: UIView) -> UIView {
-        let coverView = UIView()
-        coverView.frame = CGRectMake(0, topView.frame.origin.y + topView.frame.height, self.view.frame.width, 60)
-        coverView.backgroundColor = UIColor(red: 252/255, green: 166/255, blue: 51/255, alpha: 1)
-        let imageView = UIImageView()
-        imageView.frame = CGRectMake(23, 0, self.view.frame.width / 3 * 2, 60)
-
-        imageView.image = UIImage(named: "rate4")
+    func setPostViewStorePickerview(topView: UIView) -> UIView {
+        let label = UILabel()
+        label.text = "Rate"
+        label.font = UIFont.systemFontOfSize(20)
+        label.textColor = UIColor(red: 248/255, green: 116/255, blue: 31/255, alpha: 1)
+        label.sizeToFit()
+        label.frame.origin = CGPoint(x: 16, y: topView.frame.origin.y + topView.frame.height + 32)
+        reviewViewController.view.addSubview(label)
         
-        coverView.addSubview(imageView)
-        addGesture(coverView)
+        let pickerView = UIPickerView()
+        pickerView.frame.size = CGSize(width: self.view.frame.width - 32, height: 120)
+        pickerView.center.x = self.view.center.x
+        pickerView.frame.origin.y = topView.frame.origin.y + topView.frame.height + 64
+        pickerView.delegate = self
+        pickerView.dataSource = self
         
-        return coverView
+        pickerView.layer.borderWidth = 0.4
+        pickerView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).CGColor
+        pickerView.layer.cornerRadius = 10
+        
+        addGesture(pickerView)
+        
+        return pickerView
     }
+    
+    //-------pickerView-------------
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return rates.count
+    }
+    
+    /*
+    pickerに表示する値を返すデリゲートメソッド.
+    */
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return rates[row] as? String
+    }
+    
+    /*
+    pickerが選択された際に呼ばれるデリゲートメソッド.
+    */
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("row: \(row)")
+        print("value: \(rates[row])")
+    }
+    
+    //---------------------------------
 
     func setPostViewTextView(topView: UIView) -> UITextView {
-        postTextView.frame = CGRectMake(5, topView.frame.origin.y + topView.frame.height + 10, self.view.frame.width-10, 200)
+        postTextView.frame = CGRectMake(5, topView.frame.origin.y + topView.frame.height + 16, self.view.frame.width-10, 200)
         postTextView.layer.borderWidth = 1
         postTextView.layer.cornerRadius = 10
         postTextView.layer.borderColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1).CGColor
@@ -408,7 +449,7 @@ class StoreDetailViewController: UIViewController, UITableViewDataSource, UITabl
         
         let inviteView = UIView()
         inviteView.frame.size = CGSizeMake(300, 180)
-        inviteView.center = CGPointMake(self.view.center.x, self.view.center.y-61)
+        inviteView.center = CGPointMake(self.view.center.x, self.view.center.y - 61)
         inviteView.backgroundColor = UIColor(red: 252 / 255, green: 166 / 255, blue: 51 / 255, alpha: 1)
         inviteView.layer.cornerRadius = 10
         coverView.addSubview(inviteView)

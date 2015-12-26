@@ -42,7 +42,7 @@ class AlertTableViewController: UITableViewController {
     func makeNotification(json: JSON) {
         let notification = Notification()
         notification.content = json["content"].string
-        notification.date = json["date"].string
+        notification.date = "10分前"//json["date"].string
         
         notifications.append(notification)
     }

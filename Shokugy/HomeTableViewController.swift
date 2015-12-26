@@ -10,6 +10,11 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     var inviteArray: [Invite] = []
     
     let setUpViewController = UIViewController()
+    
+    
+    var booll = true //ごまかし用
+    var hogecounter = 10 //ごまかし用　
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +51,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
     var counter = 0
     //---------------
     
+//    booll = true //ごまかし用
+    
     func makeInviteAndSet(json: JSON) {
         let invite = Invite()
         invite.id = json["id"].int
@@ -56,16 +63,25 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         invite.userID = json["userFbId"].string
         invite.userName = json["userName"].string
         invite.restaurantID = json["restaurantId"].int
-        let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(invite.userID!)/picture?type=large")!)!)
-        invite.userAvatar = profileImage
+//        let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(invite.userID!)/picture?type=large")!)!)
+//        invite.userAvatar = profileImage
 //        invite.goingMemberUserIDArray.append(invite.userID!)
         
         //------test用
-        if counter % 2 == 0 {
+        
+        if booll {
             invite.userID = "612751962169561"
+            let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://scontent.xx.fbcdn.net/hphotos-ash2/v/t1.0-9/10402567_549294231865668_7332164122511268367_n.jpg?oh=da09ddf477d95af71ad5b5dbb1649f17&oe=56D5FD64")!)!)
+            invite.userAvatar = profileImage
+            booll = false
+        } else {
+            let profileImage = UIImage(data: NSData(contentsOfURL: NSURL(string: "https://graph.facebook.com/\(invite.userID!)/picture?type=large")!)!)
+            invite.userAvatar = profileImage
         }
         invite.goingMemberUserIDArray.append(invite.userID!)
-        counter += 1
+//        counter += 1
+        
+        
         //-------
         
         inviteArray.append(invite)
@@ -115,6 +131,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         setFBLogin()
         
 //        print(User.currentUser.id, User.currentUser.name, User.currentUser.userFBID)
+        booll = true //ごまかし用
+        hogecounter = 10 //ごまかし用カウンターr
     }
     
     func setNavBar() {
@@ -135,6 +153,10 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         let cell = contentView?.superview as! HomeTableViewCell
         let indexPath = self.tableView.indexPathForCell(cell)
         inviteArray[(indexPath?.section)!].goingMemberUserIDArray.append(User.currentUser.userFBID!)
+        
+        booll = true //ごまかし用
+        hogecounter = 10 //ごまかし用カウンターr
+
         self.tableView.reloadData()
         InviteCollection.postJoinMember(inviteArray[(indexPath?.section)!].id!)
     }
@@ -149,6 +171,11 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
                 goingMemberUserIDArray.removeAtIndex(i)
 
                 inviteArray[(indexPath?.section)!].goingMemberUserIDArray = goingMemberUserIDArray
+                
+                
+                booll = true //ごまかし用
+                hogecounter = 10 //ごまかし用カウンターr
+                
                 self.tableView.reloadData()
             }
         }
@@ -202,7 +229,8 @@ class HomeTableViewController: UITableViewController, HomeTableViewCellDelegate,
         cell.storeName.text = invite.storeName
         cell.storeAccess.text = invite.access
         cell.userComment.text = invite.comment
-        cell.postTime.text = invite.postTime
+        cell.postTime.text = String(hogecounter) + "分前"//invite.postTime
+        hogecounter += 17
         cell.numOfLike.text = "\(invite.goingMemberUserIDArray.count)"
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2

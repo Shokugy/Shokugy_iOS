@@ -45,6 +45,7 @@ class RestaurantManager: NSObject {
         let manager = Alamofire.Manager.sharedInstance
         manager.request(mutableURLRequest).responseJSON { (any) -> Void in
             print(JSON(data: any.data!))
+            print(any.result)
         }
     }
     

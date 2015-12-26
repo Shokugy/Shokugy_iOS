@@ -174,6 +174,30 @@
             </objects>
             <point key="canvasLocation" x="5461.5" y="2374.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="lgT-dj-In5">
+            <objects>
+                <viewController id="g7b-2B-aBV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mXL-J5-uqJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ppt-At-gVT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vER-S0-XBV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shokugy_top2.png" translatesAutoresizingMaskIntoConstraints="NO" id="zcA-7H-NQD">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aqj-xg-RAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5829.5" y="1755.5"/>
+        </scene>
         <!--Animated Tab Bar Controller-->
         <scene sceneID="Pjo-oY-Oku">
             <objects>
@@ -363,6 +387,7 @@
         <image name="home.png" width="44" height="44"/>
         <image name="ranking.png" width="44" height="44"/>
         <image name="search.png" width="44" height="44"/>
+        <image name="shokugy_top2.png" width="656" height="959"/>
         <image name="user.png" width="44" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>

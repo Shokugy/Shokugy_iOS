@@ -20,7 +20,7 @@ class CommentTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userImageView.layer.cornerRadius = userImageView.frame.width / 2
+        userImageView.layer.cornerRadius = 21
         userImageView.clipsToBounds = true
         
         self.selectionStyle = UITableViewCellSelectionStyle.None

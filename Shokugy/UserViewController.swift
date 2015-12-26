@@ -22,6 +22,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var reviews: [Review] = []
     var sendRestaurantID: Int?
     
+    var hogecounter = 2 //ごまかし用
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +46,8 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.selfCommentTableView.reloadData()
         }
         setNavBar()
+        
+        hogecounter = 2 //ごまかし用
     }
     
     func makeReview(reviewJSON: JSON) {
@@ -185,10 +189,12 @@ class UserViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let review = reviews[indexPath.section]
         cell.userName.text = User.currentUser.name
         cell.userImageView.image = User.currentUser.avatar
-        cell.rateImageView.image = UIImage(named: "rate4")
+        cell.rateImageView.image = UIImage(named: "stars_4")
         cell.userReviewLabel.text = review.review
         cell.storeNameLabel.text = review.restaurantName
         cell.storeAccessLabel.text = review.restaurantAddress
+        cell.postDateLabel.text = String(hogecounter) + "時間前"
+        hogecounter += 3
         
         cell.layer.borderWidth = 0.1
         cell.layer.cornerRadius = 2
